@@ -17,3 +17,7 @@
 body {
   color: rgb(var(--foreground-rgb));
 }
+
+#pricing {
+  scroll-behavior: smooth;
+}

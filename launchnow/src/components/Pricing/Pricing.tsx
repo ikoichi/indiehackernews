@@ -3,30 +3,7 @@ import { PricingPlan } from "./PricingPlan";
 import router from "next/router";
 import { Section } from "../Hero/Section";
 import { useState } from "react";
-
-const pricingPlans = [
-  {
-    title: "Hobby",
-    monthlyPrice: 19,
-    annualPrice: 199,
-    monthlyCheckoutUrl: "https://...",
-    annualCheckoutUrl: "https://...",
-  },
-  {
-    title: "Growth",
-    monthlyPrice: 49,
-    annualPrice: 499,
-    monthlyCheckoutUrl: "https://...",
-    annualCheckoutUrl: "https://...",
-  },
-  {
-    title: "Pro",
-    monthlyPrice: 99,
-    annualPrice: 999,
-    monthlyCheckoutUrl: "https://...",
-    annualCheckoutUrl: "https://...",
-  },
-];
+import { pricingPlans } from "./pricing.constants";
 
 export const Pricing = () => {
   const [planType, setPlanType] = useState<"monthly" | "annual">("annual");
@@ -36,7 +13,7 @@ export const Pricing = () => {
 
   return (
     <>
-      <Section flexDir="column">
+      <Section flexDir="column" id="pricing">
         <Heading as="h4" fontSize="16px" color="brand.400" mb="16px">
           Pricing
         </Heading>
@@ -119,7 +96,7 @@ export const Pricing = () => {
                     isMonthly ? plan.monthlyCheckoutUrl : plan.annualCheckoutUrl
                   );
                 }}
-                features={[]}
+                features={plan.features}
               />
             );
           })}

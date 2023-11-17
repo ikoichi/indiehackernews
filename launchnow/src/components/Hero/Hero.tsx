@@ -53,7 +53,7 @@ export const Hero = () => {
             as="h1"
           >
             <Text
-              bgGradient="linear(to-r, teal.400, teal.300)"
+              bgGradient="linear(to-r, brand.400, brand.300)"
               backgroundClip="text"
               as="span"
             >

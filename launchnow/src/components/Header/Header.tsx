@@ -44,6 +44,9 @@ export const Header = ({}: HeaderProps) => {
           spacing={["16px", "16px", "16px", "32px"]}
           fontWeight={500}
         >
+          <Link href="/#pricing" display={["none", "block"]}>
+            Pricing
+          </Link>
           <Link href={Routes.login} display={["none", "block"]}>
             Login
           </Link>

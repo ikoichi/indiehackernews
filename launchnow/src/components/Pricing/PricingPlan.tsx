@@ -128,6 +128,8 @@ export const PricingPlan = ({
         })}
       </VStack>
 
+      <Spacer />
+
       <Button
         onClick={() => {
           if (onClick) {
@@ -136,9 +138,11 @@ export const PricingPlan = ({
           }
         }}
         variant="outline"
+        justifySelf="flex-end"
         size="sm"
         lineHeight="40px"
         h="40px"
+        mt="24px"
         borderRadius="8px"
         fontWeight={600}
         fontSize="13px"
