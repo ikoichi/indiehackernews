@@ -101,8 +101,7 @@ export const Footer = () => {
         </Flex>
 
         <Text fontSize="12px" color="blackAlpha.600" mb="40px">
-          Notion and the Notion logo are trademarks of Notion Labs, Inc.
-          <br />© Copyright 2023 Userdesk. All rights reserved.
+          <br />© Copyright 2023 MakeMoney. All rights reserved.
         </Text>
       </Flex>
     </Section>

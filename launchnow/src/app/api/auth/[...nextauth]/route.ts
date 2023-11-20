@@ -1,3 +1,4 @@
+import { addUserToMailChimp } from "@/libs/mailchimp";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 // import AppleProvider from "next-auth/providers/apple";
@@ -64,6 +65,18 @@ const handler = NextAuth({
       },
     }), */
   ],
+  events: {
+    async signIn(event) {
+      const eventName = event.isNewUser ? "New Sign Up" : "Sign In";
+
+      if (event.isNewUser && event.user.email) {
+        await addUserToMailChimp({
+          email: event.user.email,
+          userName: event.user.name || "",
+        });
+      }
+    },
+  },
 });
 
 export { handler as GET, handler as POST };

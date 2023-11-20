@@ -2,7 +2,7 @@ import { Heading, Stack } from "@chakra-ui/react";
 import { Section } from "../Hero/Section";
 import { Testimonial, TestimonialProps } from "./Testimonial";
 
-const testimonials: TestimonialProps[] = [
+export const testimonials: TestimonialProps[] = [
   {
     text: "I was looking for a way to make more money. And I found it with MakeMoney. Now I keep recommending this to all my friends.",
     name: "John Doe",

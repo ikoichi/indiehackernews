@@ -53,7 +53,7 @@ export const FAQ = () => {
           </Text>
         </VStack>
 
-        <Accordion mt="40px" allowMultiple w="100%">
+        <Accordion mt="40px" w="100%" borderColor="blackAlpha.300">
           {faqs.map((faq, index) => {
             return (
               <FAQquestion
