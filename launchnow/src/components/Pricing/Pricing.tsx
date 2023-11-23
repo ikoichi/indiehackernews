@@ -1,3 +1,5 @@
+"use client";
+
 import { Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import { PricingPlan } from "./PricingPlan";
 import router from "next/router";

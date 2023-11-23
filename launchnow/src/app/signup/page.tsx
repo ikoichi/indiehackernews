@@ -7,6 +7,8 @@ import * as isEmail from "isemail";
 import { Testimonial } from "@/components/Testimonials/Testimonial";
 import { testimonials } from "@/components/Testimonials/Testimonials";
 import { signIn } from "next-auth/react";
+import { brandName } from "@/config";
+import Image from "next/image";
 
 const SignUp = () => {
   const [isSigningUpWithGoogle, setSigningUpWithGoogle] = useState(false);
@@ -82,13 +84,9 @@ const SignUp = () => {
             mb={["64px", null, null, "32px"]}
             mt="-60px"
           >
-            <Flex
-              w="30px"
-              h="30px"
-              borderRadius="40px"
-              overflow="hidden"
-              bgColor="blackAlpha.300"
-            ></Flex>
+            <Flex w="30px" h="30px">
+              <Image src="/logo.png" alt="logo" width={30} height={30} />
+            </Flex>
           </Flex>
           <Text
             color="blackAlpha.800"
@@ -99,7 +97,7 @@ const SignUp = () => {
             w="100%"
             mb={[0, null, null, "16px"]}
           >
-            Sign up to MakeMoney
+            Sign up to {brandName}
           </Text>
 
           <Button

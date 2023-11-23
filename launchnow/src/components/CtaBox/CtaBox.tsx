@@ -1,3 +1,5 @@
+"use client";
+
 import { Routes } from "@/data/routes";
 import { Text, Flex, Heading, Button, Stack } from "@chakra-ui/react";
 import { useState } from "react";
@@ -5,6 +7,7 @@ import { TbArrowRight, TbCalendarDue, TbCircleCheck } from "react-icons/tb";
 import { useIsLogged } from "@/hooks/useIsLogged";
 import { useRouter } from "next/navigation";
 import { Section } from "../Hero/Section";
+import { brandName } from "@/config";
 
 export const CtaBox = () => {
   const router = useRouter();
@@ -38,7 +41,7 @@ export const CtaBox = () => {
           Start making money today.
         </Heading>
         <Text fontSize="16px" my="8px" color="blackAlpha.700" maxW="600px">
-          Get started with MakeMoney today.
+          Get started with {brandName} today.
           <br />
           Start making money with your audience.
         </Text>

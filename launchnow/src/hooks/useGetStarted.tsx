@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import { useIsLogged } from "./useIsLogged";
 import { useState } from "react";

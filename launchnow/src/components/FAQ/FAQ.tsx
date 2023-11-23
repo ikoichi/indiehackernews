@@ -1,13 +1,15 @@
+"use client";
+
 import { Accordion, Flex, Heading, VStack, Text } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import { Section } from "../Hero/Section";
 import { FAQQuestionProps, FAQquestion } from "./FAQquestion";
+import { brandName } from "@/config";
 
 const faqs: FAQQuestionProps[] = [
   {
     question: "Is there a free plan?",
-    answer:
-      "Yes, there is a free plan. You can use MakeMoney with limited features for free.",
+    answer: `Yes, there is a free plan. You can use ${brandName} with limited features for free.`,
   },
   {
     question: "Can I invite team members?",

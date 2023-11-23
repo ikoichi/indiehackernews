@@ -1,3 +1,5 @@
+"use client";
+
 import { Flex, Heading, Button, Text } from "@chakra-ui/react";
 import { TbArrowRight } from "react-icons/tb";
 import { Section } from "../Hero/Section";

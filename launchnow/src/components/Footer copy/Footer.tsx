@@ -1,12 +1,11 @@
+"use client";
+
 import { Flex, Spacer, Stack, Text, Tooltip, VStack } from "@chakra-ui/react";
-import {
-  TbBrandDiscord,
-  TbBrandTwitter,
-  TbBrandX,
-  TbBrandYoutube,
-} from "react-icons/tb";
+import { TbBrandDiscord, TbBrandX, TbBrandYoutube } from "react-icons/tb";
 import { Section } from "../Hero/Section";
 import { Link } from "@chakra-ui/next-js";
+import { brandName } from "@/config";
+import Image from "next/image";
 
 export const Footer = () => {
   return (
@@ -32,13 +31,16 @@ export const Footer = () => {
           flexDir={["column", "column", "row"]}
         >
           <Stack alignItems="flex-start" mr="32px">
-            <Text fontWeight={700} fontSize="16px">
-              MakeMoney
-            </Text>
-            <Text fontSize="14px">
+            <Stack direction="row" alignItems="center">
+              <Flex>
+                <Image src="/logo.png" alt="logo" width={32} height={32} />
+              </Flex>
+              <Text fontWeight={700} fontSize="16px">
+                {brandName}
+              </Text>
+            </Stack>
+            <Text fontWeight={500} fontSize="14px">
               Start making money today.
-              <br />
-              Copyright © 2023 - All rights reserved
             </Text>
           </Stack>
           <Spacer />
@@ -101,7 +103,7 @@ export const Footer = () => {
         </Flex>
 
         <Text fontSize="12px" color="blackAlpha.600" mb="40px">
-          <br />© Copyright 2023 MakeMoney. All rights reserved.
+          <br />© Copyright 2023 {brandName}. All rights reserved.
         </Text>
       </Flex>
     </Section>

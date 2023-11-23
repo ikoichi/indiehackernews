@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+"use client";
+
+import React from "react";
+import Image from "next/image";
 import { Button, Flex, HStack, Spacer } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import { Routes } from "@/data/routes";
 import { useGetStated } from "@/hooks/useGetStarted";
+import { brandName } from "@/config";
 
 type HeaderProps = {};
 
@@ -24,10 +28,11 @@ export const Header = ({}: HeaderProps) => {
             w="32px"
             h="32px"
             mr="8px"
-            borderRadius="16px"
             overflow="hidden"
             bgColor="blackAlpha.200"
-          ></Flex>
+          >
+            <Image src="/logo.png" alt="logo" width={32} height={32} />
+          </Flex>
           <Link
             w="100px"
             href={Routes.root}
@@ -35,7 +40,7 @@ export const Header = ({}: HeaderProps) => {
             fontWeight="extrabold"
             color="blackAlpha.800"
           >
-            MakeMoney
+            {brandName}
           </Link>
         </Flex>
         <Spacer />

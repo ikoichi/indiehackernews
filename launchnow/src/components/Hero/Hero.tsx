@@ -1,3 +1,5 @@
+"use client";
+
 import { Routes } from "@/data/routes";
 import { useIsLogged } from "@/hooks/useIsLogged";
 import { Flex, Heading, Button, HStack, Text, Box } from "@chakra-ui/react";
@@ -70,10 +72,10 @@ export const Hero = () => {
             fontSize={["14px", "15px", "18px", "20px"]}
             maxW={["70%", "70%", "70%", "560px"]}
           >
-            Launch now and start making money today.
+            Launch faster and start making money today.
           </Text>
 
-          <Flex flexDir="column" alignItems="center" px="16px" mt="24px">
+          <Flex flexDir="column" alignItems="flex-start" px="16px" mt="24px">
             <Flex flexDir={["column-reverse", "column-reverse", "row"]}>
               <Flex flexDir="column">
                 <Button
@@ -188,7 +190,7 @@ export const Hero = () => {
           minW={["180px", "240px", "300px", "300px", "300px"]}
           h={["100px", "150px", "200px", "300px"]}
           minH={["100px", "150px", "200px", "300px"]}
-          bg="linear-gradient(267.2deg,#ffa800,#fa5a00)"
+          bgGradient="linear-gradient(267.2deg,brand.400,brand.300)"
           position="absolute"
           top="100px"
           left="0"

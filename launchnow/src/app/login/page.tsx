@@ -5,6 +5,8 @@ import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import * as isEmail from "isemail";
+import { brandName } from "@/config";
+import Image from "next/image";
 
 const Login = () => {
   const [isSigningInWithGoogle, setSigningInWithGoogle] = useState(false);
@@ -80,15 +82,11 @@ const Login = () => {
             mt="-60px"
             ml="0px"
           >
-            <Flex
-              w="30px"
-              h="30px"
-              borderRadius="40px"
-              overflow="hidden"
-              bgColor="blackAlpha.500"
-            ></Flex>
+            <Flex w="32px" h="32px">
+              <Image src="/logo.png" alt="logo" width={32} height={32} />
+            </Flex>
             <Text color="blackAlpha.700" fontWeight="extrabold" ml="8px">
-              MakeMoney
+              {brandName}
             </Text>
           </Flex>
           <Text

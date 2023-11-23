@@ -9,7 +9,7 @@ export const ExplainerVideo = () => {
         <Text
           textAlign="center"
           mb="24px"
-          color="primary.400"
+          color="brand.400"
           fontWeight={600}
           px="48px"
         >
@@ -33,7 +33,7 @@ export const ExplainerVideo = () => {
             top="calc(50% - 32px)"
             left="calc(50% - 32px)"
             color="white"
-            bgColor="teal.400"
+            bgColor="brand.400"
             alignItems="center"
             justifyContent="center"
             borderRadius="100px"
