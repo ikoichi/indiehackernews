@@ -1,14 +1,18 @@
 import mailchimp from "@mailchimp/mailchimp_marketing";
 
-type AddUserToMailChimp = {
+type AddMailChimpListMember = {
   email: string;
-  userName: string;
+  firstName: string;
+  lastName: string;
+  tags: string[];
 };
 
-export const addUserToMailChimp = async ({
+export const addMailChimpListMember = async ({
   email,
-  userName,
-}: AddUserToMailChimp) => {
+  firstName,
+  lastName,
+  tags = [],
+}: AddMailChimpListMember) => {
   try {
     await mailchimp.lists.addListMember(
       process.env.MAILCHIMP_AUDIENCE_LIST_ID || "",
@@ -16,14 +20,15 @@ export const addUserToMailChimp = async ({
         email_address: email,
         status: "subscribed",
         merge_fields: {
-          FNAME: userName,
+          FNAME: firstName,
+          LNAME: lastName,
         },
-        tags: ["free_trial"],
+        tags,
       }
     );
 
     console.log(
-      `Successfully added contact "${userName}" with email "${email}" as an audience member on MailChimp.`
+      `Successfully added contact "${firstName}" with email "${email}" as an audience member on MailChimp.`
     );
     return true;
   } catch (err) {
@@ -49,7 +54,7 @@ export const addUserToMailChimp = async ({
     } else {
       // Something happened in setting up the request that triggered an Error
       console.error(
-        `Error while adding the user "${userName}" with email "${email}" to MailChimp`,
+        `Error while adding the user "${firstName}" with email "${email}" to MailChimp`,
         err
       );
     }

@@ -1,5 +1,6 @@
 "use client";
 
+import { demoCalendlyLink } from "@/config";
 import { Routes } from "@/data/routes";
 import { useIsLogged } from "@/hooks/useIsLogged";
 import { Flex, Heading, Button, HStack, Text, Box } from "@chakra-ui/react";
@@ -7,7 +8,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { TbArrowRight, TbCalendarDue, TbStarFilled } from "react-icons/tb";
 
-export const Hero = () => {
+type HeroProps = {
+  showBookDemo?: boolean;
+};
+
+export const Hero = ({ showBookDemo = true }: HeroProps) => {
   const router = useRouter();
   const { user } = useIsLogged();
 
@@ -106,43 +111,45 @@ export const Hero = () => {
                   Try FREE now
                 </Button>
               </Flex>
-              <Flex
-                flexDir="row"
-                ml={["0px", "0px", "24px"]}
-                alignItems="center"
-                justifyContent="center"
-                mt="16px"
-              >
-                <Flex flexDir="column">
-                  <Button
-                    variant="ghost"
-                    as="a"
-                    href={"https://yourcalendlylink.com"}
-                    target="_blank"
-                    rel="noopener"
-                    fontWeight={500}
-                    pr="8px"
-                    ml={["0", "0", "24px"]}
-                    leftIcon={
-                      <Flex mb="2px">
-                        <TbCalendarDue />
-                      </Flex>
-                    }
-                    _hover={{
-                      bgColor: "transparent",
-                      color: "blackAlpha.800",
-                      textDecor: "underline",
-                    }}
-                    _active={{
-                      bgColor: "transparent",
-                      color: "blackAlpha.800",
-                    }}
-                    h="28px"
-                  >
-                    Talk to us
-                  </Button>
+              {showBookDemo && (
+                <Flex
+                  flexDir="row"
+                  ml={["0px", "0px", "24px"]}
+                  alignItems="center"
+                  justifyContent="center"
+                  mt="16px"
+                >
+                  <Flex flexDir="column">
+                    <Button
+                      variant="ghost"
+                      as="a"
+                      href={demoCalendlyLink}
+                      target="_blank"
+                      rel="noopener"
+                      fontWeight={500}
+                      pr="8px"
+                      ml={["0", "0", "24px"]}
+                      leftIcon={
+                        <Flex mb="2px">
+                          <TbCalendarDue />
+                        </Flex>
+                      }
+                      _hover={{
+                        bgColor: "transparent",
+                        color: "blackAlpha.800",
+                        textDecor: "underline",
+                      }}
+                      _active={{
+                        bgColor: "transparent",
+                        color: "blackAlpha.800",
+                      }}
+                      h="28px"
+                    >
+                      Talk to us
+                    </Button>
+                  </Flex>
                 </Flex>
-              </Flex>
+              )}
             </Flex>
             <Flex
               mt="48px"

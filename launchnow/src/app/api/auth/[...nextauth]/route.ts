@@ -1,4 +1,5 @@
-import { addUserToMailChimp } from "@/libs/mailchimp";
+import { createLoopsContact } from "@/libs/loops";
+import { addMailChimpListMember } from "@/libs/mailchimp";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 // import AppleProvider from "next-auth/providers/apple";
@@ -70,9 +71,16 @@ const handler = NextAuth({
       const eventName = event.isNewUser ? "New Sign Up" : "Sign In";
 
       if (event.isNewUser && event.user.email) {
-        await addUserToMailChimp({
+        await addMailChimpListMember({
           email: event.user.email,
-          userName: event.user.name || "",
+          firstName: event.user.name || "",
+          lastName: "",
+        });
+
+        await createLoopsContact({
+          email: event.user.email,
+          firstName: event.user.name || "",
+          lastName: "",
         });
       }
     },

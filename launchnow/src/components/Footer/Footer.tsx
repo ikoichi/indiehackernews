@@ -9,14 +9,13 @@ import Image from "next/image";
 
 export const Footer = () => {
   return (
-    <Section flexDir="column" mb="160px" mt="80px">
+    <Section flexDir="column" my="80px">
       <Flex
         w="90%"
         maxW="1000px"
         flexDir="column"
         fontSize="12px"
         color="blackAlpha.600"
-        pb="120px"
       >
         <Flex
           borderTop="1px solid gray"
@@ -71,33 +70,35 @@ export const Footer = () => {
             </VStack>
 
             <Stack spacing="16px">
-              <Tooltip label="Join Discord community" placement="top">
-                <Link
-                  href="https://discord.gg/<your link>"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <TbBrandDiscord size="20px" />
-                </Link>
-              </Tooltip>
-              <Tooltip label="Follow X account" placement="top">
-                <Link
-                  href="https://twitter.com/<your handle>"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <TbBrandX size="20px" />
-                </Link>
-              </Tooltip>
-              <Tooltip label="Join YouTube Channel" placement="top">
-                <Link
-                  href="https://www.youtube.com/channel/<your channel>"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <TbBrandYoutube size="20px" />
-                </Link>
-              </Tooltip>
+              <Stack>
+                <Tooltip label="Join Discord community" placement="top">
+                  <Link
+                    href="https://discord.gg/<your link>"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <TbBrandDiscord size="20px" />
+                  </Link>
+                </Tooltip>
+                <Tooltip label="Follow X account" placement="top">
+                  <Link
+                    href="https://twitter.com/<your handle>"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <TbBrandX size="20px" />
+                  </Link>
+                </Tooltip>
+                <Tooltip label="Join YouTube Channel" placement="top">
+                  <Link
+                    href="https://www.youtube.com/channel/<your channel>"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <TbBrandYoutube size="20px" />
+                  </Link>
+                </Tooltip>
+              </Stack>
             </Stack>
           </Stack>
         </Flex>
