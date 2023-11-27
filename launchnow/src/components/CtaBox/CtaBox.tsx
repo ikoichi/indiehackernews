@@ -32,15 +32,21 @@ export const CtaBox = () => {
         w="90%"
         minW={["90%", "90%", "90%", "800px"]}
         maxW="1000px"
-        color="blackAlpha.800"
         alignItems="center"
         textAlign="center"
-        bgColor="blackAlpha.50"
+        bgGradient="linear(15deg, brand.100, brand.300)"
+        color="blackAlpha.900"
       >
         <Heading fontSize={["22px", "26px", "32px", "48px"]} mb="8px">
           Start making money today.
         </Heading>
-        <Text fontSize="16px" my="8px" color="blackAlpha.700" maxW="600px">
+        <Text
+          fontSize="16px"
+          my="8px"
+          color="blackAlpha.800"
+          maxW="600px"
+          fontWeight={500}
+        >
           Get started with {brandName} today.
           <br />
           Start making money with your audience.
@@ -92,6 +98,7 @@ export const CtaBox = () => {
                   rel="noopener"
                   borderRadius="16px"
                   fontWeight={500}
+                  borderColor="brand.500"
                   h="50px"
                   minH="50px"
                   leftIcon={
@@ -116,12 +123,12 @@ export const CtaBox = () => {
           spacing={["16px", "16px", "32px"]}
         >
           <Stack direction="row" alignItems="center">
-            <Flex minW="16px" color="brand.400">
+            <Flex minW="16px" color="brand.500">
               <TbCircleCheck size="16px" />
             </Flex>
             <Text color="blackAlpha.700">Personalized onboarding</Text>
           </Stack>
-          <Stack direction="row" alignItems="center" color="brand.400">
+          <Stack direction="row" alignItems="center" color="brand.500">
             <TbCircleCheck size="16px" />
             <Text color="blackAlpha.700">Friendly pricing as you scale</Text>
           </Stack>

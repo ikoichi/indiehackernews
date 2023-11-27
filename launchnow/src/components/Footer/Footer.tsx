@@ -1,10 +1,18 @@
 "use client";
 
-import { Flex, Spacer, Stack, Text, Tooltip, VStack } from "@chakra-ui/react";
+import {
+  Flex,
+  Spacer,
+  Stack,
+  Text,
+  Tooltip,
+  VStack,
+  HStack,
+} from "@chakra-ui/react";
 import { TbBrandDiscord, TbBrandX, TbBrandYoutube } from "react-icons/tb";
 import { Section } from "../Hero/Section";
 import { Link } from "@chakra-ui/next-js";
-import { brandName } from "@/config";
+import { brandName, discordLink, twitterLink, youTubeLink } from "@/config";
 import Image from "next/image";
 
 export const Footer = () => {
@@ -69,37 +77,28 @@ export const Footer = () => {
               <Link href="/terms">Terms and Conditions</Link>
             </VStack>
 
-            <Stack spacing="16px">
-              <Stack>
+            <VStack spacing="16px" alignItems="flex-start">
+              <Text fontWeight="bold" textTransform="uppercase">
+                Social
+              </Text>
+              <HStack>
                 <Tooltip label="Join Discord community" placement="top">
-                  <Link
-                    href="https://discord.gg/<your link>"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <Link href={discordLink} target="_blank" rel="noopener">
                     <TbBrandDiscord size="20px" />
                   </Link>
                 </Tooltip>
                 <Tooltip label="Follow X account" placement="top">
-                  <Link
-                    href="https://twitter.com/<your handle>"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <Link href={twitterLink} target="_blank" rel="noopener">
                     <TbBrandX size="20px" />
                   </Link>
                 </Tooltip>
                 <Tooltip label="Join YouTube Channel" placement="top">
-                  <Link
-                    href="https://www.youtube.com/channel/<your channel>"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <Link href={youTubeLink} target="_blank" rel="noopener">
                     <TbBrandYoutube size="20px" />
                   </Link>
                 </Tooltip>
-              </Stack>
-            </Stack>
+              </HStack>
+            </VStack>
           </Stack>
         </Flex>
 

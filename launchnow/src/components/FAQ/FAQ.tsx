@@ -4,7 +4,7 @@ import { Accordion, Flex, Heading, VStack, Text } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import { Section } from "../Hero/Section";
 import { FAQQuestionProps, FAQquestion } from "./FAQquestion";
-import { brandName } from "@/config";
+import { brandName, supportEmail } from "@/config";
 
 const faqs: FAQQuestionProps[] = [
   {
@@ -46,11 +46,11 @@ export const FAQ = () => {
           <Text color="blackAlpha.700" textAlign="center">
             More questions? Email us at{" "}
             <Link
-              href="mailto:email@email.com"
+              href={`mailto:${supportEmail}`}
               fontWeight="bold"
               color="brand.500"
             >
-              email@email.com
+              {supportEmail}
             </Link>{" "}
           </Text>
         </VStack>

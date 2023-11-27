@@ -24,10 +24,9 @@ const FeatureLine = ({ children }: { children: string | ReactElement }) => {
   );
 };
 
-export type PricingPlanProps = {
+export type LifetimeDealProps = {
   title: string;
   price?: number;
-  isMonthly: boolean;
   isMostPopular?: boolean;
   isSuggested?: boolean;
   isLoading?: boolean;
@@ -36,10 +35,9 @@ export type PricingPlanProps = {
   features: string[];
 } & Omit<FlexProps, "onClick">;
 
-export const PricingPlan = ({
+export const LifetimeDeal = ({
   title,
   price,
-  isMonthly,
   onClick,
   isMostPopular = false,
   isSuggested = false,
@@ -47,7 +45,7 @@ export const PricingPlan = ({
   features,
   ctaText,
   ...props
-}: PricingPlanProps) => {
+}: LifetimeDealProps) => {
   return (
     <Flex
       flexDir="column"
@@ -95,28 +93,10 @@ export const PricingPlan = ({
       <Flex alignItems="end">
         {price && (
           <Text fontSize="36px" fontWeight="extrabold">
-            ${isMonthly ? price : Math.ceil(price / 12)}
-          </Text>
-        )}
-        {!!price && (
-          <Text
-            mb="10px"
-            ml="2px"
-            fontSize="14px"
-            fontWeight={600}
-            color="blackAlpha.600"
-          >
-            / month
+            ${price}
           </Text>
         )}
       </Flex>
-      {price && (
-        <Flex visibility={isMonthly || !title ? "hidden" : "visible"}>
-          <Text fontSize="14px" color="blackAlpha.600">
-            ${price} billed yearly
-          </Text>
-        </Flex>
-      )}
 
       <VStack mt="24px" alignItems="flex-start" spacing="12px">
         {features.map((feature, index) => {
@@ -154,7 +134,7 @@ export const PricingPlan = ({
         borderColor={isMostPopular ? "brand.400" : "brand.400"}
         isLoading={isLoading}
       >
-        {ctaText || "Subscribe"}
+        {ctaText || "Get lifetime deal"}
       </Button>
     </Flex>
   );
