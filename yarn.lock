@@ -1101,6 +1101,13 @@
     dotenv "^8.2.0"
     superagent "3.8.1"
 
+"@mailchimp/mailchimp_transactional@^1.0.50":
+  version "1.0.50"
+  resolved "https://registry.npmjs.org/@mailchimp/mailchimp_transactional/-/mailchimp_transactional-1.0.50.tgz"
+  integrity sha512-SaNFseFPSDQlOYM9JTyYY6wauMu6qJ8eExo+jssFyb20ZaVvxKX1eTb3Gm5aW/4aWuxn6nofU+02sCk51//wdw==
+  dependencies:
+    axios "^0.21.1"
+
 "@next/env@14.0.3":
   version "14.0.3"
   resolved "https://registry.npmjs.org/@next/env/-/env-14.0.3.tgz"
@@ -1370,6 +1377,13 @@
   version "3.0.17"
   resolved "https://registry.npmjs.org/@types/mailchimp__mailchimp_marketing/-/mailchimp__mailchimp_marketing-3.0.17.tgz"
   integrity sha512-j0rZvpHMhIBzzvvnc4aPeqffgN1enw7gSthEX6Bc9I+GLhuSiU07TCuftbL4FhMqRvSxFSWn9OhHGDtV5z6UCg==
+
+"@types/mailchimp__mailchimp_transactional@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.npmjs.org/@types/mailchimp__mailchimp_transactional/-/mailchimp__mailchimp_transactional-1.0.9.tgz"
+  integrity sha512-1X8pnyWDGo9FlBwM643XeAFeLSxTXxC4/Ejgjbo4tnqM1+OdBOH1rBRUlJ18EijrDiKTPEF3dZUCrt+ARaVXPg==
+  dependencies:
+    axios "^0.21.1"
 
 "@types/node@20.9.1":
   version "20.9.1"
@@ -1723,6 +1737,13 @@ axe-core@=4.7.0:
   version "4.7.0"
   resolved "https://registry.npmjs.org/axe-core/-/axe-core-4.7.0.tgz"
   integrity sha512-M0JtH+hlOL5pLQwHOLNYZaXuhqmvS8oExsqB1SBYgA4Dk7u/xx+YdGHXaK5pyUfed5mYXdlYiphWq3G8cRi5JQ==
+
+axios@^0.21.1:
+  version "0.21.4"
+  resolved "https://registry.npmjs.org/axios/-/axios-0.21.4.tgz"
+  integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
+  dependencies:
+    follow-redirects "^1.14.0"
 
 axios@^1.6.2:
   version "1.6.2"
@@ -2648,7 +2669,7 @@ focus-lock@^1.0.0:
   dependencies:
     tslib "^2.0.3"
 
-follow-redirects@^1.15.0:
+follow-redirects@^1.14.0, follow-redirects@^1.15.0:
   version "1.15.3"
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.3.tgz"
   integrity sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==
@@ -3537,6 +3558,11 @@ lodash.mergewith@4.6.2:
   version "4.6.2"
   resolved "https://registry.npmjs.org/lodash.mergewith/-/lodash.mergewith-4.6.2.tgz"
   integrity sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==
+
+loops@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npmjs.org/loops/-/loops-0.1.1.tgz"
+  integrity sha512-JxJJn2kxdCxR6enyU/8QH3toy5E+aZBzPnQupgvHuHABjd2jGh2HyT8ekv7PsB5zPKWhQnAVkAgvKHlRZWMMNw==
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"

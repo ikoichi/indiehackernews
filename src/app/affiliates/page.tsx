@@ -20,9 +20,9 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { TbCoin, TbPointer, TbShare } from "react-icons/tb";
-import { pricingPlans } from "@/components/Pricing/pricing.constants";
 import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
+import { pricingPlans } from "@/config";
 
 function AffiliatesPage() {
   const [hobbyValue, setHobbyValue] = useState(200);

@@ -3,16 +3,31 @@
 import { demoCalendlyLink } from "@/config";
 import { Routes } from "@/data/routes";
 import { useIsLogged } from "@/hooks/useIsLogged";
-import { Flex, Heading, Button, HStack, Text, Box } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  Button,
+  HStack,
+  Text,
+  Stack,
+  AvatarGroup,
+  Avatar,
+} from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { TbArrowRight, TbCalendarDue, TbStarFilled } from "react-icons/tb";
 
 type HeroProps = {
   showBookDemo?: boolean;
+  showCta?: boolean;
+  showUsers?: boolean;
 };
 
-export const Hero = ({ showBookDemo = true }: HeroProps) => {
+export const Hero = ({
+  showUsers = true,
+  showCta = true,
+  showBookDemo = true,
+}: HeroProps) => {
   const router = useRouter();
   const { user } = useIsLogged();
 
@@ -82,35 +97,37 @@ export const Hero = ({ showBookDemo = true }: HeroProps) => {
 
           <Flex flexDir="column" alignItems="flex-start" px="16px" mt="24px">
             <Flex flexDir={["column-reverse", "column-reverse", "row"]}>
-              <Flex flexDir="column">
-                <Button
-                  size="md"
-                  variant="solid"
-                  colorScheme="brand"
-                  h="50px"
-                  minH="50px"
-                  w="220px"
-                  px="24px"
-                  borderRadius="16px"
-                  mt="16px"
-                  onClick={() => onGetStartedClick()}
-                  isLoading={isLoadingCta}
-                  rightIcon={<TbArrowRight />}
-                  sx={{
-                    svg: {
-                      transition: "all .15s linear",
-                      transform: "translateX(0px)",
-                    },
-                  }}
-                  _hover={{
-                    svg: {
-                      transform: "translateX(4px)",
-                    },
-                  }}
-                >
-                  Try FREE now
-                </Button>
-              </Flex>
+              {showCta && (
+                <Flex flexDir="column">
+                  <Button
+                    size="md"
+                    variant="solid"
+                    colorScheme="brand"
+                    h="50px"
+                    minH="50px"
+                    w="220px"
+                    px="24px"
+                    borderRadius="16px"
+                    mt="16px"
+                    onClick={() => onGetStartedClick()}
+                    isLoading={isLoadingCta}
+                    rightIcon={<TbArrowRight />}
+                    sx={{
+                      svg: {
+                        transition: "all .15s linear",
+                        transform: "translateX(0px)",
+                      },
+                    }}
+                    _hover={{
+                      svg: {
+                        transform: "translateX(4px)",
+                      },
+                    }}
+                  >
+                    Try FREE now
+                  </Button>
+                </Flex>
+              )}
               {showBookDemo && (
                 <Flex
                   flexDir="row"
@@ -151,27 +168,51 @@ export const Hero = ({ showBookDemo = true }: HeroProps) => {
                 </Flex>
               )}
             </Flex>
-            <Flex
-              mt="48px"
-              alignSelf={["center", "center", "center", "flex-start"]}
-              flexDir={["column", "column", "row"]}
-              alignItems="center"
-            >
-              <Text fontWeight={600} color="blackAlpha.700">
-                Trusted by 900+ users
-              </Text>
-              <HStack
-                color="#FF9800"
-                ml={["0", "0", "8px"]}
-                mt={["4px", "4px", "0"]}
+            {showUsers && (
+              <Stack
+                direction={["column", "column", "column", "row"]}
+                alignItems="center"
+                mt="48px"
+                spacing="16px"
+                alignSelf={["center", "center", "center", "flex-start"]}
               >
-                <TbStarFilled />
-                <TbStarFilled />
-                <TbStarFilled />
-                <TbStarFilled />
-                <TbStarFilled />
-              </HStack>
-            </Flex>
+                <AvatarGroup size="md" max={6}>
+                  <Avatar
+                    name="Ryan Florence"
+                    src="https://bit.ly/ryan-florence"
+                  />
+                  <Avatar
+                    name="Segun Adebayo"
+                    src="https://bit.ly/sage-adebayo"
+                  />
+                  <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
+                  <Avatar
+                    name="Prosper Otemuyiwa"
+                    src="https://bit.ly/prosper-baba"
+                  />
+                  <Avatar
+                    name="Christian Nwamba"
+                    src="https://bit.ly/code-beast"
+                  />
+                </AvatarGroup>
+                <Stack
+                  alignSelf={["center", "center", "center", "flex-start"]}
+                  alignItems={["center", "center", "center", "flex-start"]}
+                  spacing="4px"
+                >
+                  <Text fontWeight={600} color="blackAlpha.700">
+                    Trusted by 900+ users
+                  </Text>
+                  <HStack color="#FF9800" mt={["4px", "4px", "0"]}>
+                    <TbStarFilled />
+                    <TbStarFilled />
+                    <TbStarFilled />
+                    <TbStarFilled />
+                    <TbStarFilled />
+                  </HStack>
+                </Stack>
+              </Stack>
+            )}
           </Flex>
         </Flex>
         <Flex

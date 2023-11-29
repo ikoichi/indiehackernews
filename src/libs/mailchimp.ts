@@ -1,4 +1,15 @@
+import { emailFrom } from "@/config";
 import mailchimp from "@mailchimp/mailchimp_marketing";
+import mailchimpTx from "@mailchimp/mailchimp_transactional";
+
+/*
+  Learn more about the MailChimp Marketing API here https://mailchimp.com/developer/marketing/api/
+*/
+
+mailchimp.setConfig({
+  apiKey: process.env.MAILCHIMP_API_KEY,
+  server: process.env.MAILCHIMP_SERVER_PREFIX,
+});
 
 type AddMailChimpListMember = {
   email: string;
@@ -61,4 +72,89 @@ export const addMailChimpListMember = async ({
 
     return false;
   }
+};
+
+/*
+  Learn more about the MailChimp Transactional API here https://mailchimp.com/developer/transactional/api/metadata/
+*/
+
+type SendTransactionalEmail = {
+  to: string[];
+  from?: string;
+  subject: string;
+  text: string;
+  html: string;
+};
+
+export const sendTransactionalEmail = async ({
+  to,
+  from = emailFrom,
+  subject,
+  text,
+  html,
+}: SendTransactionalEmail) => {
+  const mailchimp = mailchimpTx(process.env.MAILCHIMP_API_KEY || "");
+  mailchimp.messages.send({
+    message: {
+      from_email: from,
+      to: to.map((email) => ({
+        email,
+        type: "to",
+      })),
+      subject: "Your Subject Here",
+      text: "Your email content here.",
+      html: "<p>Your email content here.</p>",
+    },
+  });
+};
+
+type SendTransactionalEmailWithTemplate = {
+  to: string[];
+  from?: string;
+  subject: string;
+  mergeTags?: { name: string; content: string }[];
+  templateName: string;
+  templateContent?: { name: string; content: string }[];
+};
+
+export const sendTransactionalEmailWithTemplate = async ({
+  to,
+  from = emailFrom,
+  subject,
+  mergeTags = [],
+  templateName,
+  templateContent = [],
+}: SendTransactionalEmailWithTemplate) => {
+  const mailchimp = mailchimpTx(process.env.MAILCHIMP_API_KEY || "");
+  mailchimp.messages.sendTemplate({
+    template_name: templateName,
+    template_content: [
+      /*
+      Required by the API but not used when the template is stored in Mailchimp
+      {
+        name: "example_name",
+        content: "example_content",
+      },
+      */
+      ...templateContent,
+    ],
+    message: {
+      from_email: from,
+      to: to.map((email) => ({
+        email,
+        type: "to",
+      })),
+      subject,
+      // You can also pass merge fields if your template requires them
+      global_merge_vars: [
+        /*
+        {
+          name: "merge1",
+          content: "merge1 content",
+        },
+        */
+        ...mergeTags,
+      ],
+    },
+  });
 };

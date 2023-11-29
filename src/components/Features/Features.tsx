@@ -1,7 +1,7 @@
 import { Feature, FeatureProps } from "../Feature/Feature";
 import { Section } from "../Hero/Section";
 
-const featuresList: FeatureProps[] = [
+const featuresList: Omit<FeatureProps, "showCta">[] = [
   {
     category: "Productivity",
     title: "Feature 1",
@@ -18,7 +18,11 @@ const featuresList: FeatureProps[] = [
   },
 ];
 
-export const Features = () => {
+type FeaturesProps = {
+  showCta?: boolean;
+};
+
+export const Features = ({ showCta = true }: FeaturesProps) => {
   return (
     <Section flexDir="column">
       {featuresList.map((feature, index) => {
@@ -29,6 +33,7 @@ export const Features = () => {
             title={feature.title}
             description={feature.description}
             imageUrl={feature.imageUrl}
+            showCta={showCta}
           />
         );
       })}

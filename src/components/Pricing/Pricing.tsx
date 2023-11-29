@@ -5,7 +5,7 @@ import { PricingPlan } from "./PricingPlan";
 import router from "next/router";
 import { Section } from "../Hero/Section";
 import { useState } from "react";
-import { pricingPlans } from "./pricing.constants";
+import { pricingPlans } from "@/config";
 
 export const Pricing = () => {
   const [planType, setPlanType] = useState<"monthly" | "annual">("annual");

@@ -48,6 +48,7 @@ export const ExplainerVideo = () => {
             <TbPlayerPlayFilled size="40px" />
           </Flex>
           <img src={`https://placehold.co/800x600`} />
+          {/* <video src="" /> */}
         </Flex>
       </Flex>
     </Section>

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import * as isEmail from "isemail";
-import { brandName } from "@/config";
+import { brandName, signInCallbackUrl } from "@/config";
 import Image from "next/image";
 
 const Login = () => {
@@ -13,7 +13,7 @@ const Login = () => {
   const onGoogleSignIn = () => {
     setSigningInWithGoogle(true);
     signIn("google", {
-      callbackUrl: window?.location ? `${window.location.origin}/app` : "",
+      callbackUrl: signInCallbackUrl,
     });
   };
 
@@ -23,7 +23,7 @@ const Login = () => {
     setSigningInWithEmail(true);
     signIn("email", {
       email,
-      callbackUrl: window?.location ? `${window.location.origin}/app` : "",
+      callbackUrl: signInCallbackUrl,
     });
   };
 
@@ -108,10 +108,10 @@ const Login = () => {
             leftIcon={<FcGoogle />}
             bgColor="white"
             border="1px solid"
-            borderColor="brand.100"
+            borderColor="brand.400"
             _hover={{
               bgColor: "white",
-              borderColor: "brand.200",
+              borderColor: "brand.300",
             }}
             onClick={onGoogleSignIn}
             isLoading={isSigningInWithGoogle}

@@ -4,7 +4,7 @@ import { Button, Flex, Input, Stack, Text } from "@chakra-ui/react";
 import { Section } from "../Hero/Section";
 import { colors } from "@/theme";
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 
 export const Waitlist = () => {
@@ -38,10 +38,10 @@ export const Waitlist = () => {
         w="90%"
         minW={["90%", "90%", "90%", "800px"]}
         maxW="1000px"
-        color="blackAlpha.800"
         alignItems="center"
         textAlign="center"
-        bgColor="blackAlpha.50"
+        bgGradient="linear(15deg, brand.100, brand.300)"
+        color="blackAlpha.900"
       >
         <Stack maxW="800px" spacing="16px">
           <Text fontSize={["22px", "26px", "28px", "30px"]} fontWeight={700}>
