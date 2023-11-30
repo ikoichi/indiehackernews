@@ -6,8 +6,6 @@ import { useSession } from "next-auth/react";
 const Dashboard = () => {
   const { data: session, status } = useSession();
 
-  throw Error("Blah");
-
   return (
     <Center minH="100vh">
       {status === "loading" && <Spinner color="brand.500" />}

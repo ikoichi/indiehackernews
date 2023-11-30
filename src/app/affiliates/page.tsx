@@ -22,7 +22,7 @@ import {
 import { TbCoin, TbPointer, TbShare } from "react-icons/tb";
 import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
-import { pricingPlans } from "@/config";
+import { affiliateProgramLink, pricingPlans } from "@/config";
 
 function AffiliatesPage() {
   const [hobbyValue, setHobbyValue] = useState(200);
@@ -35,8 +35,7 @@ function AffiliatesPage() {
       pricingPlans[0].monthlyPrice * growthValue) *
     0.3;
 
-  const onOpenAffiliate = () =>
-    window.open("https://userdesk.lemonsqueezy.com/affiliates");
+  const onOpenAffiliate = () => window.open(affiliateProgramLink);
 
   const potentialEarnedMoney =
     typeof navigator !== "undefined"
@@ -49,12 +48,8 @@ function AffiliatesPage() {
   return (
     <div>
       <Head>
-        <title>Userdesk | Affiliates program</title>
-        <meta
-          name="description"
-          content="Userdesk | Affiliates program | AI Chatbots"
-        />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Affiliates program</title>
+        <meta name="description" content="Affiliates program" />
       </Head>
 
       <Box minW="100vw" minH="100vh" position="relative">
