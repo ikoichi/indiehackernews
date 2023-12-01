@@ -1,4 +1,6 @@
 import { AuthOptions } from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { prismaClient } from "@/prisma/db";
 // import { createLoopsContact } from "@/libs/loops";
 // import { addMailChimpListMember } from "@/libs/mailchimp";
 import GoogleProvider from "next-auth/providers/google";
@@ -10,6 +12,7 @@ import GoogleProvider from "next-auth/providers/google";
 // more providers at https://next-auth.js.org/providers
 
 export const authOptions: AuthOptions = {
+  adapter: PrismaAdapter(prismaClient),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID || "",
