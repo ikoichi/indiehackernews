@@ -8,15 +8,20 @@ import GoogleProvider from "next-auth/providers/google";
 // import TwitterProvider from "next-auth/providers/twitter";
 // import FacebookProvider from "next-auth/providers/facebook";
 // import CredentialsProvider from "next-auth/providers/credentials"
-// import EmailProvider from "next-auth/providers/email"
+import EmailProvider from "next-auth/providers/email";
 // more providers at https://next-auth.js.org/providers
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prismaClient),
   providers: [
+    EmailProvider({
+      server: process.env.MAILPACE_EMAIL_SERVER || "",
+      from: process.env.EMAIL_FROM || "",
+      // maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
+    }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID || "",
-      clientSecret: process.env.GOOGLE_SECRET || "",
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
     /* AppleProvider({
         clientId: process.env.APPLE_ID || "",
