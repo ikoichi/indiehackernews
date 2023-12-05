@@ -8,13 +8,22 @@ import {
   openGraphImageUrl,
   websiteUrl,
 } from "@/config";
-import { OpenGraph } from "@/components/OpenGraph/OpenGraph";
+import { getOpenGraph } from "@/components/OpenGraph/OpenGraph";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: landingPageTitle,
   description: landingPageDescription,
+  ...getOpenGraph({
+    title: landingPageTitle,
+    description: landingPageDescription,
+    imageUrl: openGraphImageUrl,
+    websiteUrl,
+    twitterImageUrl: openGraphImageUrl,
+    twitterHandle: "",
+    twitterMakerHandle: "",
+  }),
 };
 
 export default function RootLayout({
@@ -53,12 +62,6 @@ export default function RootLayout({
           src="/pirsch-extended.js"
           id="pirschextendedjs"
           data-code=""
-        />
-        <OpenGraph
-          title={landingPageTitle}
-          description={landingPageDescription}
-          websiteUrl={websiteUrl}
-          imageUrl={openGraphImageUrl}
         />
       </head>
       <body className={inter.className}>
