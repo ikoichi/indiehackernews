@@ -2,12 +2,13 @@
 
 import { Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import { PricingPlan } from "./PricingPlan";
-import router from "next/router";
+import { useRouter } from "next/router";
 import { Section } from "../Hero/Section";
 import { useState } from "react";
 import { pricingPlans } from "@/config";
 
 export const Pricing = () => {
+  const router = useRouter();
   const [planType, setPlanType] = useState<"monthly" | "annual">("annual");
   const isMonthly = planType === "monthly";
 
