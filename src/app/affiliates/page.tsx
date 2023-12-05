@@ -23,6 +23,7 @@ import { TbCoin, TbPointer, TbShare } from "react-icons/tb";
 import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
 import { affiliateProgramLink, pricingPlans } from "@/config";
+import { SEOTags } from "@/components/SEOTags/SEOTags";
 
 function AffiliatesPage() {
   const [hobbyValue, setHobbyValue] = useState(200);
@@ -47,10 +48,10 @@ function AffiliatesPage() {
 
   return (
     <div>
-      <Head>
-        <title>Affiliates program</title>
-        <meta name="description" content="Affiliates program" />
-      </Head>
+      <SEOTags
+        title="Affiliates program | Shipped"
+        description="Earn 40% on every sale of the Next.js Startup Boilerplate"
+      />
 
       <Box minW="100vw" minH="100vh" position="relative">
         <Flex
