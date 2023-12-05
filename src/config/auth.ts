@@ -15,7 +15,7 @@ export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prismaClient),
   providers: [
     EmailProvider({
-      server: process.env.MAILPACE_EMAIL_SERVER || "",
+      server: process.env.MAILPACE_EMAIL_SERVER || "", // any SMTP server will work
       from: process.env.EMAIL_FROM || "",
       // maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
     }),
