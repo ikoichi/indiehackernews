@@ -9,12 +9,15 @@ import {
   websiteUrl,
 } from "@/config";
 import { getOpenGraph } from "@/components/OpenGraph/OpenGraph";
+import { getSEOTags } from "@/components/SEOTags/SEOTags";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: landingPageTitle,
-  description: landingPageDescription,
+  ...getSEOTags({
+    title: landingPageTitle,
+    description: landingPageDescription,
+  }),
   ...getOpenGraph({
     title: landingPageTitle,
     description: landingPageDescription,
