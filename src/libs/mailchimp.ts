@@ -101,9 +101,9 @@ export const sendTransactionalEmail = async ({
         email,
         type: "to",
       })),
-      subject: "Your Subject Here",
-      text: "Your email content here.",
-      html: "<p>Your email content here.</p>",
+      subject,
+      text,
+      html,
     },
   });
 };
