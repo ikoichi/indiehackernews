@@ -1,11 +1,11 @@
-type SEOTagsProps = {
-  title: string;
-  description: string;
-};
+import { Metadata } from "next";
 
-export const getSEOTags = ({ title, description }: SEOTagsProps) => {
+/*
+  See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+  for the supported metadata
+*/
+export const getSEOTags = (metadata: Metadata): Metadata => {
   return {
-    title,
-    description,
+    ...metadata,
   };
 };

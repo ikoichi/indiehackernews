@@ -15,6 +15,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   ...getSEOTags({
+    metadataBase: new URL(websiteUrl),
     title: landingPageTitle,
     description: landingPageDescription,
   }),
