@@ -1,13 +1,14 @@
 "use client";
 
-import { Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
-import router from "next/router";
+import { Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { Section } from "../Hero/Section";
 import { useState } from "react";
 import { LifetimeDeal } from "./LifetimeDeal";
 import { lifetimeDeals } from "@/config";
 
 export const Lifetime = () => {
+  const router = useRouter();
   const [loadingPlan, setLoadingPlan] = useState<number | null>(null);
 
   return (
