@@ -53,7 +53,7 @@ export const Waitlist = () => {
             If you&apos;d like us to send you a reminder when we&apos;re ready,
             just put your email below.
           </Text>
-          <Stack direction="row">
+          <Stack direction={["column", "column", "row"]}>
             <Input
               bgColor="white"
               borderColor="blackAlpha.300"
@@ -70,6 +70,7 @@ export const Waitlist = () => {
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
+              textAlign={["center", "center", "left"]}
             />
             <Button
               colorScheme="brand"
