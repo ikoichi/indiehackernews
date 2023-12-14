@@ -20,7 +20,13 @@ export const Pricing = () => {
         <Heading as="h4" fontSize="16px" color="brand.400" mb="16px">
           Pricing
         </Heading>
-        <Heading as="h2" fontSize="48px" mb="32px" fontWeight="extrabold">
+        <Heading
+          as="h2"
+          fontSize={["26px", "40px", "48px"]}
+          lineHeight={["32px", "48px", "56px"]}
+          mb="32px"
+          fontWeight="extrabold"
+        >
           Start making money today.
         </Heading>
         <Flex
