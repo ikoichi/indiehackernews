@@ -37,8 +37,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = cookies();
+  const defaultTheme = customTheme.config.initialColorMode;
+  const uiColorMode =
+    (cookieStore.get("chakra-ui-color-mode")?.value as "light" | "dark") ||
+    defaultTheme;
+
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      data-theme={uiColorMode}
+      style={{ colorScheme: uiColorMode }}
+    >
       <head>
         <link
           rel="apple-touch-icon"
@@ -69,8 +79,8 @@ export default function RootLayout({
           data-code=""
         />
       </head>
-      <body className={inter.className}>
-        <Providers>{children}</Providers>
+      <body className={`${inter.className} chakra-ui-${uiColorMode}`}>
+        <Providers uiColorMode={uiColorMode}>{children}</Providers>
       </body>
     </html>
   );
