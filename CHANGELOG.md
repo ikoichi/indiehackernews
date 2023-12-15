@@ -27,3 +27,6 @@ To support the dark mode, the following files have been updated to reflect the c
 - Pricing.tsx
 - PricingPlan.tsx
 - Testimonial.tsx
+- Lifetime.tsx
+- LifetimeDeal.tsx
+- Waitlist.tsx
