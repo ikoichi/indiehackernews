@@ -6,9 +6,12 @@ import { Section } from "../Hero/Section";
 import { useState } from "react";
 import { LifetimeDeal } from "./LifetimeDeal";
 import { lifetimeDeals } from "@/config";
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 
 export const Lifetime = () => {
   const router = useRouter();
+  const { secondaryTextColor } = useColorModeValues();
+
   const [loadingPlan, setLoadingPlan] = useState<number | null>(null);
 
   return (
@@ -33,7 +36,7 @@ export const Lifetime = () => {
         <Text px="16px" mt="8px">
           We&apos;ll give you access as soon as the product is ready.
         </Text>
-        <Text px="16px" fontSize="14px" color="blackAlpha.600" mt="24px">
+        <Text px="16px" fontSize="14px" color={secondaryTextColor} mt="24px">
           30-day refund if you&apos;re not satisfied.
         </Text>
       </Section>

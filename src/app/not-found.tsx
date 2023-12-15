@@ -6,11 +6,8 @@ export default function NotFound() {
     <Center minH="100vh">
       <Stack alignItems="center" spacing="16px">
         <Heading color="brand.500">Ops, this page doesn&lsquo;t exist.</Heading>
-        <Text color="blackAlpha.700">
-          We could not find the page you were looking for.
-        </Text>
+        <Text>We could not find the page you were looking for.</Text>
         <Text
-          color="blackAlpha.700"
           sx={{
             a: {
               color: "brand.500",

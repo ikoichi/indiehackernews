@@ -6,9 +6,12 @@ import { useRouter } from "next/navigation";
 import { Section } from "../Hero/Section";
 import { useState } from "react";
 import { pricingPlans } from "@/config";
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 
 export const Pricing = () => {
   const router = useRouter();
+  const { primaryTextColor, secondaryTextColor, borderColor } =
+    useColorModeValues();
   const [planType, setPlanType] = useState<"monthly" | "annual">("annual");
   const isMonthly = planType === "monthly";
 
@@ -33,10 +36,10 @@ export const Pricing = () => {
           alignItems="center"
           fontSize="13px"
           border="1px solid gray"
-          borderColor="blackAlpha.100"
+          borderColor={borderColor}
           p="4px"
           borderRadius="100px"
-          color="blackAlpha.700"
+          color={primaryTextColor}
         >
           <Text
             p="4px 16px"
@@ -63,7 +66,7 @@ export const Pricing = () => {
           </Text>
         </Flex>
 
-        <Flex mt="16px" fontSize="14px" color="blackAlpha.600">
+        <Flex mt="16px" fontSize="14px" color={secondaryTextColor}>
           <Text
             textDecor={isMonthly ? "line-through" : "none"}
             color="brand.400"

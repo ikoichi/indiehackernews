@@ -30,7 +30,7 @@ export function PageError({ error, reset }: PageErrorProps) {
         >
           Try again
         </Button>
-        <Text color="blackAlpha.700">
+        <Text>
           If the problem persists, contact the{" "}
           <Link href={`mailto:${supportEmail}`} color="brand.500">
             support

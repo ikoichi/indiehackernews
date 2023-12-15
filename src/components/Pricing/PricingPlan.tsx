@@ -1,3 +1,4 @@
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 import {
   Button,
   Flex,
@@ -7,17 +8,19 @@ import {
   Tag,
   Text,
   VStack,
+  border,
 } from "@chakra-ui/react";
 import { ReactElement } from "react";
 import { TbCheck } from "react-icons/tb";
 
 const FeatureLine = ({ children }: { children: string | ReactElement }) => {
+  const { primaryTextColor } = useColorModeValues();
   return (
     <Flex alignItems="center">
       <Flex color="brand.400" mr="8px">
         <TbCheck />
       </Flex>
-      <Text fontSize="14px" color="blackAlpha.700">
+      <Text fontSize="14px" color={primaryTextColor}>
         {children}
       </Text>
     </Flex>
@@ -48,11 +51,14 @@ export const PricingPlan = ({
   ctaText,
   ...props
 }: PricingPlanProps) => {
+  const { primaryTextColor, secondaryTextColor, borderColor } =
+    useColorModeValues();
+
   return (
     <Flex
       flexDir="column"
       p="32px"
-      color="blackAlpha.800"
+      color={primaryTextColor}
       border="1px solid gray"
       borderRadius={["24px", "24px", "24px", "24px", "0"]}
       mb={["16px", "16px", "16px", "16px", "0"]}
@@ -60,7 +66,7 @@ export const PricingPlan = ({
       maxW="90%"
       borderRightWidth={["1px", "1px", "1px", "1px", "0"]}
       {...props}
-      borderColor={isSuggested ? "brand.100" : "blackAlpha.100"}
+      borderColor={isSuggested ? "brand.100" : borderColor}
     >
       {title && (
         <Heading
@@ -69,7 +75,7 @@ export const PricingPlan = ({
           fontWeight={700}
           flexDir="row"
           display="flex"
-          color={isMostPopular ? "brand.500" : "blackAlpha.800"}
+          color={isMostPopular ? "brand.500" : primaryTextColor}
         >
           {title}
           <Spacer />
@@ -104,7 +110,7 @@ export const PricingPlan = ({
             ml="2px"
             fontSize="14px"
             fontWeight={600}
-            color="blackAlpha.600"
+            color={secondaryTextColor}
           >
             / month
           </Text>
@@ -149,7 +155,7 @@ export const PricingPlan = ({
         _hover={{
           bgColor: isMostPopular ? "brand.500" : "brand.50",
         }}
-        bgColor={isMostPopular ? "brand.400" : "white"}
+        bgColor={isMostPopular ? "brand.400" : "transparent"}
         color={isMostPopular ? "white" : "brand.500"}
         borderColor={isMostPopular ? "brand.400" : "brand.400"}
         isLoading={isLoading}

@@ -1,3 +1,4 @@
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 import {
   AccordionItem,
   AccordionButton,
@@ -14,16 +15,16 @@ export type FAQQuestionProps = {
 };
 
 export const FAQquestion = ({ question, answer }: FAQQuestionProps) => {
+  const { borderColor } = useColorModeValues();
   return (
     <AccordionItem maxW="auto" w="100%">
       <h2>
         <AccordionButton>
           <Box
             fontWeight="bold"
-            color="blackAlpha.900"
             w="100%"
             textAlign="left"
-            borderColor="blackAlpha.100"
+            borderColor={borderColor}
             py="8px"
           >
             {question}
@@ -31,9 +32,7 @@ export const FAQquestion = ({ question, answer }: FAQQuestionProps) => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel py="16px">
-          <Text textAlign="left" color="blackAlpha.800">
-            {answer}
-          </Text>
+          <Text textAlign="left">{answer}</Text>
         </AccordionPanel>
       </h2>
     </AccordionItem>

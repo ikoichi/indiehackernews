@@ -1,3 +1,4 @@
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 import {
   Button,
   Flex,
@@ -12,12 +13,13 @@ import { ReactElement } from "react";
 import { TbCheck } from "react-icons/tb";
 
 const FeatureLine = ({ children }: { children: string | ReactElement }) => {
+  const { primaryTextColor } = useColorModeValues();
   return (
     <Flex alignItems="center">
       <Flex color="brand.400" mr="8px">
         <TbCheck />
       </Flex>
-      <Text fontSize="14px" color="blackAlpha.700">
+      <Text fontSize="14px" color={primaryTextColor}>
         {children}
       </Text>
     </Flex>
@@ -46,11 +48,12 @@ export const LifetimeDeal = ({
   ctaText,
   ...props
 }: LifetimeDealProps) => {
+  const { primaryTextColor, borderColor } = useColorModeValues();
   return (
     <Flex
       flexDir="column"
       p="32px"
-      color="blackAlpha.800"
+      color={primaryTextColor}
       border="1px solid gray"
       borderRadius={["24px", "24px", "24px", "24px", "0"]}
       mb={["16px", "16px", "16px", "16px", "0"]}
@@ -58,7 +61,7 @@ export const LifetimeDeal = ({
       maxW="90%"
       borderRightWidth={["1px", "1px", "1px", "1px", "0"]}
       {...props}
-      borderColor={isSuggested ? "brand.100" : "blackAlpha.100"}
+      borderColor={isSuggested ? "brand.100" : borderColor}
     >
       {title && (
         <Heading
@@ -67,7 +70,7 @@ export const LifetimeDeal = ({
           fontWeight={700}
           flexDir="row"
           display="flex"
-          color={isMostPopular ? "brand.500" : "blackAlpha.800"}
+          color={isMostPopular ? "brand.500" : primaryTextColor}
         >
           {title}
           <Spacer />
@@ -129,7 +132,7 @@ export const LifetimeDeal = ({
         _hover={{
           bgColor: isMostPopular ? "brand.500" : "brand.50",
         }}
-        bgColor={isMostPopular ? "brand.400" : "white"}
+        bgColor={isMostPopular ? "brand.400" : "transparent"}
         color={isMostPopular ? "white" : "brand.500"}
         borderColor={isMostPopular ? "brand.400" : "brand.400"}
         isLoading={isLoading}

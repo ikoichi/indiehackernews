@@ -57,6 +57,9 @@ export const Waitlist = () => {
             <Input
               bgColor="white"
               borderColor="blackAlpha.300"
+              _placeholder={{
+                color: "blackAlpha.500",
+              }}
               _hover={{
                 borderColor: "brand.400",
               }}

@@ -106,6 +106,7 @@ export const CtaBox = () => {
                       <TbCalendarDue />
                     </Flex>
                   }
+                  color="blackAlpha.700"
                 >
                   Book a demo
                 </Button>

@@ -5,6 +5,7 @@ import { Link } from "@chakra-ui/next-js";
 import { Section } from "../Hero/Section";
 import { FAQQuestionProps, FAQquestion } from "./FAQquestion";
 import { brandName, supportEmail } from "@/config";
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 
 const faqs: FAQQuestionProps[] = [
   {
@@ -26,6 +27,7 @@ const faqs: FAQQuestionProps[] = [
 ];
 
 export const FAQ = () => {
+  const { primaryTextColor } = useColorModeValues();
   return (
     <Section>
       <Flex
@@ -43,7 +45,7 @@ export const FAQ = () => {
             Frequently asked questions
           </Heading>
 
-          <Text color="blackAlpha.700" textAlign="center">
+          <Text color={primaryTextColor} textAlign="center">
             More questions? Email us at{" "}
             <Link
               href={`mailto:${supportEmail}`}

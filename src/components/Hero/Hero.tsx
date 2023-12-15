@@ -2,6 +2,7 @@
 
 import { demoCalendlyLink } from "@/config";
 import { Routes } from "@/data/routes";
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 import { useIsLogged } from "@/hooks/useIsLogged";
 import {
   Flex,
@@ -30,6 +31,8 @@ export const Hero = ({
 }: HeroProps) => {
   const router = useRouter();
   const { user } = useIsLogged();
+
+  const { primaryTextColor, secondaryTextColor } = useColorModeValues();
 
   const [isLoadingCta, setLoadingCta] = useState(false);
   const onGetStartedClick = () => {
@@ -64,7 +67,6 @@ export const Hero = ({
         >
           <Heading
             textAlign={["center", "center", "center", "left"]}
-            color="blackAlpha.800"
             fontWeight="extrabold"
             fontSize={["24px", "36px", "50px", "50px", "60px"]}
             lineHeight={["34px", "46px", "56px", "60px", "66px"]}
@@ -73,6 +75,7 @@ export const Hero = ({
             wordBreak="keep-all"
             whiteSpace="nowrap"
             as="h1"
+            color={primaryTextColor}
           >
             <Text
               bgGradient="linear(to-r, brand.400, brand.300)"
@@ -86,7 +89,7 @@ export const Hero = ({
           </Heading>
           <Text
             textAlign={["center", "center", "center", "left"]}
-            color="blackAlpha.600"
+            color={secondaryTextColor}
             mt="16px"
             px="16px"
             fontSize={["14px", "15px", "18px", "20px"]}
@@ -200,7 +203,7 @@ export const Hero = ({
                   alignItems={["center", "center", "center", "flex-start"]}
                   spacing="4px"
                 >
-                  <Text fontWeight={600} color="blackAlpha.700">
+                  <Text fontWeight={600} color={primaryTextColor}>
                     Trusted by 900+ users
                   </Text>
                   <HStack color="#FF9800" mt={["4px", "4px", "0"]}>
