@@ -1,7 +1,14 @@
 "use client";
 
 import { Routes } from "@/data/routes";
-import { Text, Flex, Heading, Button, Stack } from "@chakra-ui/react";
+import {
+  Text,
+  Flex,
+  Heading,
+  Button,
+  Stack,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { TbArrowRight, TbCalendarDue, TbCircleCheck } from "react-icons/tb";
 import { useIsLogged } from "@/hooks/useIsLogged";
@@ -12,6 +19,9 @@ import { brandName } from "@/config";
 export const CtaBox = () => {
   const router = useRouter();
   const { user } = useIsLogged();
+
+  const ctaColor = useColorModeValue("white", "brand.100");
+  const ctaBgColor = useColorModeValue("brand.500", "brand.700");
 
   const [isLoadingCta, setLoadingCta] = useState(false);
   const onGetStartedClick = () => {
@@ -58,6 +68,8 @@ export const CtaBox = () => {
               size="md"
               variant="solid"
               colorScheme="brand"
+              color={ctaColor}
+              bgColor={ctaBgColor}
               h="50px"
               minH="50px"
               w="220px"

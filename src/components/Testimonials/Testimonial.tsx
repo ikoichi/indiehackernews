@@ -1,13 +1,16 @@
 "use client";
 
 import { useColorModeValues } from "@/hooks/useColorModeValues";
-import { Flex, Stack, Text } from "@chakra-ui/react";
+import { Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { TbQuote, TbStarFilled } from "react-icons/tb";
 
 const highlightText = (
   text: string,
   highlightSentences: string[] | undefined = []
 ) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const bgColor = useColorModeValue("brand.50", "brand.900");
+
   const textChunks = text.split(".").filter((chunk) => {
     return chunk.trim() !== "";
   });
@@ -18,7 +21,7 @@ const highlightText = (
       <Text
         key={index}
         as="span"
-        bgColor={isHighlighted ? "brand.50" : ""}
+        bgColor={isHighlighted ? bgColor : ""}
         color={isHighlighted ? "brand.400" : ""}
         fontWeight={isHighlighted ? 600 : 400}
       >

@@ -1,14 +1,26 @@
 "use client";
 
-import { Button, Flex, Input, Link, Stack, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Input,
+  Link,
+  Stack,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import * as isEmail from "isemail";
 import { brandName, signInCallbackUrl } from "@/config";
 import Image from "next/image";
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 
 const Login = () => {
+  const { primaryTextColor, borderColor, baseTextColor } = useColorModeValues();
+  const boxBgColor = useColorModeValue("white", "transparent");
+
   const [isSigningInWithGoogle, setSigningInWithGoogle] = useState(false);
   const onGoogleSignIn = () => {
     setSigningInWithGoogle(true);
@@ -47,16 +59,11 @@ const Login = () => {
           p="0 60px 40px"
           borderRadius="24px"
           boxShadow={["none", "lg"]}
-          border={["0", "1px solid gray"]}
-          borderColor={[
-            "blackAlpha.50",
-            "blackAlpha.50",
-            "blackAlpha.50",
-            "blackAlpha.50",
-          ]}
+          border={["0", "1px solid"]}
+          borderColor={[borderColor, borderColor]}
           alignItems="flex-start"
           position="relative"
-          bgColor="white"
+          bgColor={boxBgColor}
           w="400px"
         >
           <Flex
@@ -82,20 +89,14 @@ const Login = () => {
             mt="-60px"
             ml="0px"
           >
-            <Flex w="32px" h="32px">
+            <Flex w="32px" h="32px" as="a" href="/">
               <Image src="/logo.png" alt="logo" width={32} height={32} />
             </Flex>
-            <Text color="blackAlpha.700" fontWeight="extrabold" ml="8px">
+            <Text color={primaryTextColor} fontWeight="extrabold" ml="8px">
               {brandName}
             </Text>
           </Flex>
-          <Text
-            color="blackAlpha.800"
-            textAlign="left"
-            fontSize="18px"
-            fontWeight="semibold"
-            as="h1"
-          >
+          <Text textAlign="left" fontSize="18px" fontWeight="semibold" as="h1">
             Sign in to your account
           </Text>
 
@@ -106,7 +107,7 @@ const Login = () => {
             size="sm"
             w="100%"
             leftIcon={<FcGoogle />}
-            bgColor="white"
+            bgColor="transparent"
             border="1px solid"
             borderColor="brand.400"
             _hover={{
@@ -115,6 +116,7 @@ const Login = () => {
             }}
             onClick={onGoogleSignIn}
             isLoading={isSigningInWithGoogle}
+            color={primaryTextColor}
           >
             Continue with Google
           </Button>
@@ -125,34 +127,30 @@ const Login = () => {
             alignItems="center"
             spacing="16px"
             fontSize="12px"
-            color="blackAlpha.500"
+            color={baseTextColor[500]}
           >
-            <Flex w="100%" h="1px" bgColor="blackAlpha.100"></Flex>
+            <Flex w="100%" h="1px" bgColor={baseTextColor[100]}></Flex>
             <Flex>OR</Flex>
-            <Flex w="100%" h="1px" bgColor="blackAlpha.100"></Flex>
+            <Flex w="100%" h="1px" bgColor={baseTextColor[100]}></Flex>
           </Stack>
 
-          <Text
-            mt="24px"
-            fontSize="13px"
-            fontWeight="semibold"
-            color="blackAlpha.800"
-          >
+          <Text mt="24px" fontSize="13px" fontWeight="semibold">
             Email
           </Text>
           <Input
             mt="4px"
             size="sm"
             borderRadius="4px"
-            borderColor="blackAlpha.200"
+            borderColor={borderColor}
             onChange={(e) => setEmail(e.target.value)}
             _focusWithin={{
               boxShadow: "none",
               borderColor: "brand.200",
             }}
             _placeholder={{
-              color: "blackAlpha.500",
+              color: baseTextColor[500],
             }}
+            placeholder="john@doe.com"
           />
 
           <Button
@@ -175,7 +173,7 @@ const Login = () => {
             Log in
           </Button>
 
-          <Text mt="16px" fontSize="13px" color="blackAlpha.600">
+          <Text mt="16px" fontSize="13px" color={baseTextColor[600]}>
             Don&apos;t have an account?
             <Link href="/signup" ml="4px" color="brand.500">
               Sign up

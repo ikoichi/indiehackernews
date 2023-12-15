@@ -1,6 +1,14 @@
 "use client";
 
-import { Button, Flex, Input, Link, Stack, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Input,
+  Link,
+  Stack,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import * as isEmail from "isemail";
@@ -9,8 +17,14 @@ import { testimonials } from "@/components/Testimonials/Testimonials";
 import { signIn } from "next-auth/react";
 import { brandName } from "@/config";
 import Image from "next/image";
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 
 const SignUp = () => {
+  const { primaryTextColor, secondaryTextColor, borderColor, baseTextColor } =
+    useColorModeValues();
+
+  const rightBoxColor = useColorModeValue("brand.300", "brand.700");
+
   const [isSigningUpWithGoogle, setSigningUpWithGoogle] = useState(false);
   const onGoogleSignUp = () => {
     setSigningUpWithGoogle(true);
@@ -47,17 +61,10 @@ const SignUp = () => {
         <Flex
           flexDir="column"
           p="0 60px 40px"
-          borderRadius="24px"
           boxShadow={["none", "lg", "lg", "none"]}
-          borderColor={[
-            "blackAlpha.50",
-            "blackAlpha.50",
-            "blackAlpha.50",
-            "blackAlpha.50",
-          ]}
+          borderColor={[borderColor, borderColor]}
           alignItems="flex-start"
           position="relative"
-          bgColor="white"
           w={["100%", "400px", "400px", "496px"]}
         >
           <Flex
@@ -83,12 +90,12 @@ const SignUp = () => {
             mb={["64px", null, null, "32px"]}
             mt="-60px"
           >
-            <Flex w="30px" h="30px">
+            <Flex w="30px" h="30px" as="a" href="/">
               <Image src="/logo.png" alt="logo" width={30} height={30} />
             </Flex>
           </Flex>
           <Text
-            color="blackAlpha.800"
+            color={primaryTextColor}
             textAlign={["left", "left", "left", "center"]}
             fontSize="18px"
             fontWeight="semibold"
@@ -106,11 +113,10 @@ const SignUp = () => {
             size="sm"
             w="100%"
             leftIcon={<FcGoogle />}
-            bgColor="white"
             border="1px solid"
             borderColor="brand.400"
+            color={primaryTextColor}
             _hover={{
-              bgColor: "white",
               borderColor: "brand.300",
             }}
             onClick={onGoogleSignUp}
@@ -125,25 +131,25 @@ const SignUp = () => {
             alignItems="center"
             spacing="16px"
             fontSize="12px"
-            color="blackAlpha.500"
+            color={baseTextColor[500]}
           >
-            <Flex w="100%" h="1px" bgColor="blackAlpha.100"></Flex>
+            <Flex w="100%" h="1px" bgColor={baseTextColor[100]}></Flex>
             <Flex>OR</Flex>
-            <Flex w="100%" h="1px" bgColor="blackAlpha.100"></Flex>
+            <Flex w="100%" h="1px" bgColor={baseTextColor[100]}></Flex>
           </Stack>
 
           <Text
             mt="24px"
             fontSize="13px"
             fontWeight="semibold"
-            color="blackAlpha.800"
+            color={primaryTextColor}
           >
             Email
           </Text>
           <Input
             size="sm"
             borderRadius="4px"
-            borderColor="blackAlpha.200"
+            borderColor={borderColor}
             mt="4px"
             onChange={(e) => setEmail(e.target.value)}
             _focusWithin={{
@@ -151,8 +157,9 @@ const SignUp = () => {
               borderColor: "brand.200",
             }}
             _placeholder={{
-              color: "blackAlpha.500",
+              color: baseTextColor[500],
             }}
+            placeholder="john@doe.com"
           />
 
           <Button
@@ -178,7 +185,7 @@ const SignUp = () => {
           <Text
             mt="16px"
             fontSize="14px"
-            color="blackAlpha.700"
+            color={secondaryTextColor}
             alignSelf="center"
           >
             Have an account?
@@ -192,11 +199,11 @@ const SignUp = () => {
         w="50vw"
         h="100vh"
         display={["none", "none", "none", "flex"]}
-        bgColor="brand.300"
+        bgColor={rightBoxColor}
         alignItems="center"
         justifyContent="center"
       >
-        <Flex p="32px" bgColor="white" borderRadius="24px" mx="60px">
+        <Flex p="32px" borderRadius="24px" mx="60px">
           <Testimonial
             text={testimonials[0].text}
             name={testimonials[0].name}

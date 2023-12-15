@@ -118,7 +118,7 @@ export const PricingPlan = ({
       </Flex>
       {price && (
         <Flex visibility={isMonthly || !title ? "hidden" : "visible"}>
-          <Text fontSize="14px" color="blackAlpha.600">
+          <Text fontSize="14px" color={secondaryTextColor}>
             ${price} billed yearly
           </Text>
         </Flex>
