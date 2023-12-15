@@ -7,6 +7,7 @@ import { Link } from "@chakra-ui/next-js";
 import { Routes } from "@/data/routes";
 import { useGetStated } from "@/hooks/useGetStarted";
 import { brandName } from "@/config";
+import { DarkModeSwitch } from "../DarkModeSwitch/DarkModeSwitch";
 
 type HeaderProps = {};
 
@@ -38,7 +39,6 @@ export const Header = ({}: HeaderProps) => {
             href={Routes.root}
             cursor="pointer"
             fontWeight="extrabold"
-            color="blackAlpha.800"
           >
             {brandName}
           </Link>
@@ -64,6 +64,7 @@ export const Header = ({}: HeaderProps) => {
           >
             Get started
           </Button>
+          <DarkModeSwitch />
         </HStack>
       </Flex>
     </Flex>

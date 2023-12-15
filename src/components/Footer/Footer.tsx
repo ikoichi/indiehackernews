@@ -14,8 +14,10 @@ import { Section } from "../Hero/Section";
 import { Link } from "@chakra-ui/next-js";
 import { brandName, discordLink, twitterLink, youTubeLink } from "@/config";
 import Image from "next/image";
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 
 export const Footer = () => {
+  const { secondaryTextColor, borderColor } = useColorModeValues();
   return (
     <Section flexDir="column" my="80px">
       <Flex
@@ -23,11 +25,11 @@ export const Footer = () => {
         maxW="1000px"
         flexDir="column"
         fontSize="12px"
-        color="blackAlpha.600"
+        color={secondaryTextColor}
       >
         <Flex
           borderTop="1px solid gray"
-          borderColor="blackAlpha.200"
+          borderColor={borderColor}
           mt="32px"
           mb="80px"
         />
@@ -102,7 +104,7 @@ export const Footer = () => {
           </Stack>
         </Flex>
 
-        <Text fontSize="12px" color="blackAlpha.600" mb="40px">
+        <Text fontSize="12px" color={secondaryTextColor} mb="40px">
           <br />© Copyright 2023 {brandName}. All rights reserved.
         </Text>
       </Flex>

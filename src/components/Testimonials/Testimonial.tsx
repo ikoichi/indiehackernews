@@ -1,3 +1,6 @@
+"use client";
+
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 import { Flex, Stack, Text } from "@chakra-ui/react";
 import { TbQuote, TbStarFilled } from "react-icons/tb";
 
@@ -42,6 +45,8 @@ export const Testimonial = ({
 }: TestimonialProps) => {
   const textChunks = highlightText(text, highlightSentences);
 
+  const { primaryTextColor } = useColorModeValues();
+
   return (
     <Stack maxW="600px">
       <Stack direction="row">
@@ -49,7 +54,7 @@ export const Testimonial = ({
           <TbQuote size="24px" />
         </Flex>
         <Text
-          color="blackAlpha.800"
+          color={primaryTextColor}
           mt="4px"
           fontStyle="italic"
           lineHeight="28px"
@@ -86,7 +91,7 @@ export const Testimonial = ({
           <Stack
             direction="column"
             spacing="0px"
-            color="blackAlpha.800"
+            color={primaryTextColor}
             ml="8px"
             fontSize="14px"
           >

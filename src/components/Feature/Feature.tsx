@@ -5,6 +5,7 @@ import { TbArrowRight } from "react-icons/tb";
 import { Section } from "../Hero/Section";
 import { useGetStated } from "@/hooks/useGetStarted";
 import { ReactNode } from "react";
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 
 export type FeatureProps = {
   category: string;
@@ -22,6 +23,7 @@ export const Feature = ({
   showCta,
 }: FeatureProps) => {
   const { isLoadingCta, onGetStartedClick } = useGetStated();
+  const { primaryTextColor } = useColorModeValues();
   return (
     <Section
       px="40px"
@@ -42,7 +44,7 @@ export const Feature = ({
         </Heading>
 
         <Text
-          color="blackAlpha.700"
+          color={primaryTextColor}
           maxWidth="calc(100vw - 48px)"
           fontSize="18px"
         >

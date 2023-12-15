@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { cookies } from "next/headers";
 import { Providers } from "./providers";
 import {
   landingPageDescription,
@@ -10,6 +11,7 @@ import {
 } from "@/config";
 import { getOpenGraph } from "@/components/OpenGraph/OpenGraph";
 import { getSEOTags } from "@/components/SEOTags/SEOTags";
+import { customTheme } from "@/theme";
 
 const inter = Inter({ subsets: ["latin"] });
 

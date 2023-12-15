@@ -1,4 +1,5 @@
 import { CtaBox } from "@/components/CtaBox/CtaBox";
+import { DarkModeSwitch } from "@/components/DarkModeSwitch/DarkModeSwitch";
 import { ExplainerVideo } from "@/components/ExplainerVideo/ExplainerVideo";
 import { FAQ } from "@/components/FAQ/FAQ";
 import { Features } from "@/components/Features/Features";
