@@ -1,39 +1,25 @@
 "use client";
 
+import { AccountMenu } from "@/components/AccountMenu/AccountMenu";
 import { Button, Center, Flex, Spinner, Stack, Text } from "@chakra-ui/react";
-import { signOut, useSession } from "next-auth/react";
-import { useState } from "react";
-import { TbLogout2 } from "react-icons/tb";
+import { useSession } from "next-auth/react";
 
 const Dashboard = () => {
   const { data: session, status } = useSession();
-
-  const [isSigningOut, setSigningOut] = useState(false);
-  const onSignOut = () => {
-    setSigningOut(true);
-    signOut({
-      callbackUrl: "/",
-    });
-  };
 
   return (
     <Center minH="100vh">
       {status === "loading" && <Spinner color="brand.500" />}
       {status === "authenticated" && (
         <Stack direction="column" spacing="16px">
-          <Flex className="text-slate-500 text-sm">
+          <Flex className="text-sm">
             You are logged in as {session?.user?.email}
           </Flex>
-          <Button
-            leftIcon={<TbLogout2 />}
-            onClick={onSignOut}
-            variant="outline"
-            size="sm"
-            isLoading={isSigningOut}
-            className="rounded-lg text-slate-600"
-          >
-            Log out
-          </Button>
+          <AccountMenu
+            userEmail={session.user?.email || ""}
+            userName={session.user?.name || ""}
+            userPictureUrl={session.user?.image || ""}
+          />
         </Stack>
       )}
       {status === "unauthenticated" && (
