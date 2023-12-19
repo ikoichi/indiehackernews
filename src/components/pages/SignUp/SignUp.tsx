@@ -29,7 +29,9 @@ const SignUp = () => {
   const onGoogleSignUp = () => {
     setSigningUpWithGoogle(true);
     signIn("google", {
-      callbackUrl: window?.location ? `${window.location.origin}/app` : "",
+      callbackUrl: window?.location
+        ? `${window.location.origin}/dashboard`
+        : "",
     });
   };
 
