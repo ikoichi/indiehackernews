@@ -111,7 +111,7 @@ const Login = () => {
             border="1px solid"
             borderColor="brand.400"
             _hover={{
-              bgColor: "white",
+              bgColor: "transparent",
               borderColor: "brand.300",
             }}
             onClick={onGoogleSignIn}
