@@ -23,6 +23,15 @@ import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
 import { affiliateProgramLink, pricingPlans } from "@/config";
 
+// format currency value in the US format
+const formatAmount = (value: number) => {
+  return value.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  });
+};
+
 export function Affiliates() {
   const [hobbyValue, setHobbyValue] = useState(200);
   const [growthValue, setGrowthValue] = useState(120);
@@ -31,18 +40,12 @@ export function Affiliates() {
   const totalEarn =
     (pricingPlans[0].monthlyPrice * growthValue +
       pricingPlans[0].monthlyPrice * hobbyValue +
-      pricingPlans[0].monthlyPrice * growthValue) *
+      pricingPlans[0].monthlyPrice * proValue) *
     0.3;
 
   const onOpenAffiliate = () => window.open(affiliateProgramLink);
 
-  const potentialEarnedMoney =
-    typeof navigator !== "undefined"
-      ? new Intl.NumberFormat(navigator?.language || "en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(Math.floor(totalEarn))
-      : "$" + totalEarn.toFixed(0);
+  const potentialEarnedMoney = formatAmount(totalEarn);
 
   return (
     <div>
