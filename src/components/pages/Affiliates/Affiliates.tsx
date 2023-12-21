@@ -22,6 +22,7 @@ import { TbCoin, TbPointer, TbShare } from "react-icons/tb";
 import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
 import { affiliateProgramLink, pricingPlans } from "@/config";
+import { useColorModeValues } from "@/hooks/useColorModeValues";
 
 // format currency value in the US format
 const formatAmount = (value: number) => {
@@ -33,6 +34,8 @@ const formatAmount = (value: number) => {
 };
 
 export function Affiliates() {
+  const { primaryTextColor } = useColorModeValues();
+
   const [hobbyValue, setHobbyValue] = useState(200);
   const [growthValue, setGrowthValue] = useState(120);
   const [proValue, setProValue] = useState(5);
@@ -50,6 +53,16 @@ export function Affiliates() {
   return (
     <div>
       <Box minW="100vw" minH="100vh" position="relative">
+        <Flex
+          position="absolute"
+          w="100vw"
+          h="100%"
+          top="0"
+          left="0"
+          bgGradient="radial-gradient(circle at 50% -140%, brand.100, transparent);"
+          opacity={0.5}
+          zIndex={-1}
+        />
         <Flex
           w="100vw"
           h="800px"
@@ -74,13 +87,16 @@ export function Affiliates() {
               lineHeight={["40px", "40px", "40px", "60px"]}
               as="h1"
             >
-              Be our affiliate. Earn 30% commission.
+              Be our affiliate
+              <br />
+              <Text
+                bgGradient="linear(to-r, brand.500, brand.400)"
+                backgroundClip="text"
+              >
+                Earn 30% commission.
+              </Text>
             </Heading>
-            <Text
-              textAlign="center"
-              sx={{ b: { color: "blackAlpha.800" } }}
-              as="h2"
-            >
+            <Text textAlign="center" sx={{ b: { color: "brand.500" } }} as="h2">
               Partner with us to earn a <b>recurring 30% commission</b> every
               month — <b>forever</b>!
             </Text>
@@ -94,7 +110,6 @@ export function Affiliates() {
                 fontWeight={700}
                 borderRadius="8px"
                 variant="solid"
-                color="white"
                 colorScheme="brand"
                 _hover={{
                   bgColor: "brand.400",
@@ -148,7 +163,7 @@ export function Affiliates() {
                   onChange={(val) => setHobbyValue(val)}
                 >
                   <SliderTrack>
-                    <SliderFilledTrack bgColor="blackAlpha.800" />
+                    <SliderFilledTrack bgColor="brand.500" />
                   </SliderTrack>
                   <SliderThumb />
                 </Slider>
@@ -173,7 +188,7 @@ export function Affiliates() {
                   onChange={(val) => setGrowthValue(val)}
                 >
                   <SliderTrack>
-                    <SliderFilledTrack bgColor="blackAlpha.800" />
+                    <SliderFilledTrack bgColor="brand.500" />
                   </SliderTrack>
                   <SliderThumb />
                 </Slider>
@@ -197,7 +212,7 @@ export function Affiliates() {
                   onChange={(val) => setProValue(val)}
                 >
                   <SliderTrack>
-                    <SliderFilledTrack bgColor="blackAlpha.800" />
+                    <SliderFilledTrack bgColor="brand.500" />
                   </SliderTrack>
                   <SliderThumb />
                 </Slider>
@@ -281,7 +296,7 @@ export function Affiliates() {
             </Text>
             <Flex maxW="680px">
               <UnorderedList
-                color="blackAlpha.700"
+                color={primaryTextColor}
                 mt="24px"
                 px="32px"
                 gap="16px"
@@ -329,7 +344,7 @@ export function Affiliates() {
 
             <Heading
               textAlign="center"
-              mt="80px"
+              mt="140px"
               mb="16px"
               fontSize="40px"
               fontWeight={800}
