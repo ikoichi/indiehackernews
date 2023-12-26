@@ -15,7 +15,6 @@ export const useSupabaseSession = () => {
     supabaseBrowserClient.auth
       .getSession()
       .then((res) => {
-        console.log(">>> res", res);
         setSession(res?.data?.session);
         if (res?.data?.session) {
           setStatus("authenticated");

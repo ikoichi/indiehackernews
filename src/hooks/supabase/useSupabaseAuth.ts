@@ -22,10 +22,6 @@ export const useSupabaseAuth = ({
         emailRedirectTo: redirectUrl,
       },
     });
-    console.log(">>> supabase auth", {
-      data,
-      error,
-    });
 
     if (error) {
       onMagicLinkSignInError?.(error);
