@@ -93,17 +93,6 @@ if (!process.env.LEMONSQUEEZY_WEBHOOK_SECRET) {
   );
 }
 
-if (!process.env.LEMONSQUEEZY_WEBHOOK_SECRET) {
-  console.warn(
-    "|| No \x1b[33mLEMONSQUEEZY_WEBHOOK_SECRET\x1b[0m environment variable set"
-  );
-  console.warn("|| Payments will not work");
-  console.warn("|| Docs page: https://docs.shipped.club/features/payments");
-  console.warn(
-    "==========================================================================="
-  );
-}
-
 console.warn(
   "\x1b[94m\x1b[1m==>> Shipped Environment variables check complete\x1b[0m\x1b[49m"
 );
