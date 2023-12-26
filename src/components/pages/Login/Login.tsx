@@ -31,12 +31,14 @@ const Login = () => {
 
   const [isSigningInWithEmail, setSigningInWithEmail] = useState(false);
   const [email, setEmail] = useState("");
-  const onEmailSignIn = () => {
+
+  const onEmailSignIn = async () => {
     setSigningInWithEmail(true);
-    signIn("email", {
+    await signIn("email", {
       email,
       callbackUrl: signInCallbackUrl,
     });
+    setSigningInWithEmail(false);
   };
 
   return (

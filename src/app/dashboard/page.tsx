@@ -16,9 +16,9 @@ const Dashboard = () => {
             You are logged in as {session?.user?.email}
           </Flex>
           <AccountMenu
-            userEmail={session.user?.email || ""}
-            userName={session.user?.name || ""}
-            userPictureUrl={session.user?.image || ""}
+            userEmail={session?.user?.email || ""}
+            userName={session?.user?.name || ""}
+            userPictureUrl={session?.user?.image || ""}
           />
         </Stack>
       )}
