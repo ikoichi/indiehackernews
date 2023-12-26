@@ -27,13 +27,11 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const code = searchParams.get("code");
 
-  console.log(">>> code", code);
   if (code) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
   const session = await supabase.auth.getSession();
-  console.log(">>> session", session);
 
   return NextResponse.redirect(new URL(signInCallbackUrl, req.url));
 }

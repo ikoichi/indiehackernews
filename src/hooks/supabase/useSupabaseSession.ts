@@ -23,7 +23,6 @@ export const useSupabaseSession = () => {
         setStatus("unauthenticated");
       })
       .catch((err) => {
-        console.error(">>> err", err);
         setStatus("unauthenticated");
       });
   }, []);
