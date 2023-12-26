@@ -37,12 +37,13 @@ const SignUp = () => {
 
   const [isSigningUpWithEmail, setSigningUpWithEmail] = useState(false);
   const [email, setEmail] = useState("");
-  const onEmailSignUp = () => {
+  const onEmailSignUp = async () => {
     setSigningUpWithEmail(true);
-    signIn("email", {
+    await signIn("email", {
       email,
       callbackUrl: window?.location ? `${window.location.origin}/app` : "",
     });
+    setSigningUpWithEmail(false);
   };
 
   return (
