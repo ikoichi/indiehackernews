@@ -1,7 +1,7 @@
 export const brandName = "My App";
 export const landingPageTitle = "My App";
 export const landingPageDescription = "Make money today with My App";
-export const websiteUrl = "https://myapp.com";
+export const websiteUrl = "http://localhost:3000";
 export const supportEmail = "support@email.com";
 export const openGraphImageUrl = "https://myapp.com/images/og-image.jpg";
 
