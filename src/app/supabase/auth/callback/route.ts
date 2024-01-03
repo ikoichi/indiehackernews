@@ -1,4 +1,6 @@
 import { signInCallbackUrl } from "@/config";
+// import { createLoopsContact } from "@/libs/loops";
+import { prismaClient } from "@/prisma/db";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
@@ -31,7 +33,35 @@ export async function GET(req: Request) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  const session = await supabase.auth.getSession();
+  const sessionResponse = await supabase.auth.getSession();
+
+  if (code && sessionResponse?.data.session?.user?.email) {
+    const session = sessionResponse?.data.session;
+    /* await createLoopsContact({
+      email: session.user.email || "",
+      firstName: session?.user?.user_metadata?.full_name || "",
+      lastName: "",
+      userGroup: "",
+    }); */
+
+    const user = await prismaClient.user.findFirst({
+      where: {
+        id: session.user.id,
+      },
+    });
+
+    if (!user) {
+      await prismaClient.user.create({
+        data: {
+          id: session.user.id,
+          name: session?.user?.user_metadata?.full_name || "",
+          email: session.user.email,
+          emailVerified: new Date(),
+          image: "",
+        },
+      });
+    }
+  }
 
   return NextResponse.redirect(new URL(signInCallbackUrl, req.url));
 }

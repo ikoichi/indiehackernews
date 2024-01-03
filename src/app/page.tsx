@@ -29,7 +29,6 @@ export default function Home() {
         <Pricing />
         <FAQ />
         <CtaBox />
-        <Lifetime />
       </main>
       <Footer />
     </>
