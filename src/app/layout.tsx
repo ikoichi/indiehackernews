@@ -79,7 +79,12 @@ export default function RootLayout({
           data-code=""
         />
       </head>
-      <body className={`${inter.className} chakra-ui-${uiColorMode}`}>
+      <body
+        className={`${inter.className} chakra-ui-${uiColorMode}`}
+        style={{
+          overflowX: "hidden",
+        }}
+      >
         <Providers uiColorMode={uiColorMode}>{children}</Providers>
       </body>
     </html>
