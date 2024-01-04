@@ -37,12 +37,6 @@ export async function GET(req: Request) {
 
   if (code && sessionResponse?.data.session?.user?.email) {
     const session = sessionResponse?.data.session;
-    /* await createLoopsContact({
-      email: session.user.email || "",
-      firstName: session?.user?.user_metadata?.full_name || "",
-      lastName: "",
-      userGroup: "",
-    }); */
 
     const user = await prismaClient.user.findFirst({
       where: {
@@ -60,6 +54,14 @@ export async function GET(req: Request) {
           image: "",
         },
       });
+
+      /* add user to email service MailChimp, Loops, or others */
+      /* await createLoopsContact({
+        email: session.user.email || "",
+        firstName: session?.user?.user_metadata?.full_name || "",
+        lastName: "",
+        userGroup: "",
+      }); */
     }
   }
 
