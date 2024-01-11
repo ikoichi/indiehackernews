@@ -41,7 +41,9 @@ const SignUp = () => {
     setSigningUpWithEmail(true);
     await signIn("email", {
       email,
-      callbackUrl: window?.location ? `${window.location.origin}/app` : "",
+      callbackUrl: window?.location
+        ? `${window.location.origin}/dashboard`
+        : "",
     });
     setSigningUpWithEmail(false);
   };
