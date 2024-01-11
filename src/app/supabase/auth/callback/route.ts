@@ -45,15 +45,19 @@ export async function GET(req: Request) {
     });
 
     if (!user) {
-      await prismaClient.user.create({
-        data: {
-          id: session.user.id,
-          name: session?.user?.user_metadata?.full_name || "",
-          email: session.user.email,
-          emailVerified: new Date(),
-          image: "",
-        },
-      });
+      try {
+        await prismaClient.user.create({
+          data: {
+            id: session.user.id,
+            name: session?.user?.user_metadata?.full_name || "",
+            email: session.user.email,
+            emailVerified: new Date(),
+            image: "",
+          },
+        });
+      } catch (err) {
+        console.log("Error while creating the user", session.user);
+      }
 
       /* add user to email service MailChimp, Loops, or others */
       /* await createLoopsContact({

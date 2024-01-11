@@ -12,6 +12,9 @@ import {
 } from "@chakra-ui/react";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export function Providers({
   children,
@@ -34,12 +37,14 @@ export function Providers({
       <UserdeskChat />
       <CrispChat />
       <LemonSqueezyAffiliateScript />
-      <CacheProvider>
-        <ColorModeScript initialColorMode={uiColorMode} />
-        <ChakraProvider theme={theme} colorModeManager={cookieStorageManager}>
-          {children}
-        </ChakraProvider>
-      </CacheProvider>
+      <QueryClientProvider client={queryClient}>
+        <CacheProvider>
+          <ColorModeScript initialColorMode={uiColorMode} />
+          <ChakraProvider theme={theme} colorModeManager={cookieStorageManager}>
+            {children}
+          </ChakraProvider>
+        </CacheProvider>
+      </QueryClientProvider>
     </SessionProvider>
   );
 }
