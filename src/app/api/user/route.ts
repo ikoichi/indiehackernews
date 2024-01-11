@@ -4,7 +4,7 @@ import { HttpStatusCode } from "axios";
 import { prismaClient } from "@/prisma/db";
 import { authOptions } from "@/config/auth";
 import { User } from "@prisma/client";
-import { ApiError } from "@/types/api.tyes";
+import { ApiError } from "@/types/api.types";
 
 export type UserResponse = {
   user: User;
