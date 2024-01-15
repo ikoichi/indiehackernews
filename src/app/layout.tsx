@@ -7,6 +7,8 @@ import {
   landingPageDescription,
   landingPageTitle,
   openGraphImageUrl,
+  twitterHandle,
+  twitterMakerHandle,
   websiteUrl,
 } from "@/config";
 import { getOpenGraph } from "@/components/OpenGraph/OpenGraph";
@@ -27,8 +29,8 @@ export const metadata: Metadata = {
     imageUrl: openGraphImageUrl,
     websiteUrl,
     twitterImageUrl: openGraphImageUrl,
-    twitterHandle: "",
-    twitterMakerHandle: "",
+    twitterHandle: twitterHandle,
+    twitterMakerHandle: twitterMakerHandle,
   }),
 };
 

@@ -34,7 +34,7 @@ export const CtaBox = () => {
   };
 
   return (
-    <Section flexDir="column" mb="160px" mt="80px">
+    <Section flexDir="column" mb="80px" mt="80px">
       <Flex
         p="80px 24px"
         borderRadius="16px"
