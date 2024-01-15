@@ -4,6 +4,7 @@ export const landingPageDescription = "Make money today with My App";
 export const websiteUrl = "http://localhost:3000";
 export const supportEmail = "support@email.com";
 export const openGraphImageUrl = "https://myapp.com/images/og-image.jpg";
+export const blogOpenGraphImageUrl = "https://myapp.com/images/og-image.jpg";
 
 // the users will be redirected to this page after sign in
 export const signInCallbackUrl = "/dashboard";
@@ -27,3 +28,6 @@ export const affiliateProgramLink =
 */
 export { pricingPlans } from "./pricing.constants";
 export { lifetimeDeals } from "./lifetime.constants";
+
+export const twitterHandle = "@myapp";
+export const twitterMakerHandle = "@johndoe";

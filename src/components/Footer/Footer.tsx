@@ -15,6 +15,7 @@ import { Link } from "@chakra-ui/next-js";
 import { brandName, discordLink, twitterLink, youTubeLink } from "@/config";
 import Image from "next/image";
 import { useColorModeValues } from "@/hooks/useColorModeValues";
+import { Routes } from "@/data/routes";
 
 export const Footer = () => {
   const { secondaryTextColor, borderColor } = useColorModeValues();
@@ -63,10 +64,13 @@ export const Footer = () => {
               <Text fontWeight="bold" textTransform="uppercase">
                 Links
               </Text>
+              <Link href={Routes.blog} mr="8px">
+                Blog
+              </Link>
               <Link href="#pricing" mr="8px">
                 Pricing
               </Link>
-              <Link href="/affiliates" isExternal alignItems="flex-start">
+              <Link href={Routes.affiliates} isExternal alignItems="flex-start">
                 Affiliate — Earn 30%
               </Link>
             </VStack>
@@ -75,8 +79,8 @@ export const Footer = () => {
               <Text fontWeight="bold" textTransform="uppercase">
                 Legal
               </Text>
-              <Link href="/privacy">Privacy Policy</Link>
-              <Link href="/terms">Terms and Conditions</Link>
+              <Link href={Routes.privacy}>Privacy Policy</Link>
+              <Link href={Routes.terms}>Terms and Conditions</Link>
             </VStack>
 
             <VStack spacing="16px" alignItems="flex-start">
@@ -105,7 +109,8 @@ export const Footer = () => {
         </Flex>
 
         <Text fontSize="12px" color={secondaryTextColor} mb="40px">
-          <br />© Copyright 2023 {brandName}. All rights reserved.
+          <br />© Copyright {new Date().getFullYear()} {brandName}. All rights
+          reserved.
         </Text>
       </Flex>
     </Section>
