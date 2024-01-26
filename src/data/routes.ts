@@ -1,10 +1,11 @@
 export enum Routes {
+  affiliates = "/affiliates",
+  blog = "/blog",
+  dashboard = "/dashboard",
   home = "/home",
   login = "/login",
-  signUp = "/signup",
-  root = "/",
-  blog = "/blog",
-  affiliates = "/affiliates",
   privacy = "/privacy",
+  root = "/",
+  signUp = "/signup",
   terms = "/terms",
 }
