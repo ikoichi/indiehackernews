@@ -38,14 +38,15 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  UserPlan      UserPlan?
+  id             String           @id @default(cuid())
+  name           String?
+  email          String?          @unique
+  emailVerified  DateTime?
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  UserPlan       UserPlan?
+  UserOnboarding UserOnboarding[]
 }
 
 model VerificationToken {
@@ -101,4 +102,15 @@ model UserPlan {
   status              String?
   user                User             @relation(fields: [userId], references: [id])
   plan                SubscriptionPlan @relation(fields: [planId], references: [id])
+}
+
+model UserOnboarding {
+  id         String   @id @default(cuid())
+  userId     String
+  isComplete Boolean  @default(false)
+  role       String?
+  source     String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id])
 }

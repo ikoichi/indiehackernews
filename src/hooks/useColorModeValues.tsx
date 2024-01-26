@@ -11,7 +11,11 @@ export const useColorModeValues = () => {
     "whiteAlpha.600"
   );
 
-  const borderColor = useColorModeValue("blackAlpha.100", "whiteAlpha.100");
+  const borderColor = useColorModeValue("blackAlpha.400", "whiteAlpha.400");
+  const outlineColor = useColorModeValue(
+    "RGBA(0, 0, 0, 0.08)", // blackAlpha.200
+    "RGBA(255, 255, 255, 0.08)" // whiteAlpha.200
+  );
 
   const baseTextColor = {
     50: useColorModeValue("blackAlpha.50", "whiteAlpha.50"),
@@ -26,5 +30,11 @@ export const useColorModeValues = () => {
     900: useColorModeValue("blackAlpha.900", "whiteAlpha.900"),
   };
 
-  return { primaryTextColor, secondaryTextColor, borderColor, baseTextColor };
+  return {
+    primaryTextColor,
+    secondaryTextColor,
+    borderColor,
+    baseTextColor,
+    outlineColor,
+  };
 };

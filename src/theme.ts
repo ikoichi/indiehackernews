@@ -1,4 +1,4 @@
-import { ThemeConfig, extendTheme, theme } from "@chakra-ui/react";
+import { extendTheme, theme } from "@chakra-ui/react";
 
 export const colors = {
   brand: {
@@ -19,9 +19,15 @@ const components = {
   Input: {
     baseStyle: {
       field: {
-        borderColor: "rgba(0, 0, 0, 0.16)",
         _focusVisible: {
-          boxShadow: `0 0 0 3px #319795`,
+          boxShadow: `none !important`,
+          borderColor: `brand.100`,
+        },
+        _hover: {
+          boxShadow: `none`,
+        },
+        _focus: {
+          boxShadow: `none`,
         },
       },
     },
@@ -42,6 +48,18 @@ const components = {
 };
 
 export const customTheme = extendTheme({
+  styles: {
+    global: {
+      ".js-focus-visible :focus:not([data-focus-visible])": {
+        outline: "none",
+        boxShadow: "none",
+      },
+      "*:focus-visible": {
+        outline: "none",
+        boxShadow: "none",
+      },
+    },
+  },
   colors,
   components,
   shadows: { outline: `0 0 0 3px ${colors.brand["100"]}` },
