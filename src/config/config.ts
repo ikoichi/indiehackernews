@@ -23,11 +23,13 @@ export const youTubeLink = "https://youtube.com/johndoe";
 export const affiliateProgramLink =
   "https://yourstore.lemonsqueezy.com/affiliates";
 
+export const twitterHandle = "@myapp";
+export const twitterMakerHandle = "@johndoe";
+
+export const cannyUrl = "https://yourstore.canny.io";
+
 /* 
   do not edit this
 */
 export { pricingPlans } from "./pricing.constants";
 export { lifetimeDeals } from "./lifetime.constants";
-
-export const twitterHandle = "@myapp";
-export const twitterMakerHandle = "@johndoe";
