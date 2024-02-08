@@ -27,7 +27,7 @@ type MenuItemProps = {
   isExternal?: boolean;
 };
 
-const MenuItem: React.FC<MenuItemProps> = ({
+export const MenuItem: React.FC<MenuItemProps> = ({
   route,
   currentPage,
   children,
@@ -158,7 +158,7 @@ type MenuLabelProps = {
   children: any;
 };
 
-const MenuLabel: React.FC<MenuLabelProps> = ({ children }) => (
+export const MenuLabel: React.FC<MenuLabelProps> = ({ children }) => (
   <Box display="inline-block" fontWeight="500" fontSize="14px" ml="4px">
     {children}
   </Box>
