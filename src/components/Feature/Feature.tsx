@@ -72,7 +72,7 @@ export const Feature = ({
               },
             }}
             _hover={{
-              bgColor: "#fa5a00",
+              bgColor: "brand.300",
               svg: {
                 transform: "translateX(4px)",
               },
