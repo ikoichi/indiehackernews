@@ -42,16 +42,24 @@ export const AccountMenu = ({
     <Menu colorScheme="blackAlpha">
       <MenuButton
         mb="8px"
-        p="8px"
+        p="8px 0"
         display="flex"
         flexDir="row"
         alignItems="center"
+        w="100%"
       >
-        <Flex alignItems="center">
-          <Flex mr="8px">
-            <Avatar src={userPictureUrl} size="sm" />
-          </Flex>
-          <Flex flexDir="column" fontSize="13px" alignItems="flex-start">
+        <Flex alignItems="center" w="100%">
+          {userPictureUrl && (
+            <Flex mr="8px">
+              <Avatar src={userPictureUrl} size="sm" />
+            </Flex>
+          )}
+          <Flex
+            flexDir="column"
+            fontSize="13px"
+            alignItems="flex-start"
+            w="100%"
+          >
             <Text fontWeight="semibold" color={primaryTextColor}>
               {userName}
             </Text>
@@ -72,7 +80,7 @@ export const AccountMenu = ({
           </Flex>
         </Flex>
       </MenuButton>
-      <MenuList fontSize="13px" color={primaryTextColor} ml="4px">
+      <MenuList fontSize="13px" color={primaryTextColor}>
         <MenuItem onClick={() => onLoadCustomerPortal()}>
           <Flex mr="8px">
             <TbCreditCard size="16px" />
