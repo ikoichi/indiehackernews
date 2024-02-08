@@ -14,7 +14,7 @@ import { TbArrowRight, TbCalendarDue, TbCircleCheck } from "react-icons/tb";
 import { useIsLogged } from "@/hooks/useIsLogged";
 import { useRouter } from "next/navigation";
 import { Section } from "../Hero/Section";
-import { brandName } from "@/config";
+import { brandName, demoCalendlyLink } from "@/config";
 
 export const CtaBox = () => {
   const router = useRouter();
@@ -103,22 +103,22 @@ export const CtaBox = () => {
             <Flex flexDir="column">
               <Flex flexDir="row" alignItems="center" justifyContent="center">
                 <Button
-                  variant="outline"
                   as="a"
-                  href={"https://yourcalendlylink.com"}
-                  target="_blank"
-                  rel="noopener"
-                  borderRadius="16px"
-                  fontWeight={500}
                   borderColor="brand.500"
+                  borderRadius="16px"
+                  color="blackAlpha.700"
+                  fontWeight={500}
                   h="50px"
+                  href={demoCalendlyLink}
                   minH="50px"
+                  rel="noopener"
+                  target="_blank"
+                  variant="outline"
                   leftIcon={
                     <Flex mb="2px">
                       <TbCalendarDue />
                     </Flex>
                   }
-                  color="blackAlpha.700"
                 >
                   Book a demo
                 </Button>
