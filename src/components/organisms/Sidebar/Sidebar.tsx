@@ -40,13 +40,9 @@ export const SideBar: React.FC<SideBarProps> = ({ currentPage }) => {
 
       <Flex position="absolute" bottom="0" left="0" w="100%" px="12px">
         <AccountMenu
-          /* userEmail={session?.user?.email || ""} */
-          userEmail={"john@doe.com"}
-          userName={session?.user?.name || "Luca"}
-          userPictureUrl={
-            session?.user?.image ||
-            "https://pbs.twimg.com/profile_images/1476118697970483201/aUu84NTv_400x400.jpg"
-          }
+          userEmail={session?.user?.email || ""}
+          userName={session?.user?.name || ""}
+          userPictureUrl={session?.user?.image || ""}
         />
       </Flex>
     </Flex>
