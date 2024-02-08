@@ -11,7 +11,7 @@ export const useColorModeValues = () => {
     "whiteAlpha.600"
   );
 
-  const borderColor = useColorModeValue("blackAlpha.400", "whiteAlpha.400");
+  const borderColor = useColorModeValue("blackAlpha.300", "whiteAlpha.300");
   const outlineColor = useColorModeValue(
     "RGBA(0, 0, 0, 0.08)", // blackAlpha.200
     "RGBA(255, 255, 255, 0.08)" // whiteAlpha.200
