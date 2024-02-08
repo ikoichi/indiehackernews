@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import { cookies } from "next/headers";
 import { Providers } from "./providers";
 import {
@@ -14,8 +15,6 @@ import {
 import { getOpenGraph } from "@/components/OpenGraph/OpenGraph";
 import { getSEOTags } from "@/components/SEOTags/SEOTags";
 import { customTheme } from "@/theme";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   ...getSEOTags({
@@ -82,7 +81,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.className} chakra-ui-${uiColorMode}`}
+        className={`chakra-ui-${uiColorMode} ${GeistSans.className}`}
         style={{
           overflowX: "hidden",
         }}
