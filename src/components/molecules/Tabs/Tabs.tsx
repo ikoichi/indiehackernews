@@ -39,12 +39,7 @@ export const Tabs = ({ label, items, onChange, w }: TabsProps) => {
   );
 
   return (
-    <Stack
-      alignItems="flex-start"
-      px={["0", "0", "0", "0", "16px"]}
-      direction="column"
-      width={w || "auto"}
-    >
+    <Stack alignItems="flex-start" direction="column" width={w || "auto"}>
       {label && (
         <Text fontWeight={500} color="blackAlpha.800" fontSize="14px">
           {label}
