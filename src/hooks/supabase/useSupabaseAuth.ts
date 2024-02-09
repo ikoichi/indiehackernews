@@ -1,6 +1,6 @@
 "use client";
 
-import { supabaseBrowserClient } from "@/libs/supabase";
+import { supabaseBrowserClient } from "@/libs/supabase.client";
 import { useRouter } from "next/navigation";
 
 type MagicLinkProps = {

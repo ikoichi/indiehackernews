@@ -1,6 +1,6 @@
 "use client";
 
-import { supabaseBrowserClient } from "@/libs/supabase";
+import { supabaseBrowserClient } from "@/libs/supabase.client";
 import { Session, Subscription } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 

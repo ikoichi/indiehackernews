@@ -1,4 +1,4 @@
-import { createBrowserClient, createServerClient } from "@supabase/ssr";
+import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 export const supabaseServerClient = createServerClient(
@@ -12,11 +12,6 @@ export const supabaseServerClient = createServerClient(
       detectSessionInUrl: true,
     },
   }
-);
-
-export const supabaseBrowserClient = createBrowserClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
 export const getSupabaseServerClient = () => {
