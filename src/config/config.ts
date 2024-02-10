@@ -12,7 +12,7 @@ export const signInCallbackUrl = "/dashboard";
 // only needed if you have the "talk to us" button in the landing page
 export const demoCalendlyLink = "https://calendly.com/myself/15min";
 
-// used by MailChimp
+// used by MailChimp, Loops, and MailPace
 export const emailFrom = "no-reply@email.com";
 
 // social links

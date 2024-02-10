@@ -47,6 +47,8 @@ model User {
   sessions       Session[]
   UserPlan       UserPlan?
   UserOnboarding UserOnboarding[]
+  WorkspaceUsers WorkspaceUsers[]
+  Workspace      Workspace[]
 }
 
 model VerificationToken {
@@ -113,4 +115,45 @@ model UserOnboarding {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   user       User     @relation(fields: [userId], references: [id])
+}
+
+model Workspace {
+  id                         String                       @id @default(cuid())
+  name                       String
+  emailDomain                String?
+  isDeleted                  Boolean                      @default(false)
+  createdBy                  String
+  createdAt                  DateTime                     @default(now())
+  updatedAt                  DateTime                     @updatedAt
+  WorkspaceUsers             WorkspaceUsers[]
+  user                       User                         @relation(fields: [createdBy], references: [id])
+  WorkspacePendingInvitation WorkspacePendingInvitation[]
+}
+
+enum WorkspaceRole {
+  OWNER
+  ADMIN
+  MEMBER
+  GUEST
+}
+
+model WorkspaceUsers {
+  id          String        @id @default(cuid())
+  workspaceId String
+  userId      String
+  role        WorkspaceRole
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  workspace   Workspace     @relation(fields: [workspaceId], references: [id])
+  user        User          @relation(fields: [userId], references: [id])
+}
+
+model WorkspacePendingInvitation {
+  id          String        @id @default(cuid())
+  workspaceId String
+  email       String
+  role        WorkspaceRole
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  workspace   Workspace     @relation(fields: [workspaceId], references: [id])
 }
