@@ -93,6 +93,10 @@ export const authOptions: AuthOptions = {
           userGroup: "new-user",
         });
         */
+        /*
+        // Uncomment this part if you are using workspaces
+        await onAddInvitedUserToWorkspace(event.user.email);
+        */
       }
     },
   },
