@@ -49,28 +49,34 @@ export const AccountMenu = ({
         w="100%"
       >
         <Flex alignItems="center" w="100%">
-          {userPictureUrl && (
-            <Flex mr="8px">
-              <Avatar src={userPictureUrl} size="sm" />
-            </Flex>
-          )}
+          <Flex mr="8px">
+            <Avatar src={userPictureUrl} size="sm" />
+          </Flex>
           <Flex
             flexDir="column"
             fontSize="13px"
             alignItems="flex-start"
             w="100%"
           >
-            <Text fontWeight="semibold" color={primaryTextColor}>
+            <Text
+              fontWeight="semibold"
+              color={primaryTextColor}
+              display="inline-block"
+              textOverflow="ellipsis"
+              whiteSpace="nowrap"
+              overflow="hidden"
+              maxW="140px"
+            >
               {userName}
             </Text>
             <Text
               color={secondaryTextColor}
               fontSize="12px"
               textOverflow="ellipsis"
+              display="inline-block"
               whiteSpace="nowrap"
               overflow="hidden"
-              w="140px"
-              display="flex"
+              maxW="140px"
             >
               {userEmail}
             </Text>
