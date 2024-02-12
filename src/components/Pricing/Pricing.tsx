@@ -29,6 +29,7 @@ export const Pricing = () => {
           lineHeight={["32px", "48px", "56px"]}
           mb="32px"
           fontWeight="extrabold"
+          textAlign="center"
         >
           Start making money today.
         </Heading>

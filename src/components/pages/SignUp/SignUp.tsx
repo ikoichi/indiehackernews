@@ -18,8 +18,11 @@ import { signIn } from "next-auth/react";
 import { brandName } from "@/config";
 import Image from "next/image";
 import { useColorModeValues } from "@/hooks/useColorModeValues";
+import { TbArrowNarrowLeft } from "react-icons/tb";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
+  const router = useRouter();
   const { primaryTextColor, secondaryTextColor, borderColor, baseTextColor } =
     useColorModeValues();
 
@@ -56,6 +59,16 @@ const SignUp = () => {
       justifyContent="flex-start"
       flexDir="row"
     >
+      <Button
+        position="absolute"
+        top="8px"
+        left="8px"
+        variant="ghost"
+        leftIcon={<TbArrowNarrowLeft />}
+        onClick={() => router.push("/")}
+      >
+        Back
+      </Button>
       <Flex
         w={["100vw", "100vw", "100vw", "50vw"]}
         h="100vh"

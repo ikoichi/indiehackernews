@@ -30,7 +30,10 @@ export const useColorModeValues = () => {
     900: useColorModeValue("blackAlpha.900", "whiteAlpha.900"),
   };
 
+  const colorScheme = useColorModeValue("blackAlpha", "whiteAlpha");
+
   return {
+    colorScheme,
     primaryTextColor,
     secondaryTextColor,
     borderColor,

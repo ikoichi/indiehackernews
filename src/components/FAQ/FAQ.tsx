@@ -36,7 +36,7 @@ export const FAQ = () => {
         maxW="1000px"
         alignItems="center"
         justifyContent="center"
-        p="54px"
+        p={["0", "16px", "40px", "54px"]}
         borderRadius="16px"
         flexDir="column"
       >
@@ -57,7 +57,7 @@ export const FAQ = () => {
           </Text>
         </VStack>
 
-        <Accordion mt="40px" w="100%" borderColor="blackAlpha.300">
+        <Accordion mt="40px" w="100%" borderColor="blackAlpha.300" allowToggle>
           {faqs.map((faq, index) => {
             return (
               <FAQquestion

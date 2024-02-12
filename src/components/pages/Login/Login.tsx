@@ -16,8 +16,11 @@ import * as isEmail from "isemail";
 import { brandName, signInCallbackUrl } from "@/config";
 import Image from "next/image";
 import { useColorModeValues } from "@/hooks/useColorModeValues";
+import { TbArrowNarrowLeft } from "react-icons/tb";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const router = useRouter();
   const { primaryTextColor, borderColor, baseTextColor } = useColorModeValues();
   const boxBgColor = useColorModeValue("white", "transparent");
 
@@ -49,6 +52,16 @@ const Login = () => {
       justifyContent="flex-start"
       flexDir="column"
     >
+      <Button
+        position="absolute"
+        top="8px"
+        left="8px"
+        variant="ghost"
+        leftIcon={<TbArrowNarrowLeft />}
+        onClick={() => router.push("/")}
+      >
+        Back
+      </Button>
       <Flex
         w="100vw"
         h="100vh"
