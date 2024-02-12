@@ -67,7 +67,7 @@ export const Footer = () => {
               <Link href={Routes.blog} mr="8px">
                 Blog
               </Link>
-              <Link href="#pricing" mr="8px">
+              <Link href="/#pricing" mr="8px">
                 Pricing
               </Link>
               <Link href={Routes.affiliates} isExternal alignItems="flex-start">
