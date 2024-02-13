@@ -38,8 +38,8 @@ export const getOpenGraph = ({
     },
     twitter: {
       card: "summary_large_image",
-      site: `@${twitterHandle}`,
-      creator: `@${twitterMakerHandle}}`,
+      site: `${twitterHandle}`,
+      creator: `${twitterMakerHandle}`,
       images: twitterImageUrl,
     },
   };
