@@ -10,7 +10,7 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { TbBrandDiscord, TbBrandX, TbBrandYoutube } from "react-icons/tb";
-import { Section } from "../Hero/Section";
+import { Section } from "../atoms/Section/Section";
 import { Link } from "@chakra-ui/next-js";
 import { brandName, discordLink, twitterLink, youTubeLink } from "@/config";
 import Image from "next/image";

@@ -1,5 +1,5 @@
-import { Feature, FeatureProps } from "../Feature/Feature";
-import { Section } from "../Hero/Section";
+import { Feature, FeatureProps } from "./Feature";
+import { Section } from "../atoms/Section/Section";
 
 const featuresList: Omit<FeatureProps, "showCta">[] = [
   {

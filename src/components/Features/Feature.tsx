@@ -2,7 +2,7 @@
 
 import { Flex, Heading, Button, Text } from "@chakra-ui/react";
 import { TbArrowRight } from "react-icons/tb";
-import { Section } from "../Hero/Section";
+import { Section } from "../atoms/Section/Section";
 import { useGetStated } from "@/hooks/useGetStarted";
 import { ReactNode } from "react";
 import { useColorModeValues } from "@/hooks/useColorModeValues";

@@ -13,7 +13,7 @@ import { useState } from "react";
 import { TbArrowRight, TbCalendarDue, TbCircleCheck } from "react-icons/tb";
 import { useIsLogged } from "@/hooks/useIsLogged";
 import { useRouter } from "next/navigation";
-import { Section } from "../Hero/Section";
+import { Section } from "../atoms/Section/Section";
 import { brandName, demoCalendlyLink } from "@/config";
 
 export const CtaBox = () => {

@@ -2,7 +2,7 @@
 
 import { Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { Section } from "../Hero/Section";
+import { Section } from "../atoms/Section/Section";
 import { useState } from "react";
 import { LifetimeDeal } from "./LifetimeDeal";
 import { lifetimeDeals } from "@/config";

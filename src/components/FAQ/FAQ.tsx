@@ -2,7 +2,7 @@
 
 import { Accordion, Flex, Heading, VStack, Text } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
-import { Section } from "../Hero/Section";
+import { Section } from "../atoms/Section/Section";
 import { FAQQuestionProps, FAQquestion } from "./FAQquestion";
 import { brandName, supportEmail } from "@/config";
 import { useColorModeValues } from "@/hooks/useColorModeValues";

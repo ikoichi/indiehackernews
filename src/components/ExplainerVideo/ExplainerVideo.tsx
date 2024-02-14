@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { TbPlayerPlayFilled } from "react-icons/tb";
-import { Section } from "../Hero/Section";
+import { Section } from "../atoms/Section/Section";
 
 export const ExplainerVideo = () => {
   return (

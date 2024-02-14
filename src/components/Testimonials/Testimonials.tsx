@@ -1,5 +1,5 @@
 import { Heading, Stack } from "@chakra-ui/react";
-import { Section } from "../Hero/Section";
+import { Section } from "../atoms/Section/Section";
 import { Testimonial, TestimonialProps } from "./Testimonial";
 import { brandName } from "@/config";
 

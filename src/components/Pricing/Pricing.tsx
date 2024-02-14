@@ -3,7 +3,7 @@
 import { Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import { PricingPlan } from "./PricingPlan";
 import { useRouter } from "next/navigation";
-import { Section } from "../Hero/Section";
+import { Section } from "../atoms/Section/Section";
 import { useState } from "react";
 import { pricingPlans } from "@/config";
 import { useColorModeValues } from "@/hooks/useColorModeValues";

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Flex, Input, Stack, Text } from "@chakra-ui/react";
-import { Section } from "../Hero/Section";
+import { Section } from "../atoms/Section/Section";
 import { colors } from "@/theme";
 import axios from "axios";
 import { useState } from "react";
