@@ -1,6 +1,7 @@
 "use client";
 
 import { supabaseBrowserClient } from "@/libs/supabase.client";
+import { Provider } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 
 type MagicLinkProps = {
@@ -15,12 +16,20 @@ type EmailAndPasswordProps = {
   onEmailAndPasswordSignInError?: (error: any) => void;
 };
 
+type SocialProps = {
+  onSocialSignInSuccess?: (data: any) => void;
+  onSocialSignInError?: (error: any) => void;
+};
+
 type SignOutProps = {
   onSignOutSuccess?: () => void;
   onSignOutError?: (error: any) => void;
 };
 
-type Props = MagicLinkProps & EmailAndPasswordProps & SignOutProps;
+type Props = MagicLinkProps &
+  EmailAndPasswordProps &
+  SocialProps &
+  SignOutProps;
 
 export const useSupabaseAuth = ({
   onMagicLinkSignInSuccess,
@@ -29,6 +38,8 @@ export const useSupabaseAuth = ({
   onEmailAndPasswordSignInSuccess,
   onEmailAndPasswordSignUpError,
   onEmailAndPasswordSignInError,
+  onSocialSignInSuccess,
+  onSocialSignInError,
   onSignOutError,
   onSignOutSuccess,
 }: Props) => {
@@ -96,6 +107,26 @@ export const useSupabaseAuth = ({
     }
   };
 
+  const onSignInWithSocial = async (provider: Provider) => {
+    const { data, error } = await supabaseBrowserClient.auth.signInWithOAuth({
+      provider: provider,
+      options: {
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
+        },
+      },
+    });
+
+    if (error) {
+      onSocialSignInError?.(error);
+    }
+
+    if (!error && data) {
+      onSocialSignInSuccess?.(data);
+    }
+  };
+
   const onSignOut = async () => {
     const { error } = await supabaseBrowserClient.auth.signOut();
     router.push("/");
@@ -111,6 +142,7 @@ export const useSupabaseAuth = ({
     onSignWithMagicLink,
     onSignInWithEmailAndPassword,
     onSignUpWithEmailAndPassword,
+    onSignInWithSocial,
     onSignOut,
   };
 };
