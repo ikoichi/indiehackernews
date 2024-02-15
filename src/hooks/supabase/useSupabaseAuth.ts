@@ -47,7 +47,7 @@ export const useSupabaseAuth = ({
       onMagicLinkSignInError?.(error);
     }
 
-    if (data) {
+    if (!error && data) {
       onMagicLinkSignInSuccess?.(data);
     }
   };
@@ -68,11 +68,11 @@ export const useSupabaseAuth = ({
     });
 
     if (error) {
-      onEmailAndPasswordSignUpSuccess?.(error);
+      onEmailAndPasswordSignUpError?.(error);
     }
 
-    if (data) {
-      onEmailAndPasswordSignUpError?.(data);
+    if (!error && data) {
+      onEmailAndPasswordSignUpSuccess?.(data);
     }
   };
 
@@ -91,7 +91,7 @@ export const useSupabaseAuth = ({
       onEmailAndPasswordSignInError?.(error);
     }
 
-    if (data) {
+    if (!error && data) {
       onEmailAndPasswordSignInSuccess?.(data);
     }
   };
