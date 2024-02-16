@@ -66,12 +66,6 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       alignItems="center"
       justifyContent="left"
       as={!route ? "button" : "div"}
-      p="8px 16px"
-      onClick={() => {
-        if (route && !isActive && !isExternal && href.startsWith("/")) {
-          onClick(route);
-        }
-      }}
       sx={{
         ".Canny_BadgeContainer": {
           top: "16px",
@@ -111,19 +105,26 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           legacyBehavior
         >
           <ChakraLink
-            display="flex"
-            flexGrow={1}
-            alignItems="center"
-            justifyContent="flex-start"
-            flexDir="row"
-            target={isExternal ? "_blank" : "_self"}
             _hover={{ textDecoration: "none" }}
+            alignItems="center"
+            boxSize="border-box"
+            display="flex"
+            flexDir="row"
+            flexGrow={1}
+            justifyContent="flex-start"
+            m="0 16px"
+            h="40px"
+            position="relative"
+            target={isExternal ? "_blank" : "_self"}
             sx={{
               svg: {
                 stroke: menuItemColor,
               },
             }}
             onClick={(e) => {
+              if (route && !isActive && !isExternal && href.startsWith("/")) {
+                onClick(route);
+              }
               if (!route) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -143,6 +144,8 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           justifyContent="flex-start"
           flexDir="row"
           _hover={{ textDecoration: "none" }}
+          m="0 16px"
+          h="40px"
           sx={{
             svg: {
               stroke: "blackAlpha.800",
@@ -152,7 +155,9 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           {children}
         </Flex>
       )}
-      {loadingRoute === route && <Spinner size="xs" color={spinnerColor} />}
+      {loadingRoute === route && (
+        <Spinner size="xs" color={spinnerColor} mr="16px" />
+      )}
     </chakra.div>
   );
 };
