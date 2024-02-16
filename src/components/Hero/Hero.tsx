@@ -30,7 +30,7 @@ export const Hero = ({
   showBookDemo = true,
 }: HeroProps) => {
   const router = useRouter();
-  const { user } = useIsLogged();
+  const { user, isLogged } = useIsLogged();
 
   const { primaryTextColor, secondaryTextColor } = useColorModeValues();
 
@@ -127,7 +127,7 @@ export const Hero = ({
                       },
                     }}
                   >
-                    Try FREE now
+                    {isLogged ? "Go to app" : "Try FREE now"}
                   </Button>
                 </Flex>
               )}
