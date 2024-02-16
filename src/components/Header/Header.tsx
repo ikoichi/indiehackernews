@@ -51,7 +51,7 @@ export const Header = ({}: HeaderProps) => {
             <Image src="/logo.png" alt="logo" width={32} height={32} />
           </Flex>
           <Link
-            w="100px"
+            w="auto"
             href={Routes.root}
             cursor="pointer"
             fontWeight="extrabold"
