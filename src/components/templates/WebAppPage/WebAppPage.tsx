@@ -108,6 +108,7 @@ export const WebAppPage = ({ currentPage }: WebAppPageProps) => {
                 <Heading>Welcome</Heading>
               </Center>
             )}
+            {/* Add the route components here */}
           </Flex>
         </>
       )}
