@@ -59,6 +59,9 @@ const Login = () => {
         variant="ghost"
         leftIcon={<TbArrowNarrowLeft />}
         onClick={() => router.push("/")}
+        _hover={{
+          bgColor: "transparent",
+        }}
       >
         Back
       </Button>

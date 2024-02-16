@@ -66,6 +66,9 @@ const SignUp = () => {
         variant="ghost"
         leftIcon={<TbArrowNarrowLeft />}
         onClick={() => router.push("/")}
+        _hover={{
+          bgColor: "transparent",
+        }}
       >
         Back
       </Button>
@@ -84,6 +87,7 @@ const SignUp = () => {
           alignItems="flex-start"
           position="relative"
           w={["100%", "400px", "400px", "496px"]}
+          borderRadius="24px"
         >
           <Flex
             w={["360px", "480px", "560px", "640px", "780px"]}

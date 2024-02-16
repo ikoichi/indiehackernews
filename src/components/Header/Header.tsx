@@ -80,15 +80,18 @@ export const Header = ({}: HeaderProps) => {
           >
             {isLogged ? "Go to app" : "Get started"}
           </Button>
-          {!isMobile && <DarkModeSwitch />}
-          {isMobile && (
+          <Flex display={["none", null, "flex"]}>
+            <DarkModeSwitch />
+          </Flex>
+          <Flex display={["flex", "none"]}>
             <IconButton
               aria-label={"menu"}
               icon={<TbMenu2 />}
               onClick={() => setMenuOpen(true)}
               bgColor="transparent"
             />
-          )}
+          </Flex>
+
           <Drawer
             isOpen={isMenuOpen}
             placement="right"
