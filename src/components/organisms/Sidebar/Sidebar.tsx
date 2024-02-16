@@ -20,6 +20,10 @@ export const SideBar: React.FC<SideBarProps> = ({ currentPage }) => {
 
   const { data: session } = useSession();
 
+  const [loadingRoute, setLoadingRoute] = React.useState<Routes | string>(
+    "" as Routes
+  );
+
   return (
     <Flex
       h="100vh"
@@ -38,7 +42,11 @@ export const SideBar: React.FC<SideBarProps> = ({ currentPage }) => {
       borderRight={isMobile ? "none" : "1px solid"}
       borderColor={borderColor}
     >
-      <SidebarMenuItems currentPage={currentPage} />
+      <SidebarMenuItems
+        currentPage={currentPage}
+        loadingRoute={loadingRoute}
+        onMenuItemClick={setLoadingRoute}
+      />
 
       <Stack
         direction="column"

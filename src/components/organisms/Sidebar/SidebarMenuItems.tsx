@@ -22,16 +22,20 @@ import { brandName, cannyUrl } from "@/config";
 
 type MenuItemProps = {
   route?: Routes | string;
+  loadingRoute: Routes | string;
   currentPage: Routes;
   children: any;
   isExternal?: boolean;
+  onClick: (route: Routes | string) => void;
 };
 
 export const MenuItem: React.FC<MenuItemProps> = ({
   route,
+  loadingRoute,
   currentPage,
   children,
   isExternal = false,
+  onClick,
   ...props
 }) => {
   const menuItemColor = useColorModeValue("blackAlpha.900", "whiteAlpha.900");
@@ -40,11 +44,10 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     "blackAlpha.50",
     "whiteAlpha.50"
   );
+  const spinnerColor = useColorModeValue("blackAlpha.300", "whiteAlpha.300");
 
   const isActive = currentPage === route;
   const href = route && route.startsWith("http") ? route : `${route}`;
-
-  const [isLoading, setLoading] = useState(false);
   return (
     <chakra.div
       w="100%"
@@ -65,8 +68,8 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       as={!route ? "button" : "div"}
       p="8px 16px"
       onClick={() => {
-        if (!isActive && !isExternal && href.startsWith("/")) {
-          setLoading(true);
+        if (route && !isActive && !isExternal && href.startsWith("/")) {
+          onClick(route);
         }
       }}
       sx={{
@@ -149,7 +152,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           {children}
         </Flex>
       )}
-      {isLoading && <Spinner size="xs" color="blackAlpha.300" />}
+      {loadingRoute === route && <Spinner size="xs" color={spinnerColor} />}
     </chakra.div>
   );
 };
@@ -166,9 +169,15 @@ export const MenuLabel: React.FC<MenuLabelProps> = ({ children }) => (
 
 type MenuProps = {
   currentPage: Routes;
+  loadingRoute: Routes | string;
+  onMenuItemClick: (route: Routes | string) => void;
 };
 
-export const SidebarMenuItems: React.FC<MenuProps> = ({ currentPage }) => {
+export const SidebarMenuItems: React.FC<MenuProps> = ({
+  currentPage,
+  loadingRoute,
+  onMenuItemClick,
+}) => {
   const sectionColor = useColorModeValue("blackAlpha.900", "whiteAlpha.900");
 
   return (
@@ -194,7 +203,12 @@ export const SidebarMenuItems: React.FC<MenuProps> = ({ currentPage }) => {
           </NextJsChakraLink>
         </Flex>
 
-        <MenuItem route={Routes.dashboard} currentPage={currentPage}>
+        <MenuItem
+          route={Routes.dashboard}
+          currentPage={currentPage}
+          onClick={onMenuItemClick}
+          loadingRoute={loadingRoute}
+        >
           <TbUsers size="16px" /> &nbsp;<MenuLabel>Dashboard</MenuLabel>
         </MenuItem>
 
@@ -209,7 +223,13 @@ export const SidebarMenuItems: React.FC<MenuProps> = ({ currentPage }) => {
         >
           Resources
         </Text>
-        <MenuItem route={`/#pricing`} currentPage={currentPage} isExternal>
+        <MenuItem
+          route={`/#pricing`}
+          currentPage={currentPage}
+          isExternal
+          onClick={onMenuItemClick}
+          loadingRoute={loadingRoute}
+        >
           <TbStar size="16px" /> &nbsp;
           <MenuLabel>Upgrade</MenuLabel>
         </MenuItem>
@@ -217,11 +237,19 @@ export const SidebarMenuItems: React.FC<MenuProps> = ({ currentPage }) => {
           route={Routes.affiliates}
           currentPage={currentPage}
           isExternal
+          onClick={onMenuItemClick}
+          loadingRoute={loadingRoute}
         >
           <TbHeartHandshake size="16px" /> &nbsp;
           <MenuLabel>Affiliate program</MenuLabel>
         </MenuItem>
-        <MenuItem route={cannyUrl} currentPage={currentPage} isExternal>
+        <MenuItem
+          route={cannyUrl}
+          currentPage={currentPage}
+          isExternal
+          onClick={onMenuItemClick}
+          loadingRoute={loadingRoute}
+        >
           <TbBrandHipchat size="16px" /> &nbsp;
           <MenuLabel>Feedback</MenuLabel>
         </MenuItem>
