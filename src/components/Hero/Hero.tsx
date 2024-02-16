@@ -38,7 +38,7 @@ export const Hero = ({
   const onGetStartedClick = () => {
     setLoadingCta(true);
     if (user) {
-      router.push(Routes.home);
+      router.push(Routes.dashboard);
       return;
     }
     router.push(Routes.signUp);

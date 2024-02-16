@@ -3,7 +3,7 @@
 import { Flex, Heading, Button, Text } from "@chakra-ui/react";
 import { TbArrowRight } from "react-icons/tb";
 import { Section } from "../atoms/Section/Section";
-import { useGetStated } from "@/hooks/useGetStarted";
+import { useGetStarted } from "@/hooks/useGetStarted";
 import { ReactNode } from "react";
 import { useColorModeValues } from "@/hooks/useColorModeValues";
 
@@ -22,7 +22,7 @@ export const Feature = ({
   imageUrl,
   showCta,
 }: FeatureProps) => {
-  const { isLoadingCta, onGetStartedClick } = useGetStated();
+  const { isLoadingCta, onGetStartedClick } = useGetStarted();
   const { primaryTextColor } = useColorModeValues();
   return (
     <Section

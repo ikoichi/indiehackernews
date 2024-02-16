@@ -8,19 +8,16 @@ import {
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
   DrawerOverlay,
   Flex,
   HStack,
   IconButton,
-  Input,
   Spacer,
   VStack,
 } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import { Routes } from "@/data/routes";
-import { useGetStated } from "@/hooks/useGetStarted";
+import { useGetStarted } from "@/hooks/useGetStarted";
 import { brandName } from "@/config";
 import { DarkModeSwitch } from "../DarkModeSwitch/DarkModeSwitch";
 import { useMobile } from "@/hooks/useMobile";
@@ -30,7 +27,7 @@ type HeaderProps = {};
 
 export const Header = ({}: HeaderProps) => {
   const isMobile = useMobile();
-  const { isLoadingCta, onGetStartedClick } = useGetStated();
+  const { isLogged, isLoadingCta, onGetStartedClick } = useGetStarted();
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -81,7 +78,7 @@ export const Header = ({}: HeaderProps) => {
             onClick={() => onGetStartedClick()}
             isLoading={isLoadingCta}
           >
-            Get started
+            {isLogged ? "Go to app" : "Get started"}
           </Button>
           {!isMobile && <DarkModeSwitch />}
           {isMobile && (

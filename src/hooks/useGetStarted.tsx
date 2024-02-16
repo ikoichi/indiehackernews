@@ -5,21 +5,22 @@ import { useIsLogged } from "./useIsLogged";
 import { useState } from "react";
 import { Routes } from "@/data/routes";
 
-export const useGetStated = () => {
+export const useGetStarted = () => {
   const router = useRouter();
 
-  const { user } = useIsLogged();
+  const { user, isLogged } = useIsLogged();
   const [isLoadingCta, setLoading] = useState(false);
   const onGetStartedClick = () => {
     setLoading(true);
     if (user) {
-      router.push(Routes.home);
+      router.push(Routes.dashboard);
       return;
     }
     router.push(Routes.signUp);
   };
 
   return {
+    isLogged,
     isLoadingCta,
     onGetStartedClick,
   };
