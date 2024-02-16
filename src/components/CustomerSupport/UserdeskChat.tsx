@@ -16,8 +16,7 @@ export const UserdeskChat = () => {
           "data-userdesk",
           process.env.NEXT_PUBLIC_USERDESK_CHATBOT_ID
         );
-        // @ts-ignore
-        d.getElementsByTagName("head")[0].appendChild(s);
+        d.getElementsByTagName("head")[0].appendChild(script);
       })();
     }
   }, []);
