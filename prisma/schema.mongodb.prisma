@@ -1,0 +1,160 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @unique @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String?          @unique
+  emailVerified  DateTime?
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  UserPlan       UserPlan?
+  UserOnboarding UserOnboarding[]
+  WorkspaceUsers WorkspaceUsers[]
+  Workspace      Workspace[]
+}
+
+model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model SubscriptionPlan {
+  id         String         @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  productId  String
+  price      String
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+  properties PlanProperty[]
+  users      UserPlan[]
+}
+
+enum PlanPropertyName {
+  MAX_USERS
+  MAX_PROJECTS
+  MAX_TASKS
+}
+
+model PlanProperty {
+  id           String           @id @default(auto()) @map("_id") @db.ObjectId
+  planId       String           @db.ObjectId
+  propertyName PlanPropertyName
+  value        String
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  plan         SubscriptionPlan @relation(fields: [planId], references: [id])
+}
+
+model UserPlan {
+  id                  String           @id @default(auto()) @map("_id") @db.ObjectId
+  userId              String           @unique @db.ObjectId
+  planId              String           @db.ObjectId
+  lemonOrderId        String?
+  lemonProductId      String
+  lemonVariantId      String?
+  lemonPlanName       String?
+  lemonPlanPrice      String?
+  lemonSubscriptionId String?
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+  validUntil          DateTime?
+  cancelUrl           String?
+  updateUrl           String?
+  status              String?
+  user                User             @relation(fields: [userId], references: [id])
+  plan                SubscriptionPlan @relation(fields: [planId], references: [id])
+}
+
+model UserOnboarding {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  isComplete Boolean  @default(false)
+  role       String?
+  source     String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model Workspace {
+  id                         String                       @id @default(auto()) @map("_id") @db.ObjectId
+  name                       String
+  emailDomain                String?
+  isDeleted                  Boolean                      @default(false)
+  createdBy                  String                       @db.ObjectId
+  createdAt                  DateTime                     @default(now())
+  updatedAt                  DateTime                     @updatedAt
+  WorkspaceUsers             WorkspaceUsers[]
+  user                       User                         @relation(fields: [createdBy], references: [id])
+  WorkspacePendingInvitation WorkspacePendingInvitation[]
+}
+
+enum WorkspaceRole {
+  OWNER
+  ADMIN
+  MEMBER
+  GUEST
+}
+
+model WorkspaceUsers {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  workspaceId String        @db.ObjectId
+  userId      String        @db.ObjectId
+  role        WorkspaceRole
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  workspace   Workspace     @relation(fields: [workspaceId], references: [id])
+  user        User          @relation(fields: [userId], references: [id])
+}
+
+model WorkspacePendingInvitation {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  workspaceId String        @db.ObjectId
+  email       String
+  role        WorkspaceRole
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  workspace   Workspace     @relation(fields: [workspaceId], references: [id])
+}
