@@ -1,0 +1,71 @@
+{
+  "manifest_version": 3,
+  "name": "Extension name",
+  "description": "Extension description",
+  "version": "0.0.0.1",
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.bundle.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon-34.png"
+  },
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "externally_connectable": {
+    "matches": [
+      "https://*.yourwebsite.com/*",
+      "https://2a8e-2001-b07-645f-cf50-d107-284b-a956-944f.ngrok-free.app/*"
+    ],
+    "accepts_tls_channel_id": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "<all_urls>"
+      ],
+      "js": [
+        "contentScript.bundle.js"
+      ],
+      "css": [
+        "content.styles.css"
+      ]
+    }
+  ],
+  "devtools_page": "devtools.html",
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content.styles.css",
+        "icon-128.png",
+        "icon-34.png"
+      ],
+      "matches": []
+    }
+  ],
+  "permissions": [
+    "contextMenus",
+    "cookies"
+  ],
+  "host_permissions": [
+    "*://*.yourwebsite.com/",
+    "https://2a8e-2001-b07-645f-cf50-d107-284b-a956-944f.ngrok-free.app/*"
+  ],
+  "commands": {
+    "open-popup": {
+      "suggested_key": {
+        "windows": "Ctrl+M",
+        "mac": "Command+M",
+        "chromeos": "Ctrl+M",
+        "linux": "Ctrl+M"
+      },
+      "description": "Open the popup"
+    }
+  }
+}
