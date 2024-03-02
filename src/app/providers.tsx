@@ -13,6 +13,7 @@ import {
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 const queryClient = new QueryClient();
 
@@ -39,10 +40,20 @@ export function Providers({
       <LemonSqueezyAffiliateScript />
       <QueryClientProvider client={queryClient}>
         <CacheProvider>
-          <ColorModeScript initialColorMode={uiColorMode} />
-          <ChakraProvider theme={theme} colorModeManager={cookieStorageManager}>
-            {children}
-          </ChakraProvider>
+          <NextThemesProvider
+            attribute="class"
+            defaultTheme={uiColorMode}
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ColorModeScript initialColorMode={uiColorMode} />
+            <ChakraProvider
+              theme={theme}
+              colorModeManager={cookieStorageManager}
+            >
+              {children}
+            </ChakraProvider>
+          </NextThemesProvider>
         </CacheProvider>
       </QueryClientProvider>
     </SessionProvider>
