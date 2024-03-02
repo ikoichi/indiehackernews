@@ -153,7 +153,7 @@ export const PricingPlan = ({
         fontWeight={600}
         fontSize="13px"
         _hover={{
-          bgColor: isMostPopular ? "brand.500" : "brand.50",
+          bgColor: isMostPopular ? "brand.500" : "brand.900",
         }}
         bgColor={isMostPopular ? "brand.400" : "transparent"}
         color={isMostPopular ? "white" : "brand.500"}

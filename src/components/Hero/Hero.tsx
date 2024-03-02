@@ -156,12 +156,12 @@ export const Hero = ({
                       }
                       _hover={{
                         bgColor: "transparent",
-                        color: "blackAlpha.800",
+                        color: primaryTextColor,
                         textDecor: "underline",
                       }}
                       _active={{
                         bgColor: "transparent",
-                        color: "blackAlpha.800",
+                        color: primaryTextColor,
                       }}
                       h="28px"
                     >

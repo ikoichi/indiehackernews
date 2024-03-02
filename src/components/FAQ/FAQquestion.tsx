@@ -17,7 +17,7 @@ export type FAQQuestionProps = {
 export const FAQquestion = ({ question, answer }: FAQQuestionProps) => {
   const { borderColor } = useColorModeValues();
   return (
-    <AccordionItem maxW="auto" w="100%">
+    <AccordionItem maxW="auto" w="100%" borderColor={borderColor}>
       <h2>
         <AccordionButton>
           <Box

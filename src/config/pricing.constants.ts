@@ -1,8 +1,8 @@
 export const pricingPlans = [
   {
     title: "Hobby",
-    monthlyPrice: 19,
-    annualPrice: 199,
+    monthlyPrice: 29,
+    annualPrice: 299,
     monthlyCheckoutUrl: "https://...",
     annualCheckoutUrl: "https://...",
     features: ["Team", "Workspace", "Integrations"],
