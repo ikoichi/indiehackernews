@@ -89,6 +89,11 @@ type TrackExtensionEvent = {
   tags?: Record<string, string>;
 };
 
+/*
+
+  Example of server request with cookies.
+  With the cookies the server can check if there's an active session (authentication on).
+*/
 const track = ({ event, icon, notify, tags = {} }: TrackExtensionEvent) => {
   chrome.cookies.getAll({ domain: domain }).then((cookies) => {
     const cookieString = cookies
@@ -135,12 +140,13 @@ chrome.runtime.onMessage.addListener(async function (
 
   if (request.type === "get_os") {
     chrome.runtime.getPlatformInfo(function (info) {
+      const response = { os: info.os };
       if (sender?.tab?.id) {
-        chrome.tabs.sendMessage(sender.tab.id, { os: info.os });
+        chrome.tabs.sendMessage(sender.tab.id, response);
       }
 
       if (!sender.tab) {
-        sendResponse({ os: info.os });
+        sendResponse(response);
       }
     });
   }
@@ -163,7 +169,7 @@ chrome.runtime.onMessage.addListener(async function (
   }
 });
 
-// Listener for the popup and the overlay
+// Listener for the popup and the web page events
 chrome.runtime.onConnect.addListener(function (port) {
   // assert on the origin of the port, if the port.name is different,
   // the event is not from the expected source

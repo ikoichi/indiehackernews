@@ -11,8 +11,10 @@ const zIndex = 1000001;
 console.log("Content script works!");
 console.log("Must reload extension for modifications to take effect.");
 
-// printLine("Using the 'printLine' function from the Print Module");
-
+/*
+  This React Component is added to all the web pages.
+  Implement your Chrome Extension logic inside it.
+*/
 const Main = () => {
   const [isLoadingUserStatus, setLoadingUserStatus] = useState(true);
   const [isFreePlan, setFreePlan] = useState(true);
@@ -22,7 +24,9 @@ const Main = () => {
   const [isInitialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    // message from background script or popup
+    /*
+      Message from background script or popup
+    */
     chrome.runtime.onMessage.addListener(async function (msg) {
       console.log(">>> Message received!", msg);
 
@@ -74,7 +78,9 @@ const Main = () => {
     <root.div className={`${extensionPrefix}-container`}>
       {/* @ts-ignore */}
       <div ref={containerRef} style={{ zIndex }}>
-        <CacheProvider value={myCache}></CacheProvider>
+        <CacheProvider value={myCache}>
+          {/* Add the JSX/HTML nodes you want to show in the page here */}
+        </CacheProvider>
       </div>
     </root.div>
   );

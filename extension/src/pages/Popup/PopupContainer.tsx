@@ -72,6 +72,8 @@ const PopupContainer = () => {
   useEffect(() => {
     const port = chrome.runtime.connect({ name: portName });
     setChannelPort(port);
+
+    /* Message received */
     port.onMessage.addListener(function (msg) {
       console.log(">>> message", msg);
     });
