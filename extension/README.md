@@ -6,16 +6,6 @@
 [![npm-download](https://img.shields.io/npm/dw/chrome-extension-boilerplate-react)](https://www.npmjs.com/package/chrome-extension-boilerplate-react)
 [![npm](https://img.shields.io/npm/dm/chrome-extension-boilerplate-react)](https://www.npmjs.com/package/chrome-extension-boilerplate-react)
 
-## Announcements
-
-- Recently updated from **[React](https://reactjs.org)** ~~17~~ to **18**!
-- **_This boilerplate adopts [Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-overview/)!_**
-  - For V2 users, please check out the [manifest-v2](https://github.com/lxieyang/chrome-extension-boilerplate-react/tree/manifest-v2) branch, or use version [3.x](https://www.npmjs.com/package/chrome-extension-boilerplate-react/v/3.3.0).
-  - Check out the [Manifest V3 Migration Guide](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/).
-- Recently added [devtools](https://developer.chrome.com/docs/extensions/mv3/devtools/) Support! Thanks [GeekaholicLin](https://github.com/lxieyang/chrome-extension-boilerplate-react/issues/17)!
-- Recently updated from **[Webpack Dev Server](https://webpack.js.org/configuration/dev-server/)** ~~3.x~~ to **4.x** and **[Webpack](https://webpack.js.org/)** ~~4~~ to **5**!
-- Recently added [TypeScript](https://www.typescriptlang.org/) Support!
-
 ## Features
 
 This is a basic Chrome Extensions boilerplate to help you write modular and modern Javascript code, load CSS easily and [automatic reload the browser on code changes](https://webpack.github.io/docs/webpack-dev-server.html#automatic-refresh).
@@ -40,18 +30,17 @@ Please open up an issue to nudge me to keep the npm packages up-to-date. FYI, it
 
 ### Procedures:
 
-1. Check if your [Node.js](https://nodejs.org/) version is >= **18**.
-2. Clone this repository.
-3. Change the package's `name`, `description`, and `repository` fields in `package.json`.
-4. Change the name of your extension on `src/manifest.json`.
-5. Run `npm install` to install the dependencies.
-6. Run `npm start`
-7. Load your extension on Chrome following:
+1. Check if your [Node.js](https://nodejs.org/) version is >= **20**.
+2. Change the package's `name`, `description`, and `repository` fields in `package.json`.
+3. Change the name of your extension on `src/manifest.json`.
+4. Run `npm install` to install the dependencies.
+5. Run `npm start`
+6. Load your extension on Chrome following:
    1. Access `chrome://extensions/`
    2. Check `Developer mode`
    3. Click on `Load unpacked extension`
    4. Select the `build` folder.
-8. Happy hacking.
+7. Happy hacking.
 
 ## Structure
 
@@ -128,13 +117,13 @@ To this task this boilerplate import the file `./secrets.<THE-NODE_ENV>.js` on y
 _./secrets.development.js_
 
 ```js
-export default { key: '123' };
+export default { key: "123" };
 ```
 
 _./src/popup.js_
 
 ```js
-import secrets from 'secrets';
+import secrets from "secrets";
 ApiCall({ key: secrets.key });
 ```
 
@@ -143,8 +132,8 @@ ApiCall({ key: secrets.key });
 ## Resources:
 
 - [Webpack documentation](https://webpack.js.org/concepts/)
-- [Chrome Extension documentation](https://developer.chrome.com/extensions/getstarted)
+- [Chrome Extension documentation](https://developer.chrome.com/docs/extensions)
 
 ---
 
-Michael Xieyang Liu | [Website](https://lxieyang.github.io)
+Based on the work of Michael Xieyang Liu | [Website](https://lxieyang.github.io)
