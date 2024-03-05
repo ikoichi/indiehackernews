@@ -1,6 +1,5 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { cookies } from "next/headers";
 import { Providers } from "./providers";
@@ -49,6 +48,7 @@ export default function RootLayout({
       lang="en"
       data-theme={uiColorMode}
       style={{ colorScheme: uiColorMode }}
+      className={uiColorMode}
     >
       <head>
         <link
