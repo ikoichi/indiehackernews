@@ -11,8 +11,8 @@ import { logSnagClient } from "@/libs/logSnag";
 
 type ResourceResponse = Resource & {
   rank: number;
-  userName: string | null;
-  userId: string | null;
+  username: string | null;
+  userid: string | null;
 };
 
 export type GetResourcesResponse = {
@@ -25,7 +25,6 @@ export async function GET(
   req: NextRequest
 ): Promise<NextResponse<ApiError> | NextResponse<GetResourcesResponse | null>> {
   const session = await getServerSession(authOptions);
-  console.log(">>> session", session);
 
   const take = parseInt(
     req.nextUrl.searchParams.get("take") || ("30" as string),
@@ -73,8 +72,8 @@ export async function GET(
       "Resource"."createdAt",
       "Resource"."updatedAt",
       "Resource"."isDeleted",
-      "User"."name" userName,
-      "User"."id" userId,
+      "User"."name" as username,
+      "User"."id" as userid,
       RANK () OVER ( 
             ORDER BY rank DESC
       ) rank 

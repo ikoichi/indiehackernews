@@ -167,7 +167,7 @@ export const Resources = () => {
                 </HStack>
                 <HStack ml="74px">
                   <Text fontSize="13px" color="whiteAlpha.600">
-                    {resource.upvotes} upvotes by {resource.userName || ""}{" "}
+                    {resource.upvotes} upvotes by {resource.username || ""}{" "}
                     {getDiffInTime(new Date(resource.createdAt))}
                   </Text>
                 </HStack>
