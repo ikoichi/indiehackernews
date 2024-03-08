@@ -14,11 +14,21 @@ export const metadata: Metadata = getSEOTags({
 export default function Home() {
   return (
     <>
-      <Header />
-      <Box p="8px 16px">
+      <Flex position="fixed" top="0" left="0" bgColor="#1a202c">
+        <Header />
+      </Flex>
+      <Box p="8px 16px" pb="54px" pt="81px">
         <Resources />
       </Box>
-      <Flex px="8px" position="fixed" bottom="8px">
+      <Flex
+        p="8px"
+        position="fixed"
+        bottom="0"
+        bgColor="#1a202c"
+        w="100%"
+        borderTop="1px solid"
+        borderColor="whiteAlpha.200"
+      >
         <BuiltWith />
       </Flex>
     </>

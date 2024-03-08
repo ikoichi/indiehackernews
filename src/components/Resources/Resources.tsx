@@ -138,7 +138,9 @@ export const Resources = () => {
             return (
               <Box key={resource.id}>
                 <HStack alignItems="baseline">
-                  <Text>{pageNumber * (index + 1)}.</Text>
+                  <Text w="34px" textAlign="right">
+                    {pageNumber * (index + 1)}.
+                  </Text>
                   <IconButton
                     icon={<TbTriangleFilled />}
                     aria-label={""}
@@ -163,7 +165,7 @@ export const Resources = () => {
                     </Text>
                   )}
                 </HStack>
-                <HStack ml="48px">
+                <HStack ml="74px">
                   <Text fontSize="13px" color="whiteAlpha.600">
                     {resource.upvotes} upvotes by {resource.userName || ""}{" "}
                     {getDiffInTime(new Date(resource.createdAt))}
