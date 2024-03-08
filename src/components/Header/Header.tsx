@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import {
   Button,
   Drawer,
@@ -14,20 +13,22 @@ import {
   IconButton,
   Spacer,
   VStack,
+  Text,
 } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import { Routes } from "@/data/routes";
-import { useGetStarted } from "@/hooks/useGetStarted";
 import { brandName } from "@/config";
-import { DarkModeSwitch } from "../DarkModeSwitch/DarkModeSwitch";
-import { useMobile } from "@/hooks/useMobile";
 import { TbMenu2 } from "react-icons/tb";
+import { useIsLogged } from "@/hooks/useIsLogged";
+import { useRouter } from "next/navigation";
+import { useProfile } from "@/hooks/useProfile";
 
 type HeaderProps = {};
 
 export const Header = ({}: HeaderProps) => {
-  const isMobile = useMobile();
-  const { isLogged, isLoadingCta, onGetStartedClick } = useGetStarted();
+  const router = useRouter();
+  const { isLoading, isLogged } = useIsLogged();
+  const { profile } = useProfile();
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -37,27 +38,37 @@ export const Header = ({}: HeaderProps) => {
       alignItems="center"
       flexDir="row"
       justifyContent="center"
-      mb="40px"
+      borderBottom="1px solid"
+      borderColor="whiteAlpha.200"
     >
-      <Flex maxW="1280px" w="100%">
-        <Flex alignItems="center">
+      <Flex w="100%">
+        <Flex alignItems="baseline">
           <Flex
-            w="32px"
+            w="auto"
             h="32px"
             mr="8px"
             overflow="hidden"
             bgColor="blackAlpha.200"
+            alignItems="center"
           >
-            <Image src="/logo.png" alt="logo" width={32} height={32} />
+            👩‍💻🧑‍💻
           </Flex>
           <Link
             w="auto"
+            mr="8px"
             href={Routes.root}
             cursor="pointer"
             fontWeight="extrabold"
           >
             {brandName}
           </Link>
+          <Text
+            fontSize="13px"
+            color="whiteAlpha.600"
+            display={["none", null, "block"]}
+          >
+            — Stories, products, articles, and more.
+          </Text>
         </Flex>
         <Spacer />
         <HStack
@@ -65,24 +76,42 @@ export const Header = ({}: HeaderProps) => {
           spacing={["16px", "16px", "16px", "32px"]}
           fontWeight={500}
         >
-          <Link href="/#pricing" display={["none", "block"]}>
-            Pricing
-          </Link>
-          <Link href={Routes.login} display={["none", "block"]}>
-            Login
-          </Link>
+          {profile && (
+            <>
+              <Flex
+                borderRight="1px solid"
+                borderColor="whiteAlpha.400"
+                pr="32px"
+              >
+                {!profile?.name && (
+                  <Link href={Routes.profile}>Set nickname</Link>
+                )}
+                {profile?.name && (
+                  <Link href={Routes.profile}>{profile.name}</Link>
+                )}
+              </Flex>
+            </>
+          )}
+          {!isLogged && (
+            <Link href={Routes.login} display={["none", "block"]}>
+              Login
+            </Link>
+          )}
           <Button
             size="sm"
             variant="solid"
             colorScheme="brand"
-            onClick={() => onGetStartedClick()}
-            isLoading={isLoadingCta}
+            isLoading={isLoading}
+            onClick={() => {
+              if (isLogged) {
+                router.push(Routes.submit);
+                return;
+              }
+              router.push(Routes.signUp);
+            }}
           >
-            {isLogged ? "Go to app" : "Get started"}
+            {isLogged ? "Submit" : "Sign up"}
           </Button>
-          <Flex display={["none", null, "flex"]}>
-            <DarkModeSwitch />
-          </Flex>
           <Flex display={["flex", "none"]}>
             <IconButton
               aria-label={"menu"}
@@ -103,29 +132,21 @@ export const Header = ({}: HeaderProps) => {
 
               <DrawerBody mt="40px">
                 <VStack spacing="16px" w="100%">
-                  <Link
-                    href="/#"
-                    onClick={() => {
-                      setMenuOpen(false);
-                      setTimeout(() => {
-                        document.getElementById("pricing")?.scrollIntoView();
-                      }, 500);
-                    }}
-                  >
-                    Pricing
-                  </Link>
                   <Link href={Routes.login}>Login</Link>
-                  <DarkModeSwitch />
                   <Button
                     size="sm"
                     variant="solid"
                     colorScheme="brand"
-                    onClick={() => onGetStartedClick()}
-                    isLoading={isLoadingCta}
-                    w="100%"
-                    h="40px"
+                    isLoading={isLoading}
+                    onClick={() => {
+                      if (isLogged) {
+                        router.push(Routes.submit);
+                      }
+                      return;
+                      router.push(Routes.signUp);
+                    }}
                   >
-                    Get started
+                    {isLogged ? "Submit" : "Sign up"}
                   </Button>
                 </VStack>
               </DrawerBody>

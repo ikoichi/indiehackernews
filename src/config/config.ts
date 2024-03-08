@@ -1,4 +1,4 @@
-export const brandName = "My App";
+export const brandName = "Indie Hacker News";
 export const landingPageTitle = "My App";
 export const landingPageDescription = "Make money today with My App";
 export const websiteUrl = "http://localhost:3000";
@@ -7,7 +7,7 @@ export const openGraphImageUrl = "https://myapp.com/images/og-image.jpg";
 export const blogOpenGraphImageUrl = "https://myapp.com/images/og-image.jpg";
 
 // the users will be redirected to this page after sign in
-export const signInCallbackUrl = "/dashboard";
+export const signInCallbackUrl = "/";
 
 // only needed if you have the "talk to us" button in the landing page
 export const demoCalendlyLink = "https://calendly.com/myself/15min";

@@ -8,4 +8,6 @@ export enum Routes {
   root = "/",
   signUp = "/signup",
   terms = "/terms",
+  submit = "/submit",
+  profile = "/profile",
 }

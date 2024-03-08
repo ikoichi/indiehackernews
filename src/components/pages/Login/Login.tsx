@@ -18,6 +18,7 @@ import Image from "next/image";
 import { useColorModeValues } from "@/hooks/useColorModeValues";
 import { TbArrowNarrowLeft } from "react-icons/tb";
 import { useRouter } from "next/navigation";
+import { Brand } from "../../../../extension/src/components/atoms/Brand/Brand";
 
 const Login = () => {
   const router = useRouter();
@@ -107,8 +108,8 @@ const Login = () => {
             mt="-60px"
             ml="0px"
           >
-            <Flex w="32px" h="32px" as="a" href="/">
-              <Image src="/logo.png" alt="logo" width={32} height={32} />
+            <Flex w="auto" h="32px" as="a" href="/" alignItems="center">
+              <Brand />
             </Flex>
             <Text color={primaryTextColor} fontWeight="extrabold" ml="8px">
               {brandName}
@@ -118,7 +119,7 @@ const Login = () => {
             Sign in to your account
           </Text>
 
-          <Button
+          {/* <Button
             my="24px"
             h="36px"
             variant="solid"
@@ -137,9 +138,9 @@ const Login = () => {
             color={primaryTextColor}
           >
             Continue with Google
-          </Button>
+          </Button> */}
 
-          <Stack
+          {/* <Stack
             direction="row"
             w="100%"
             alignItems="center"
@@ -150,7 +151,7 @@ const Login = () => {
             <Flex w="100%" h="1px" bgColor={baseTextColor[100]}></Flex>
             <Flex>OR</Flex>
             <Flex w="100%" h="1px" bgColor={baseTextColor[100]}></Flex>
-          </Stack>
+          </Stack> */}
 
           <Text mt="24px" fontSize="13px" fontWeight="semibold">
             Email
@@ -172,7 +173,7 @@ const Login = () => {
           />
 
           <Button
-            color="white"
+            color="brand.900"
             size="sm"
             h="36px"
             bgColor="brand.400"

@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
-import { cookies } from "next/headers";
 import { Providers } from "./providers";
 import {
   landingPageDescription,
@@ -37,11 +36,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = cookies();
-  const defaultTheme = customTheme.config.initialColorMode;
-  const uiColorMode =
-    (cookieStore.get("chakra-ui-color-mode")?.value as "light" | "dark") ||
-    defaultTheme;
+  const uiColorMode = "dark";
 
   return (
     <html

@@ -5,11 +5,12 @@ import { brandName } from "@/config";
 
 export const testimonials: TestimonialProps[] = [
   {
-    text: `I was looking for a way to make more money. And I found it with ${brandName}. Now I keep recommending this to all my friends.`,
-    name: "John Doe",
-    highlightSentences: ["Now I keep recommending this to all my friends"],
-    job: "CEO at WP Elevation",
-    pictureUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704g",
+    text: `I was looking for a way to read news about the indie hacking world. And I found it with ${brandName}`,
+    name: "Luca Restagno",
+    highlightSentences: [`And I found it with ${brandName}`],
+    job: "Founder @ Shipped.club",
+    pictureUrl:
+      "https://www.lucarestagno.com/static/430b82965aa93f670c71697e84a1c08c/d4144/avatar.png",
   },
   {
     text: `After comparing multiple solutions, we could not think of a better platform to ${brandName}. 10/10 experience overall.`,

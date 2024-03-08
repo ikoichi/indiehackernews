@@ -22,7 +22,7 @@
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@mailchimp/mailchimp_transactional": "^1.0.50",
     "@mailpace/mailpace.js": "^0.1.1",
-    "@prisma/client": "^5.6.0",
+    "@prisma/client": "^5.10.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@supabase/ssr": "^0.0.10",
     "@supabase/supabase-js": "^2.39.1",
@@ -34,12 +34,14 @@
     "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "date-fns": "^3.3.1",
     "dotenv": "^16.3.1",
     "eslint": "8.53.0",
     "eslint-config-next": "14.0.3",
     "framer-motion": "^10.16.5",
     "geist": "^1.2.2",
     "gray-matter": "^4.0.3",
+    "is-url": "^1.2.4",
     "isemail": "^3.2.0",
     "loops": "^0.1.1",
     "lucide-react": "^0.344.0",
@@ -73,6 +75,6 @@
     "@tanstack/eslint-plugin-query": "^5.17.7",
     "@types/mailchimp__mailchimp_marketing": "^3.0.17",
     "@types/mailchimp__mailchimp_transactional": "^1.0.9",
-    "prisma": "^5.6.0"
+    "prisma": "^5.10.2"
   }
 }

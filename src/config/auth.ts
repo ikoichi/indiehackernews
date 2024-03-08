@@ -1,4 +1,4 @@
-import { AuthOptions } from "next-auth";
+import { Session, User } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prismaClient } from "@/prisma/db";
 // import { createLoopsContact } from "@/libs/loops";
@@ -9,6 +9,7 @@ import GoogleProvider from "next-auth/providers/google";
 // import FacebookProvider from "next-auth/providers/facebook";
 // import CredentialsProvider from "next-auth/providers/credentials"
 import EmailProvider from "next-auth/providers/email";
+import { AuthOptions } from "next-auth";
 // more providers at https://next-auth.js.org/providers
 
 export const authOptions: AuthOptions = {
@@ -74,6 +75,13 @@ export const authOptions: AuthOptions = {
         },
       }), */
   ],
+  callbacks: {
+    async session({ session, user }: { session: Session; user: User }) {
+      session.id = user.id;
+      session.user.id = user.id;
+      return session;
+    },
+  },
   events: {
     async signIn(event) {
       if (event.isNewUser && event.user.email) {

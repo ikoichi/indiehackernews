@@ -49,7 +49,7 @@ export const Tabs = ({ label, items, onChange, w }: TabsProps) => {
         borderRadius="8px"
         overflow="hidden"
         p="4px"
-        bgColor="blackAlpha.100"
+        bgColor="whiteAlpha.100"
         direction="row"
         width={w || "auto"}
       >
@@ -76,7 +76,7 @@ export const Tabs = ({ label, items, onChange, w }: TabsProps) => {
               py="6px"
               h="28px"
               aria-label={item.value}
-              bgColor={activeTab === item.value ? "white" : ""}
+              bgColor={activeTab === item.value ? "whiteAlpha.700" : ""}
               boxShadow={
                 activeTab === item.value
                   ? "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px"
@@ -87,7 +87,9 @@ export const Tabs = ({ label, items, onChange, w }: TabsProps) => {
                 onChange?.(item.value);
               }}
               flexGrow={1}
-              color={activeTab === item.value ? "gray.700" : "gray.500"}
+              color={
+                activeTab === item.value ? "blackAlpha.900" : "whiteAlpha.500"
+              }
               sx={{
                 svg: {
                   w: "16px",

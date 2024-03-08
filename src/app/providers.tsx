@@ -5,11 +5,7 @@ import { UserdeskChat } from "@/components/CustomerSupport/UserdeskChat";
 import { LemonSqueezyAffiliateScript } from "@/components/LemonSqueezyAffiliateScript/LemonSqueezyAffiliateScript";
 import { customTheme } from "@/theme";
 import { CacheProvider } from "@chakra-ui/next-js";
-import {
-  ChakraProvider,
-  ColorModeScript,
-  cookieStorageManager,
-} from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -34,7 +30,14 @@ export function Providers({
 
   return (
     <SessionProvider>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          style: {
+            background: "#2D3748",
+            color: "#fff",
+          },
+        }}
+      />
       <UserdeskChat />
       <CrispChat />
       <LemonSqueezyAffiliateScript />
@@ -46,13 +49,7 @@ export function Providers({
             enableSystem
             disableTransitionOnChange
           >
-            <ColorModeScript initialColorMode={uiColorMode} />
-            <ChakraProvider
-              theme={theme}
-              colorModeManager={cookieStorageManager}
-            >
-              {children}
-            </ChakraProvider>
+            <ChakraProvider theme={theme}>{children}</ChakraProvider>
           </NextThemesProvider>
         </CacheProvider>
       </QueryClientProvider>

@@ -1,14 +1,9 @@
-import { CtaBox } from "@/components/CtaBox/CtaBox";
-import { ExplainerVideo } from "@/components/ExplainerVideo/ExplainerVideo";
-import { FAQ } from "@/components/FAQ/FAQ";
-import { Features } from "@/components/Features/Features";
-import { Footer } from "@/components/Footer/Footer";
+import { BuiltWith } from "@/components/BuiltWith/BuiltWith";
 import { Header } from "@/components/Header/Header";
-import { Hero } from "@/components/Hero/Hero";
-import { Pricing } from "@/components/Pricing/Pricing";
+import { Resources } from "@/components/Resources/Resources";
 import { getSEOTags } from "@/components/SEOTags/SEOTags";
-import { Testimonials } from "@/components/Testimonials/Testimonials";
 import { landingPageDescription, landingPageTitle } from "@/config";
+import { Box, Flex } from "@chakra-ui/react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = getSEOTags({
@@ -20,16 +15,12 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="">
-        <Hero />
-        <ExplainerVideo />
-        <Features />
-        <Testimonials />
-        <Pricing />
-        <FAQ />
-        <CtaBox />
-      </main>
-      <Footer />
+      <Box p="8px 16px">
+        <Resources />
+      </Box>
+      <Flex px="8px" position="fixed" bottom="8px">
+        <BuiltWith />
+      </Flex>
     </>
   );
 }

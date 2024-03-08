@@ -20,6 +20,7 @@ import Image from "next/image";
 import { useColorModeValues } from "@/hooks/useColorModeValues";
 import { TbArrowNarrowLeft } from "react-icons/tb";
 import { useRouter } from "next/navigation";
+import { Brand } from "../../../../extension/src/components/atoms/Brand/Brand";
 
 const SignUp = () => {
   const router = useRouter();
@@ -32,9 +33,7 @@ const SignUp = () => {
   const onGoogleSignUp = () => {
     setSigningUpWithGoogle(true);
     signIn("google", {
-      callbackUrl: window?.location
-        ? `${window.location.origin}/dashboard`
-        : "",
+      callbackUrl: "/",
     });
   };
 
@@ -44,9 +43,7 @@ const SignUp = () => {
     setSigningUpWithEmail(true);
     await signIn("email", {
       email,
-      callbackUrl: window?.location
-        ? `${window.location.origin}/dashboard`
-        : "",
+      callbackUrl: "/",
     });
     setSigningUpWithEmail(false);
   };
@@ -112,8 +109,8 @@ const SignUp = () => {
             mb={["64px", null, null, "32px"]}
             mt="-60px"
           >
-            <Flex w="30px" h="30px" as="a" href="/">
-              <Image src="/logo.png" alt="logo" width={30} height={30} />
+            <Flex w="auto" h="30px" as="a" href="/" alignItems="center">
+              <Brand />
             </Flex>
           </Flex>
           <Text
@@ -128,7 +125,7 @@ const SignUp = () => {
             Sign up to {brandName}
           </Text>
 
-          <Button
+          {/* <Button
             my="24px"
             h="36px"
             variant="solid"
@@ -145,9 +142,9 @@ const SignUp = () => {
             isLoading={isSigningUpWithGoogle}
           >
             Continue with Google
-          </Button>
+          </Button> */}
 
-          <Stack
+          {/* <Stack
             direction="row"
             w="100%"
             alignItems="center"
@@ -158,7 +155,7 @@ const SignUp = () => {
             <Flex w="100%" h="1px" bgColor={baseTextColor[100]}></Flex>
             <Flex>OR</Flex>
             <Flex w="100%" h="1px" bgColor={baseTextColor[100]}></Flex>
-          </Stack>
+          </Stack> */}
 
           <Text
             mt="24px"
@@ -185,7 +182,7 @@ const SignUp = () => {
           />
 
           <Button
-            color="white"
+            color="brand.900"
             size="sm"
             h="36px"
             bgColor="brand.400"

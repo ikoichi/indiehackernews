@@ -49,6 +49,8 @@ model User {
   UserOnboarding UserOnboarding[]
   WorkspaceUsers WorkspaceUsers[]
   Workspace      Workspace[]
+  Resource       Resource[]
+  UserUpvotes    UserUpvotes[]
 }
 
 model VerificationToken {
@@ -156,4 +158,34 @@ model WorkspacePendingInvitation {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   workspace   Workspace     @relation(fields: [workspaceId], references: [id])
+}
+
+model Resource {
+  id        String   @id @default(cuid())
+  title     String
+  url       String
+  text      String
+  ranking   Int      @default(0)
+  createdBy String
+  upvotes   Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isDeleted Boolean  @default(false)
+
+  user        User          @relation(fields: [createdBy], references: [id])
+  userUpvotes UserUpvotes[]
+
+  @@index([createdAt, upvotes])
+}
+
+model UserUpvotes {
+  id         String   @id @default(cuid())
+  userId     String
+  resourceId String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id])
+  resource   Resource @relation(fields: [resourceId], references: [id])
+
+  @@unique([userId, resourceId])
 }

@@ -47,9 +47,7 @@ const SignUpWithEmailPassword = () => {
   const onGoogleSignUp = () => {
     setSigningUpWithGoogle(true);
     signIn("google", {
-      callbackUrl: window?.location
-        ? `${window.location.origin}/dashboard`
-        : "",
+      callbackUrl: "/",
     });
   };
 
@@ -58,12 +56,7 @@ const SignUpWithEmailPassword = () => {
   const [password, setPassword] = useState("");
   const onEmailSignUp = async () => {
     setSigningUpWithEmail(true);
-    await onSignUpWithEmailAndPassword(
-      "",
-      email,
-      password,
-      websiteUrl + "/login"
-    );
+    await onSignUpWithEmailAndPassword("", email, password, websiteUrl);
   };
 
   return (
