@@ -7,6 +7,7 @@ import { ApiError } from "@/types/api.types";
 import rawBody from "raw-body";
 import { Readable } from "stream";
 import { Prisma, Resource, UserUpvotes } from "@prisma/client";
+import { logSnagClient } from "@/libs/logSnag";
 
 type ResourceResponse = Resource & {
   rank: number;
@@ -155,6 +156,23 @@ export async function POST(req: NextRequest) {
           createdBy: user.id,
         },
       });
+
+      try {
+        await logSnagClient.track({
+          channel: "product",
+          event: "New Submission",
+          icon: "🔥",
+          notify: false,
+        });
+
+        await logSnagClient.insight.increment({
+          title: "Submissions",
+          value: 1,
+          icon: "🔥",
+        });
+      } catch (err) {
+        console.error("Error with Logsnag", err);
+      }
 
       return NextResponse.json(createdResource, { status: HttpStatusCode.Ok });
     }

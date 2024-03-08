@@ -1,4 +1,5 @@
 import { authOptions } from "@/config/auth";
+import { logSnagClient } from "@/libs/logSnag";
 import { prismaClient } from "@/prisma/db";
 import { HttpStatusCode } from "axios";
 import { getServerSession } from "next-auth";
@@ -19,7 +20,6 @@ export async function POST(
 
   if (session && session?.user.email) {
     const resourceId = params.id;
-    console.log(">>> resourceId", resourceId);
 
     const resource = await prismaClient.resource.update({
       where: {
@@ -38,6 +38,23 @@ export async function POST(
         userId: session.user.id,
       },
     });
+
+    try {
+      await logSnagClient.track({
+        channel: "product",
+        event: "Upvote",
+        icon: "🔺",
+        notify: false,
+      });
+
+      await logSnagClient.insight.increment({
+        title: "Upvotes counter",
+        value: 1,
+        icon: "🔺",
+      });
+    } catch (err) {
+      console.error("Error with Logsnag", err);
+    }
 
     return NextResponse.json({ resource }, { status: HttpStatusCode.Ok });
   }

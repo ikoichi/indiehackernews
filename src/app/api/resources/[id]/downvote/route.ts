@@ -1,4 +1,5 @@
 import { authOptions } from "@/config/auth";
+import { logSnagClient } from "@/libs/logSnag";
 import { prismaClient } from "@/prisma/db";
 import { HttpStatusCode } from "axios";
 import { getServerSession } from "next-auth";
@@ -41,6 +42,23 @@ export async function POST(
           },
         },
       });
+    }
+
+    try {
+      await logSnagClient.track({
+        channel: "product",
+        event: "Downvote",
+        icon: "🔻",
+        notify: false,
+      });
+
+      await logSnagClient.insight.increment({
+        title: "Upvotes counter",
+        value: 1,
+        icon: "🔻",
+      });
+    } catch (err) {
+      console.error("Error with Logsnag", err);
     }
 
     return NextResponse.json({ result: true }, { status: HttpStatusCode.Ok });

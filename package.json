@@ -19,6 +19,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@lemonsqueezy/lemonsqueezy.js": "^1.2.4",
+    "@logsnag/node": "^1.0.1",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@mailchimp/mailchimp_transactional": "^1.0.50",
     "@mailpace/mailpace.js": "^0.1.1",

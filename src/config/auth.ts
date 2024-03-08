@@ -10,6 +10,7 @@ import GoogleProvider from "next-auth/providers/google";
 // import CredentialsProvider from "next-auth/providers/credentials"
 import EmailProvider from "next-auth/providers/email";
 import { AuthOptions } from "next-auth";
+import { logSnagClient } from "@/libs/logSnag";
 // more providers at https://next-auth.js.org/providers
 
 export const authOptions: AuthOptions = {
@@ -85,6 +86,22 @@ export const authOptions: AuthOptions = {
   events: {
     async signIn(event) {
       if (event.isNewUser && event.user.email) {
+        try {
+          await logSnagClient.track({
+            channel: "product",
+            event: "New signup",
+            icon: "🧑‍💼",
+            notify: false,
+          });
+
+          await logSnagClient.insight.increment({
+            title: "Signups",
+            value: 1,
+            icon: "🧑‍💼",
+          });
+        } catch (err) {
+          console.error("Error with Logsnag", err);
+        }
         /*
         await addMailChimpListMember({
           email: event.user.email,
