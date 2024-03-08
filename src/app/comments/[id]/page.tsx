@@ -1,6 +1,6 @@
 import { BuiltWith } from "@/components/BuiltWith/BuiltWith";
+import { Comments } from "@/components/Comments/Comments";
 import { FixedHeader } from "@/components/Header/FixedHeader";
-import { Resources } from "@/components/Resources/Resources";
 import { getSEOTags } from "@/components/SEOTags/SEOTags";
 import { landingPageDescription, landingPageTitle } from "@/config";
 import { Box, Flex } from "@chakra-ui/react";
@@ -11,12 +11,12 @@ export const metadata: Metadata = getSEOTags({
   description: landingPageDescription,
 });
 
-export default function Home() {
+export default function Home({ params }: { params: { id: string } }) {
   return (
     <>
       <FixedHeader />
       <Box p="8px 16px" pb="54px" pt="81px">
-        <Resources />
+        <Comments resourceId={params.id} />
       </Box>
       <Flex
         p="8px"

@@ -2,9 +2,9 @@
 
 import {
   Box,
+  Flex,
   HStack,
   IconButton,
-  Link,
   Skeleton,
   Text,
   VStack,
@@ -17,33 +17,11 @@ import { TbTriangleFilled } from "react-icons/tb";
 import { differenceInHours, differenceInMinutes } from "date-fns";
 import { GetResourcesResponse } from "@/app/api/resources/route";
 import { useIsLogged } from "@/hooks/useIsLogged";
+import { Link } from "@chakra-ui/next-js";
+import { Resource } from "./Resource";
+import { getDiffInTime, extractDomainFromUrl } from "./resource.utils";
 
 const queryClient = new QueryClient();
-
-const getDiffInTime = (date: Date) => {
-  const diffInHours = differenceInHours(new Date(), date);
-
-  if (diffInHours === 0) {
-    const diffInMinutes = differenceInMinutes(new Date(), date);
-    return `${diffInMinutes} minutes ago`;
-  }
-
-  return `${diffInHours} hours ago`;
-};
-
-const extractDomainFromUrl = (url: string) => {
-  const match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
-  if (
-    match != null &&
-    match.length > 2 &&
-    typeof match[2] === "string" &&
-    match[2].length > 0
-  ) {
-    return match[2];
-  } else {
-    return null;
-  }
-};
 
 export const Resources = () => {
   const { isLogged } = useIsLogged();
@@ -136,42 +114,24 @@ export const Resources = () => {
             );
 
             return (
-              <Box key={resource.id}>
-                <HStack alignItems="baseline">
-                  <Text w="34px" textAlign="right">
-                    {pageNumber * (index + 1)}.
-                  </Text>
-                  <IconButton
-                    icon={<TbTriangleFilled />}
-                    aria-label={""}
-                    size="xs"
-                    variant="ghost"
-                    color={isUpvoted ? "brand.500" : "whiteAlpha.600"}
-                    onClick={() => {
-                      if (isUpvoted) {
-                        onDownvote(resource.id);
-                        return;
-                      }
-                      onUpvote(resource.id);
-                    }}
-                    isLoading={upvotingId === resource.id}
-                  />
-                  <Link href={resource.url} target="_blank">
-                    {resource.title}
-                  </Link>
-                  {resource.url && (
-                    <Text fontSize="13px" color="whiteAlpha.600">
-                      ({extractDomainFromUrl(resource.url)})
-                    </Text>
-                  )}
-                </HStack>
-                <HStack ml="74px">
-                  <Text fontSize="13px" color="whiteAlpha.600">
-                    {resource.upvotes} upvotes by {resource.username || ""}{" "}
-                    {getDiffInTime(new Date(resource.createdAt))}
-                  </Text>
-                </HStack>
-              </Box>
+              <>
+                <Resource
+                  key={resource.id}
+                  number={pageNumber * (index + 1)}
+                  isUpvoted={isUpvoted}
+                  onDownvote={() => onDownvote(resource.id)}
+                  onUpvote={() => onUpvote(resource.id)}
+                  isLoading={upvotingId === resource.id}
+                  url={resource.url}
+                  title={resource.title}
+                  upvotes={resource.upvotes}
+                  comments={resource.comments}
+                  diffInTime={getDiffInTime(new Date(resource.createdAt))}
+                  domain={extractDomainFromUrl(resource.url)}
+                  username={resource.username || ""}
+                  resourceId={resource.id}
+                />
+              </>
             );
           })}
         </VStack>

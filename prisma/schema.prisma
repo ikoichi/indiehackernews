@@ -38,19 +38,20 @@ model Session {
 }
 
 model User {
-  id             String           @id @default(cuid())
-  name           String?
-  email          String?          @unique
-  emailVerified  DateTime?
-  image          String?
-  accounts       Account[]
-  sessions       Session[]
-  UserPlan       UserPlan?
-  UserOnboarding UserOnboarding[]
-  WorkspaceUsers WorkspaceUsers[]
-  Workspace      Workspace[]
-  Resource       Resource[]
-  UserUpvotes    UserUpvotes[]
+  id               String             @id @default(cuid())
+  name             String?
+  email            String?            @unique
+  emailVerified    DateTime?
+  image            String?
+  accounts         Account[]
+  sessions         Session[]
+  userPlan         UserPlan?
+  userOnboarding   UserOnboarding[]
+  workspaceUsers   WorkspaceUsers[]
+  workspace        Workspace[]
+  resource         Resource[]
+  userUpvotes      UserUpvotes[]
+  resourceComments ResourceComments[]
 }
 
 model VerificationToken {
@@ -127,9 +128,9 @@ model Workspace {
   createdBy                  String
   createdAt                  DateTime                     @default(now())
   updatedAt                  DateTime                     @updatedAt
-  WorkspaceUsers             WorkspaceUsers[]
+  workspaceUsers             WorkspaceUsers[]
   user                       User                         @relation(fields: [createdBy], references: [id])
-  WorkspacePendingInvitation WorkspacePendingInvitation[]
+  workspacePendingInvitation WorkspacePendingInvitation[]
 }
 
 enum WorkspaceRole {
@@ -167,12 +168,14 @@ model Resource {
   text      String
   createdBy String
   upvotes   Int      @default(0)
+  comments  Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   isDeleted Boolean  @default(false)
 
-  user        User          @relation(fields: [createdBy], references: [id])
-  userUpvotes UserUpvotes[]
+  user             User               @relation(fields: [createdBy], references: [id])
+  userUpvotes      UserUpvotes[]
+  resourceComments ResourceComments[]
 
   @@index([createdAt, upvotes])
 }
@@ -187,4 +190,18 @@ model UserUpvotes {
   resource   Resource @relation(fields: [resourceId], references: [id])
 
   @@unique([userId, resourceId])
+}
+
+model ResourceComments {
+  id              String   @id @default(cuid())
+  resourceId      String
+  userId          String
+  text            String
+  parentCommentId String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  isDeleted       Boolean  @default(false)
+
+  user     User     @relation(fields: [userId], references: [id])
+  resource Resource @relation(fields: [resourceId], references: [id])
 }

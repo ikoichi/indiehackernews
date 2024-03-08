@@ -66,6 +66,7 @@ export async function GET(
       "Resource".id,
       "Resource".title,
       "Resource".upvotes,
+      "Resource".comments,
       "Resource".url,
       "Resource".text,
       "Resource"."createdBy",
