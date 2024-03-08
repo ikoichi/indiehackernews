@@ -27,7 +27,7 @@ export async function GET(
   const session = await getServerSession(authOptions);
 
   const take = parseInt(
-    req.nextUrl.searchParams.get("take") || ("30" as string),
+    req.nextUrl.searchParams.get("take") || ("100" as string),
     10
   );
 
