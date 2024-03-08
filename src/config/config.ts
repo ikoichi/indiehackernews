@@ -1,6 +1,6 @@
 export const brandName = "Indie Hacker News";
-export const landingPageTitle = "My App";
-export const landingPageDescription = "Make money today with My App";
+export const landingPageTitle = "Indie Hacker News";
+export const landingPageDescription = "News from the indie hacking world";
 export const websiteUrl = "http://localhost:3000";
 export const supportEmail = "support@email.com";
 export const openGraphImageUrl = "https://myapp.com/images/og-image.jpg";
