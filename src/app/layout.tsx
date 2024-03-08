@@ -72,7 +72,7 @@ export default function RootLayout({
           type="text/javascript"
           src="/pirsch-extended.js"
           id="pirschextendedjs"
-          data-code=""
+          data-code="wqba0G9hASlUPaBapzBI9x1IsdLnjEzj"
         />
       </head>
       <body
