@@ -165,9 +165,8 @@ model Resource {
   title     String
   url       String
   text      String
-  ranking   Int      @default(0)
   createdBy String
-  upvotes   Int      @default(1)
+  upvotes   Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   isDeleted Boolean  @default(false)
