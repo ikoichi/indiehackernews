@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    if (user?.id && !user?.name) {
+    if (user?.id) {
       const updatedUser = await prismaClient.user.update({
         where: {
           id: user?.id,
