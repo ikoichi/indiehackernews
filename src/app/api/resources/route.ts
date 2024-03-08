@@ -81,6 +81,7 @@ export async function GET(
     INNER JOIN rank n on n.id = "public"."Resource"."id"
     JOIN "public"."User" ON "Resource"."createdBy" = "User"."id"
     WHERE "public"."Resource"."createdAt" > NOW() - INTERVAL '30 day'
+    AND "public"."Resource"."isDeleted" = false
     LIMIT ${take}
     OFFSET ${skip};
   `);
@@ -91,8 +92,6 @@ export async function GET(
       rank: Number(res.rank),
     };
   });
-
-  console.log(">>> resources", resources);
 
   let userUpvotes: UserUpvotes[] = [];
   if (session?.user) {
