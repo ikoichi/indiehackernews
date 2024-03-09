@@ -112,7 +112,7 @@ export const Comments = ({ resourceId }: CommentsProps) => {
             comments={resource.comments}
             diffInTime={getDiffInTime(new Date(resource.createdAt))}
             domain={extractDomainFromUrl(resource.url)}
-            username={resource.user.name || ""}
+            username={resource?.user?.name || ""}
             resourceId={resource.id}
           />
         </Flex>

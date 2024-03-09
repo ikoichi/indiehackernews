@@ -9,21 +9,17 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
 ): Promise<NextResponse<ApiError> | NextResponse> {
-  const session = await getServerSession(authOptions);
-
-  if (!session || !session?.user?.email) {
-    return NextResponse.json(
-      { error: "Unauthorized" },
-      { status: HttpStatusCode.Unauthorized }
-    );
-  }
-
   const resource = await prismaClient.resource.findFirst({
     where: {
       id: params.id,
     },
     include: {
-      user: true,
+      user: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
     },
   });
 

@@ -9,7 +9,9 @@ import { NextRequest, NextResponse } from "next/server";
 import rawBody from "raw-body";
 import { Readable } from "stream";
 
-type CommentsWithUser = ResourceComments & { user: User };
+type CommentsWithUser = ResourceComments & {
+  user: { id: string; name: string | null };
+};
 export type CommentsWithUserAndReplies = CommentsWithUser & {
   replies: CommentsWithUserAndReplies[];
 };
@@ -48,22 +50,18 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
 ): Promise<NextResponse<ApiError> | NextResponse<GetCommentsResponse>> {
-  const session = await getServerSession(authOptions);
-
-  if (!session || !session?.user?.email) {
-    return NextResponse.json(
-      { error: "Unauthorized" },
-      { status: HttpStatusCode.Unauthorized }
-    );
-  }
-
   const comments = await prismaClient.resourceComments.findMany({
     where: {
       resourceId: params.id,
       isDeleted: false,
     },
     include: {
-      user: true,
+      user: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
     },
   });
 

@@ -12,6 +12,9 @@ export const getDiffInTime = (date: Date) => {
 };
 
 export const extractDomainFromUrl = (url: string) => {
+  if (!url) {
+    return "";
+  }
   const match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
   if (
     match != null &&
