@@ -7,7 +7,9 @@ import {
   Stack,
   Textarea,
   VStack,
-  Text,
+  Alert,
+  AlertDescription,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -23,6 +25,8 @@ import { AxiosResponse } from "axios";
 import { ResourceComments } from "@prisma/client";
 import { GetCommentsResponse } from "@/app/api/resources/[id]/comments/route";
 import { CommentWithReplies } from "./CommentWithReplies";
+import { Routes } from "@/data/routes";
+import { Link } from "@chakra-ui/next-js";
 
 type CommentsProps = {
   resourceId: string;
@@ -125,6 +129,17 @@ export const Comments = ({ resourceId }: CommentsProps) => {
       )}
 
       <VStack pl="27px" alignItems="flex-start">
+        {!isLoadingUser && !isLogged && (
+          <Alert status="warning" borderRadius="8px" mt="24px">
+            <AlertIcon />
+            <AlertDescription>
+              <Link href={Routes.login} textDecor="underline">
+                Log in
+              </Link>{" "}
+              to comment
+            </AlertDescription>
+          </Alert>
+        )}
         {!isLoadingUser && isLogged && (
           <Stack mt="8px">
             <Textarea
