@@ -22,6 +22,7 @@ import { TbMenu2 } from "react-icons/tb";
 import { useIsLogged } from "@/hooks/useIsLogged";
 import { useRouter } from "next/navigation";
 import { useProfile } from "@/hooks/useProfile";
+import { signOut } from "next-auth/react";
 
 type HeaderProps = {};
 
@@ -41,7 +42,7 @@ export const Header = ({}: HeaderProps) => {
       borderBottom="1px solid"
       borderColor="whiteAlpha.200"
     >
-      <Flex w="100%">
+      <Flex w="100%" alignItems="center">
         <Flex alignItems="baseline">
           <Flex
             w="auto"
@@ -82,6 +83,7 @@ export const Header = ({}: HeaderProps) => {
                 borderRight="1px solid"
                 borderColor="whiteAlpha.400"
                 pr="32px"
+                display={["none", null, "flex"]}
               >
                 {!profile?.name && (
                   <Link href={Routes.profile}>Set nickname</Link>
@@ -131,22 +133,39 @@ export const Header = ({}: HeaderProps) => {
               <DrawerCloseButton />
 
               <DrawerBody mt="40px">
-                <VStack spacing="16px" w="100%">
-                  <Link href={Routes.login}>Login</Link>
+                <VStack spacing="24px" w="100%">
+                  {profile?.name && (
+                    <Link href={Routes.profile}>{profile.name}</Link>
+                  )}
+                  {!profile?.name && <Link href={Routes.login}>Login</Link>}
                   <Button
-                    size="sm"
+                    size="md"
+                    w="100%"
                     variant="solid"
                     colorScheme="brand"
                     isLoading={isLoading}
                     onClick={() => {
                       if (isLogged) {
                         router.push(Routes.submit);
+                        return;
                       }
-                      return;
                       router.push(Routes.signUp);
                     }}
                   >
                     {isLogged ? "Submit" : "Sign up"}
+                  </Button>
+                  <Button
+                    size="md"
+                    variant="outline"
+                    w="100%"
+                    onClick={() => {
+                      signOut({
+                        redirect: true,
+                        callbackUrl: "/",
+                      });
+                    }}
+                  >
+                    Log out
                   </Button>
                 </VStack>
               </DrawerBody>

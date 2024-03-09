@@ -1,5 +1,5 @@
 import { Link } from "@chakra-ui/next-js";
-import { Box, HStack, IconButton, Flex, Text } from "@chakra-ui/react";
+import { Box, HStack, IconButton, Flex, Text, Stack } from "@chakra-ui/react";
 import { TbTriangleFilled } from "react-icons/tb";
 
 type ResourceProps = {
@@ -36,7 +36,7 @@ export const Resource = ({
   return (
     <Box>
       <HStack alignItems="baseline">
-        <Text w="34px" textAlign="right">
+        <Text w="22px" minW="22px" maxW="22px" textAlign="right">
           {!!number ? `${number}.` : ""}
         </Text>
         <IconButton
@@ -54,29 +54,40 @@ export const Resource = ({
           }}
           isLoading={isLoading}
         />
-        <Link href={url} target="_blank">
-          {title}
-        </Link>
-        {url && (
-          <Text fontSize="13px" color="whiteAlpha.600">
-            ({domain})
-          </Text>
-        )}
+        <Stack direction={["column", null, "row"]} spacing="4px">
+          <Link href={url} target="_blank" lineHeight="20px">
+            {title}
+          </Link>
+          {url && (
+            <Text fontSize="13px" color="whiteAlpha.600">
+              ({domain})
+            </Text>
+          )}
+        </Stack>
       </HStack>
-      <HStack
-        ml="74px"
+      <Box
+        display="inline-block"
+        ml="62px"
         fontSize="13px"
         color="whiteAlpha.600"
         alignItems="baseline"
+        maxW="70%"
+        sx={{
+          "> *": {
+            mr: "4px",
+          },
+        }}
       >
-        <Text>
+        <Text display="inline-block">
           {upvotes} upvotes by {username || ""}
         </Text>
-        <Flex>•</Flex>
-        <Text>{diffInTime}</Text>
-        <Flex>•</Flex>
-        <Link href={`/comments/${resourceId}`}>{comments} comments</Link>
-      </HStack>
+        <Flex display="inline-block">•</Flex>
+        <Text display="inline-block">{diffInTime}</Text>
+        <Flex display="inline-block">•</Flex>
+        <Link display="inline-block" href={`/comments/${resourceId}`}>
+          {comments} comments
+        </Link>
+      </Box>
     </Box>
   );
 };

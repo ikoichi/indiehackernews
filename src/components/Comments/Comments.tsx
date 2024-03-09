@@ -19,10 +19,7 @@ import {
   extractDomainFromUrl,
 } from "../Resources/resource.utils";
 import { useIsLogged } from "@/hooks/useIsLogged";
-import { Comment } from "@/components/Comments/Comment";
 import { useState } from "react";
-import { AxiosResponse } from "axios";
-import { ResourceComments } from "@prisma/client";
 import { GetCommentsResponse } from "@/app/api/resources/[id]/comments/route";
 import { CommentWithReplies } from "./CommentWithReplies";
 import { Routes } from "@/data/routes";
