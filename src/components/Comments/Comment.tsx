@@ -32,7 +32,7 @@ export const Comment = ({
         <Flex>•</Flex>
         <Text>{diffInTime}</Text>
       </HStack>
-      <Text>{text}</Text>
+      <Text whiteSpace="break-spaces">{text}</Text>
       <Button
         size="sm"
         variant="link"
