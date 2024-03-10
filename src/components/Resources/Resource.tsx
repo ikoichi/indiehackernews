@@ -1,5 +1,13 @@
 import { Link } from "@chakra-ui/next-js";
-import { Box, HStack, IconButton, Flex, Text, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  IconButton,
+  Flex,
+  Text,
+  Stack,
+  VStack,
+} from "@chakra-ui/react";
 import { TbTriangleFilled } from "react-icons/tb";
 
 type ResourceProps = {
@@ -34,9 +42,9 @@ export const Resource = ({
   resourceId,
 }: ResourceProps) => {
   return (
-    <Box>
+    <VStack alignItems="flex-start" spacing="0">
       <HStack alignItems="baseline">
-        <Text w="22px" minW="22px" maxW="22px" textAlign="right">
+        <Text w="24px" minW="24px" maxW="24px" textAlign="right">
           {!!number ? `${number}.` : ""}
         </Text>
         <IconButton
@@ -67,11 +75,10 @@ export const Resource = ({
       </HStack>
       <Box
         display="inline-block"
-        ml="62px"
+        ml="64px"
         fontSize="13px"
         color="whiteAlpha.600"
         alignItems="baseline"
-        maxW="70%"
         sx={{
           "> *": {
             mr: "4px",
@@ -88,6 +95,6 @@ export const Resource = ({
           {comments} comments
         </Link>
       </Box>
-    </Box>
+    </VStack>
   );
 };

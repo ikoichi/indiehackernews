@@ -8,6 +8,7 @@ import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import rawBody from "raw-body";
 import { Readable } from "stream";
+import sanitizeHtml from "sanitize-html";
 
 type CommentsWithUser = ResourceComments & {
   user: { id: string; name: string | null };
@@ -114,11 +115,13 @@ export async function POST(
       },
     });
 
+    const sanitizedText = sanitizeHtml(payload.text);
+
     const comment = await prismaClient.resourceComments.create({
       data: {
         resourceId: resourceId,
         userId: session.user.id,
-        text: payload.text,
+        text: sanitizedText,
         parentCommentId: payload.parentCommentId || null,
       },
     });
