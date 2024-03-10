@@ -58,7 +58,7 @@ export async function GET(
   const resourcesRows: ResourceResponse[] =
     await prismaClient.$queryRaw(Prisma.sql`
     with rank as (
-      select id, (upvotes - 1) / (pow( (EXTRACT(EPOCH FROM (NOW() - "createdAt")) / 3600) + 2, 1.8)) as rank
+      select id, (upvotes) / (pow( (EXTRACT(EPOCH FROM (NOW() - "createdAt")) / 3600) + 2, 1.8)) as rank
       from "public"."Resource"
       group by id
     )
