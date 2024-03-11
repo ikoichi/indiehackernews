@@ -43,18 +43,6 @@ export async function GET(
     );
   }
 
-  /*
-  id: string;
-    title: string;
-    url: string;
-    text: string;
-    ranking: number;
-    createdBy: string;
-    upvotes: number;
-    createdAt: Date;
-    updatedAt: Date;
-    isDeleted: boolean;
-  */
   const resourcesRows: ResourceResponse[] =
     await prismaClient.$queryRaw(Prisma.sql`
     with rank as (
@@ -153,6 +141,7 @@ export async function POST(req: NextRequest) {
           url: payload?.url || "",
           text: payload?.text || "",
           createdBy: user.id,
+          upvotes: 1,
         },
       });
 
