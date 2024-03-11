@@ -145,6 +145,13 @@ export async function POST(req: NextRequest) {
         },
       });
 
+      await prismaClient.userUpvotes.create({
+        data: {
+          resourceId: createdResource.id,
+          userId: session.user.id,
+        },
+      });
+
       try {
         await logSnagClient.track({
           channel: "product",
