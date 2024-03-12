@@ -8,7 +8,8 @@ type CommentProps = {
   userName: string;
   diffInTime: string;
   text: string;
-  onCreateReply: (text: string, parentCommentId?: string) => void;
+  onCreateReply: (text: string, parentCommentId?: string) => Promise<void>;
+  isLoading: boolean;
 };
 
 export const Comment = ({
@@ -18,6 +19,7 @@ export const Comment = ({
   diffInTime,
   text,
   onCreateReply,
+  isLoading,
 }: CommentProps) => {
   const [isReplyOpen, setReplyOpen] = useState(false);
   const [parentCommentId, setParentCommentId] = useState<string | undefined>(
@@ -61,7 +63,13 @@ export const Comment = ({
             size="sm"
             colorScheme="brand"
             isDisabled={!replyText}
-            onClick={() => onCreateReply(replyText, parentCommentId)}
+            onClick={() =>
+              onCreateReply(replyText, parentCommentId).then(() => {
+                setReplyOpen(false);
+                setReplyText("");
+              })
+            }
+            isLoading={isLoading}
           >
             Add reply
           </Button>

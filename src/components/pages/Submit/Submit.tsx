@@ -52,6 +52,7 @@ const Submit = () => {
       })
       .then(() => {
         toast.success("Resource submitted");
+        router.push("/");
       })
       .catch(() => {
         toast.error("Error submitting resource");

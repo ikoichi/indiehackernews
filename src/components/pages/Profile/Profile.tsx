@@ -131,7 +131,7 @@ const Submit = () => {
               mt="4px"
               size="sm"
               borderRadius="4px"
-              defaultValue={session?.user?.name || ""}
+              defaultValue={profile?.name || ""}
               borderColor={borderColor}
               onChange={(e) => setNickname(e.target.value)}
               _focusWithin={{

@@ -36,6 +36,7 @@ export function Providers({
             background: "#2D3748",
             color: "#fff",
           },
+          position: "bottom-center",
         }}
       />
       <UserdeskChat />

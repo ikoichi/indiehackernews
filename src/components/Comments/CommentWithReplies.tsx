@@ -5,10 +5,15 @@ import { VStack } from "@chakra-ui/react";
 
 type Props = {
   comment: CommentsWithUserAndReplies;
-  onCreateReply: (text: string, parentCommentId?: string) => void;
+  onCreateReply: (text: string, parentCommentId?: string) => Promise<void>;
+  isLoading: boolean;
 };
 
-export const CommentWithReplies = ({ comment, onCreateReply }: Props) => {
+export const CommentWithReplies = ({
+  comment,
+  onCreateReply,
+  isLoading,
+}: Props) => {
   return (
     <>
       <Comment
@@ -18,6 +23,7 @@ export const CommentWithReplies = ({ comment, onCreateReply }: Props) => {
         diffInTime={getDiffInTime(new Date(comment.createdAt))}
         text={comment.text}
         onCreateReply={onCreateReply}
+        isLoading={isLoading}
       />
       {comment.replies && comment.replies.length > 0 && (
         <VStack
@@ -33,6 +39,7 @@ export const CommentWithReplies = ({ comment, onCreateReply }: Props) => {
               key={reply.id}
               comment={reply}
               onCreateReply={onCreateReply}
+              isLoading={isLoading}
             />
           ))}
         </VStack>

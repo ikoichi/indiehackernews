@@ -9,6 +9,7 @@ import { NextRequest, NextResponse } from "next/server";
 import rawBody from "raw-body";
 import { Readable } from "stream";
 import sanitizeHtml from "sanitize-html";
+import { sendTransactionalEmail } from "@/libs/mailpace";
 
 type CommentsWithUser = ResourceComments & {
   user: { id: string; name: string | null };
@@ -79,6 +80,53 @@ export type PostCommentRequest = {
   parentCommentId?: string;
 };
 
+type SendCommentEmailArgs = {
+  toEmail: string;
+  commentUserName: string;
+  resourceTitle: string;
+  resourceUrl: string;
+  isReply: boolean;
+};
+
+const sendCommentEmail = async ({
+  toEmail,
+  commentUserName,
+  resourceTitle,
+  resourceUrl,
+  isReply,
+}: SendCommentEmailArgs) => {
+  sendTransactionalEmail({
+    from: "Indie Hacker News <hey@indiehackernews.com>",
+    to: toEmail,
+    subject: isReply ? "New reply to your message" : "New comment on your link",
+    htmlbody: `
+    ${commentUserName} ${
+      isReply ? "replied to your comment on" : "commented on your link"
+    } <b>${resourceTitle}</b>
+    <br/>
+    <br/>
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+          <td>
+              <table cellspacing="0" cellpadding="0">
+                  <tr>
+                      <td bgcolor="black" style="border-radius: 8px;">
+                          <a
+                            class=”link” href="${resourceUrl}" target="_blank"
+                            style="padding: 8px 12px; border: 1px solid black; border-radius: 8px; font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: white;text-decoration: none;font-weight:bold;display: inline-block;"
+                          >
+                              See comment
+                          </a>
+                      </td>
+                  </tr>
+              </table>
+          </td>
+      </tr>
+    </table>
+    `,
+  });
+};
+
 export async function POST(
   req: NextRequest,
   { params }: { params: { id: string } }
@@ -141,6 +189,49 @@ export async function POST(
       });
     } catch (err) {
       console.error("Error with Logsnag", err);
+    }
+
+    // send email to the resource owner
+    const resource = await prismaClient.resource.findFirst({
+      where: {
+        id: resourceId,
+      },
+      include: {
+        user: true,
+      },
+    });
+
+    const resourceUrl = `${process.env.NEXTAUTH_URL}/comments/${resourceId}`;
+    if (resource?.user.email && !payload.parentCommentId) {
+      sendCommentEmail({
+        toEmail: resource?.user?.email,
+        commentUserName: session?.user?.name || "Someone",
+        resourceTitle: resource?.title || "",
+        resourceUrl,
+        isReply: false,
+      });
+    }
+
+    // send email to the parent comment owner
+    if (payload.parentCommentId) {
+      const parentComment = await prismaClient.resourceComments.findFirst({
+        where: {
+          id: payload.parentCommentId,
+        },
+        include: {
+          user: true,
+        },
+      });
+
+      if (parentComment && parentComment?.user.email) {
+        sendCommentEmail({
+          toEmail: parentComment?.user.email,
+          commentUserName: session?.user?.name || "Someone",
+          resourceTitle: resource?.title || "",
+          resourceUrl,
+          isReply: true,
+        });
+      }
     }
 
     return NextResponse.json({ comment }, { status: HttpStatusCode.Ok });

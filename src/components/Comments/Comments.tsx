@@ -54,7 +54,7 @@ export const Comments = ({ resourceId }: CommentsProps) => {
       fetch(`/api/resources/${resourceId}/comments`).then((res) => res.json()),
   });
 
-  const { mutate: createComment, isPending: isPendingCreateComment } =
+  const { mutateAsync: createComment, isPending: isPendingCreateComment } =
     useMutation({
       mutationKey: queryKey,
       mutationFn: ({
@@ -86,7 +86,7 @@ export const Comments = ({ resourceId }: CommentsProps) => {
   const [commentText, setCommentText] = useState("");
 
   const onCreateComment = (text: string, parentCommentId?: string) => {
-    createComment({ comment: text, parentCommentId });
+    return createComment({ comment: text, parentCommentId });
   };
 
   return (
@@ -150,7 +150,7 @@ export const Comments = ({ resourceId }: CommentsProps) => {
               colorScheme="brand"
               isDisabled={!commentText}
               onClick={() => onCreateComment(commentText)}
-              isLoading={isPendingCreateComment}
+              isLoading={isPendingCreateComment && !!commentText}
             >
               Add comment
             </Button>
@@ -176,6 +176,7 @@ export const Comments = ({ resourceId }: CommentsProps) => {
                   onCreateReply={(text, parentCommentId) =>
                     onCreateComment(text, parentCommentId)
                   }
+                  isLoading={isPendingCreateComment}
                 />
               );
             })}
