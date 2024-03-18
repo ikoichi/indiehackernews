@@ -24,6 +24,7 @@ import { GetCommentsResponse } from "@/app/api/resources/[id]/comments/route";
 import { CommentWithReplies } from "./CommentWithReplies";
 import { Routes } from "@/data/routes";
 import { Link } from "@chakra-ui/next-js";
+import { useUpvote } from "../Resources/useUpvote";
 
 type CommentsProps = {
   resourceId: string;
@@ -81,13 +82,19 @@ export const Comments = ({ resourceId }: CommentsProps) => {
 
   const resource = resourceData?.resource || {};
   const comments = commentsData?.comments || [];
-  console.log(">>> comments", comments);
+  const isUpvoted = resourceData?.isUpvoted || false;
 
   const [commentText, setCommentText] = useState("");
 
   const onCreateComment = (text: string, parentCommentId?: string) => {
     return createComment({ comment: text, parentCommentId });
   };
+
+  const { onUpvote, onDownvote, upvotingId } = useUpvote({
+    isLogged,
+    onUpvoteSuccess: refetchResource,
+    onDownvoteSuccess: refetchResource,
+  });
 
   return (
     <VStack alignItems="flex-start">
@@ -99,14 +106,10 @@ export const Comments = ({ resourceId }: CommentsProps) => {
       {!isLoadingResource && (
         <Flex ml="-46px">
           <Resource
-            isUpvoted={false}
-            onDownvote={function (): void {
-              throw new Error("Function not implemented.");
-            }}
-            onUpvote={function (): void {
-              throw new Error("Function not implemented.");
-            }}
-            isLoading={false}
+            isUpvoted={isUpvoted}
+            onDownvote={() => onDownvote(resourceId)}
+            onUpvote={() => onUpvote(resourceId)}
+            isLoading={upvotingId === resourceId}
             url={resource.url}
             title={resource.title}
             upvotes={resource.upvotes}

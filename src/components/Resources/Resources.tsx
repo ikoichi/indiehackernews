@@ -20,8 +20,7 @@ import { useIsLogged } from "@/hooks/useIsLogged";
 import { Link } from "@chakra-ui/next-js";
 import { Resource } from "./Resource";
 import { getDiffInTime, extractDomainFromUrl } from "./resource.utils";
-
-const queryClient = new QueryClient();
+import { useUpvote } from "./useUpvote";
 
 export const Resources = () => {
   const { isLogged } = useIsLogged();
@@ -35,65 +34,11 @@ export const Resources = () => {
   const userUpvotes = data?.data.userUpvotes || [];
   const pageNumber = data?.data.page || 1;
 
-  const { mutate: upvoteMutation } = useMutation({
-    mutationFn: (id: string) =>
-      axios.post<GetResourcesResponse>(`/api/resources/${id}/upvote`),
-    onSuccess: () => {
-      refetch();
-    },
+  const { onUpvote, onDownvote, upvotingId } = useUpvote({
+    isLogged,
+    onUpvoteSuccess: refetch,
+    onDownvoteSuccess: refetch,
   });
-
-  const { mutate: downvoteMutation } = useMutation({
-    mutationFn: (id: string) =>
-      axios.post<GetResourcesResponse>(`/api/resources/${id}/downvote`),
-    onSuccess: () => {
-      refetch();
-    },
-  });
-
-  const [upvotingId, setUpvotingId] = useState<string | null>(null);
-  const onUpvote = (id: string) => {
-    if (!isLogged) {
-      toast.error("You need to be logged in to upvote");
-      return;
-    }
-
-    setUpvotingId(id);
-    upvoteMutation(id, {
-      onSuccess: () => {
-        toast.success("Upvoted!");
-      },
-      onError: () => {
-        toast.error("Error upvoting");
-      },
-      onSettled: () => {
-        setUpvotingId(null);
-      },
-    });
-  };
-
-  const onDownvote = (id: string) => {
-    if (!isLogged) {
-      toast.error("You need to be logged in to upvote");
-      return;
-    }
-
-    setUpvotingId(id);
-    downvoteMutation(id, {
-      onSuccess: () => {
-        toast.success("Downvoted");
-        queryClient.invalidateQueries({
-          queryKey: ["resources"],
-        });
-      },
-      onError: () => {
-        toast.error("Error downvoting");
-      },
-      onSettled: () => {
-        setUpvotingId(null);
-      },
-    });
-  };
 
   return (
     <>
