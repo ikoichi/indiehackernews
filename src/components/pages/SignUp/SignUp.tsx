@@ -125,7 +125,7 @@ const SignUp = () => {
             Sign up to {brandName}
           </Text>
 
-          {/* <Button
+          <Button
             my="24px"
             h="36px"
             variant="solid"
@@ -142,9 +142,9 @@ const SignUp = () => {
             isLoading={isSigningUpWithGoogle}
           >
             Continue with Google
-          </Button> */}
+          </Button>
 
-          {/* <Stack
+          <Stack
             direction="row"
             w="100%"
             alignItems="center"
@@ -155,7 +155,7 @@ const SignUp = () => {
             <Flex w="100%" h="1px" bgColor={baseTextColor[100]}></Flex>
             <Flex>OR</Flex>
             <Flex w="100%" h="1px" bgColor={baseTextColor[100]}></Flex>
-          </Stack> */}
+          </Stack>
 
           <Text
             mt="24px"

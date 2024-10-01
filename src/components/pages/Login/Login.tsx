@@ -119,7 +119,7 @@ const Login = () => {
             Sign in to your account
           </Text>
 
-          {/* <Button
+          <Button
             my="24px"
             h="36px"
             variant="solid"
@@ -138,9 +138,9 @@ const Login = () => {
             color={primaryTextColor}
           >
             Continue with Google
-          </Button> */}
+          </Button>
 
-          {/* <Stack
+          <Stack
             direction="row"
             w="100%"
             alignItems="center"
@@ -151,7 +151,7 @@ const Login = () => {
             <Flex w="100%" h="1px" bgColor={baseTextColor[100]}></Flex>
             <Flex>OR</Flex>
             <Flex w="100%" h="1px" bgColor={baseTextColor[100]}></Flex>
-          </Stack> */}
+          </Stack>
 
           <Text mt="24px" fontSize="13px" fontWeight="semibold">
             Email
